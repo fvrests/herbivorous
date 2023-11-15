@@ -572,7 +572,11 @@
     "info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
     "suggestions": [
       {
-        "name": "per individual needs / doctor recommendation (https://nutritionfacts.org/topics/vitamin-b12/)"
+        "name": "per individual needs / doctor recommendation",
+        "portion": {
+          "metric": { "quantity": "50", "unit": "mcg" },
+          "imperial": { "quantity": "50", "unit": "mcg" }
+        }
       }
     ]
   }

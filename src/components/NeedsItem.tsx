@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import ItemEditMenu from "./ItemEditMenu";
-import Edit from "./icons/Edit";
+import NeedsItemDetails from "./NeedsItemDetails";
+import Plus from "./icons/Plus";
 import Check from "./icons/Check";
 
 interface Props {
@@ -12,39 +12,39 @@ interface Props {
 
 export default function NeedsItem({ need }: Props) {
   const [progress, setProgress] = useState(0);
-  const [isEditMenuOpen, setIsEditMenuOpen] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const incrementProgress = (amount: number) => {
-    // if (progress < need.goal) {
     setProgress(progress + amount);
-    // }
   };
 
   const resetProgress = () => {
     setProgress(0);
   };
 
-  const toggleEditMenu = () => {
-    setIsEditMenuOpen(!isEditMenuOpen);
+  const toggleDetails = () => {
+    setIsDetailsOpen(!isDetailsOpen);
   };
 
   return (
     <div className="flex flex-row justify-between items-center max-w-full text-f-high">
       <button
-        className="w-full h-20 relative mb-2 rounded-xl flex flex-row items-center justify-between overflow-hidden bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200"
-        aria-label="increase progress by 1"
-        onClick={() => incrementProgress(1)}
+        className="w-full h-20 relative mb-2 rounded-xl flex flex-row items-center justify-between bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 overflow-hidden border-2 border-b-high hover:border-f-low"
+        aria-label="open item details"
+        onClick={() => toggleDetails()}
       >
         <div className="flex flex-row items-center">
+          {/* todo: wiggle bar on increment if progress is full */}
           <div
-            className="absolute top-0 bottom-0 right-0 bg-b-med transition-[width]"
+            className="absolute inset-y-0 right-0 bg-b-med transition-[width]"
             style={{
               width: `${
                 100 - (progress <= need.goal ? progress / need.goal : 1) * 100
               }%`,
             }}
           />
-          {[...Array(need.goal)].map((_, i) => (
+          {/* dashed vertical portion markers */}
+          {[...Array(need.goal - 1)].map((_, i) => (
             <span
               className="absolute h-24 border-dashed border-neutral-700 border-l-2 w-0 transition-opacity duration-500"
               style={{
@@ -63,18 +63,23 @@ export default function NeedsItem({ need }: Props) {
         <span className="p-8">{progress >= need.goal && <Check />}</span>
       </button>
       <button
-        onClick={toggleEditMenu}
-        aria-label="edit goal"
-        className="h-full flex flex-row items-center ml-8 text-f-low hover:text-f-high"
+        onClick={() => incrementProgress(1)}
+        aria-label="increase progress by 1"
+        className="group ml-4 grid grid-rows-3 shrink-0 h-full relative justify-end place-items-center text-f-low hover:text-f-high"
       >
-        <Edit />
+        <span className="row-start-2">
+          <Plus size={18} />
+        </span>
+        <span className="row-start-3 w-full text-xs invisible group-hover:visible">
+          Log 1
+        </span>
       </button>
 
-      {isEditMenuOpen ? (
-        <ItemEditMenu
-          toggleEditMenu={toggleEditMenu}
+      {isDetailsOpen ? (
+        <NeedsItemDetails
+          toggleDetails={toggleDetails}
           incrementProgress={incrementProgress}
-          isEditMenuOpen={isEditMenuOpen}
+          isDetailsOpen={isDetailsOpen}
           resetProgress={resetProgress}
           progress={progress}
           need={need}
