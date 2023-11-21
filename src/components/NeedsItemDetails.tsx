@@ -1,7 +1,6 @@
 "use client";
 
-import { Dialog } from "@headlessui/react";
-import { RadioGroup } from "@headlessui/react";
+import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import useOptions from "../app/store";
 import { useEffect } from "react";
 
@@ -9,6 +8,8 @@ import RadioGroupOption from "./RadioGroupOption";
 
 import Button from "./Button";
 import Check from "./icons/Check";
+import ChevronDown from "./icons/ChevronDown";
+import ChevronUp from "./icons/ChevronUp";
 import Rotate from "./icons/Rotate";
 import X from "./icons/X";
 
@@ -27,6 +28,9 @@ const partialPortions = [
   { fraction: "3/4", value: 0.75 },
   { fraction: "1", value: 1 },
 ];
+
+// todo: try to make accessible by number - allows better usage with displaying in suggestions
+// const partialPortions = [{ 0.25: "1/4", 0.5: "1/2", 0.75: "3/4", 1: "1" }];
 
 export default function ItemEditMenu({
   incrementProgress,
@@ -49,22 +53,22 @@ export default function ItemEditMenu({
       <Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
         <div className="fixed inset-0 bg-black/80 z-30" aria-hidden="true" />
         <Dialog.Panel>
-          <div className="fixed z-40 border-neutral-800 border-2 bg-b-med inset-[10%] rounded-xl p-8 shadow-lg shadow-black">
+          <div className="fixed z-40 border-b-high border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             <button
               className="z-50 absolute top-8 right-8 text-f-low hover:text-f-high"
               aria-label="close details"
               onClick={toggleDetails}
             >
-              <X />
+              <X size={30} />
             </button>
-            <div className="relative w-full h-full overflow-y-auto">
+            <div className="relative w-full mb-8">
               <div className="mb-8">
                 <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">
                   {need.name}
                 </Dialog.Title>
                 <div className="text-f-med mb-4 text-sm flex flex-row items-center ">
                   Progress: {progress} / {need.goal}
-                  <span className="pl-2 text-f-med">
+                  <span className="pl-2 text-f-high">
                     {progress >= need.goal && <Check size={16} />}
                   </span>
                 </div>
@@ -81,9 +85,8 @@ export default function ItemEditMenu({
                 </div>
               </div>
               <h3 className="font-bold text-sm mb-4">Units</h3>
-              {/* todo: cursor-pointer on radio items */}
               {/* todo: use fraction names for partial-unit suggestions */}
-              {/* fix: units setting doesn't persist to other need menus*/}
+              {/* fix: units setting doesn't persist to other need menus -- needs state to be stored */}
               <RadioGroup
                 value={options.units}
                 onChange={(newValue) =>
@@ -110,23 +113,66 @@ export default function ItemEditMenu({
                 ))}
                 <li></li>
               </ul>
-              <h3 className="font-bold text-sm mb-4">Log progess</h3>
-              <div className="mb-8 flex flex-row items-center justify-start">
+              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-b-high">
+                <Disclosure>
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className="font-bold text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-high rounded-lg">
+                        <span>Types</span>
+                        {open ? (
+                          <ChevronUp size={16} />
+                        ) : (
+                          <ChevronDown size={16} />
+                        )}
+                      </Disclosure.Button>
+                      <Transition
+                        enter="transition duration-100 ease-out"
+                        enterFrom="transform scale-95 opacity-0"
+                        enterTo="transform scale-100 opacity-100"
+                        leave="transition duration-75 ease-out"
+                        leaveFrom="transform scale-100 opacity-100"
+                        leaveTo="transform scale-95 opacity-0"
+                      >
+                        <Disclosure.Panel className="text-sm px-2 w-full mt-2">
+                          <ul>
+                            {need.types.map((type: string) => (
+                              <li
+                                id={type}
+                                className="first-letter:capitalize mb-2"
+                              >
+                                {type}
+                              </li>
+                            ))}
+                          </ul>
+                        </Disclosure.Panel>
+                      </Transition>
+                    </>
+                  )}
+                </Disclosure>
+              </div>
+              <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
+              <div className="mb-8 flex flex-row flex-wrap gap-4 items-center justify-start">
                 {partialPortions.map((partial) => (
                   <Button
-                    classes="ml-4 first:ml-0"
                     key={partial.fraction}
                     onClick={() => incrementProgress(partial.value)}
                   >
-                    {partial.fraction} serving
+                    {partial.fraction}
                   </Button>
                 ))}
+                {need.goal > 1 && progress < need.goal ? (
+                  <Button onClick={() => incrementProgress(need.goal)}>
+                    Remaining ({need.goal - progress})
+                  </Button>
+                ) : (
+                  ""
+                )}
               </div>
 
               <h3 className="font-bold text-sm mb-4">Reset progess</h3>
               <Button
                 onClick={() => resetProgress()}
-                classes="flex flex-row gap-2 mb-8"
+                classes="flex flex-row gap-2"
               >
                 <Rotate size={14} /> <span>Reset</span>
               </Button>

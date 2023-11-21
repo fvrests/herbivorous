@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --f-low: theme("colors.neutral.500");
+  --f-low: theme("colors.neutral.400");
   --f-med: theme("colors.neutral.300");
   --f-high: theme("colors.neutral.100");
 
