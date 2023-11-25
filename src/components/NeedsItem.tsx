@@ -6,8 +6,7 @@ import Plus from "./icons/Plus";
 import Check from "./icons/Check";
 
 interface Props {
-  // todo: type
-  need: any;
+  need: NeedsItem;
 }
 
 export default function NeedsItem({ need }: Props) {

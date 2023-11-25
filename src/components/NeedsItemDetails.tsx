@@ -22,15 +22,24 @@ interface Props {
   need: any;
 }
 
-const partialPortions = [
-  { fraction: "1/4", value: 0.25 },
-  { fraction: "1/2", value: 0.5 },
-  { fraction: "3/4", value: 0.75 },
-  { fraction: "1", value: 1 },
-];
+const fractionsMap = new Map([
+  [0.25, "¼"],
+  [0.5, "½"],
+  [0.75, "¾"],
+  [1, "1"],
+]);
 
-// todo: try to make accessible by number - allows better usage with displaying in suggestions
-// const partialPortions = [{ 0.25: "1/4", 0.5: "1/2", 0.75: "3/4", 1: "1" }];
+const parseNumberToString = (number: number) => {
+  let remainder = number % 1;
+  console.log("remainder", remainder);
+  if (fractionsMap.has(number)) {
+    return fractionsMap.get(number);
+  } else if (remainder !== 1 && fractionsMap.has(remainder)) {
+    return `${Math.floor(number)} ${fractionsMap.get(remainder)}`;
+  } else {
+    return number;
+  }
+};
 
 export default function ItemEditMenu({
   incrementProgress,
@@ -46,7 +55,7 @@ export default function ItemEditMenu({
     console.log({ options, setOptions });
   }, [options]);
 
-  const activeUnits = options.units === "metric" ? "metric" : "imperial";
+  const selectedUnits = options.units === "metric" ? "metric" : "imperial";
 
   return (
     <>
@@ -85,7 +94,6 @@ export default function ItemEditMenu({
                 </div>
               </div>
               <h3 className="font-bold text-sm mb-4">Units</h3>
-              {/* todo: use fraction names for partial-unit suggestions */}
               {/* fix: units setting doesn't persist to other need menus -- needs state to be stored */}
               <RadioGroup
                 value={options.units}
@@ -105,10 +113,12 @@ export default function ItemEditMenu({
               </RadioGroup>
               <h3 className="font-bold text-sm mb-4">Suggestions</h3>
               <ul className="text-sm mb-8">
-                {need.suggestions.map((suggestion) => (
+                {need.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
-                    {suggestion.portion[activeUnits].quantity}{" "}
-                    {suggestion.portion[activeUnits].unit} {suggestion.name}
+                    {parseNumberToString(
+                      suggestion.portion[selectedUnits].quantity,
+                    )}{" "}
+                    {suggestion.portion[selectedUnits].unit} {suggestion.name}{" "}
                   </li>
                 ))}
                 <li></li>
@@ -137,7 +147,7 @@ export default function ItemEditMenu({
                           <ul>
                             {need.types.map((type: string) => (
                               <li
-                                id={type}
+                                key={type}
                                 className="first-letter:capitalize mb-2"
                               >
                                 {type}
@@ -152,12 +162,12 @@ export default function ItemEditMenu({
               </div>
               <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
               <div className="mb-8 flex flex-row flex-wrap gap-4 items-center justify-start">
-                {partialPortions.map((partial) => (
+                {Array.from(fractionsMap.entries()).map((entry) => (
                   <Button
-                    key={partial.fraction}
-                    onClick={() => incrementProgress(partial.value)}
+                    key={entry[0]}
+                    onClick={() => incrementProgress(entry[0])}
                   >
-                    {partial.fraction}
+                    {entry[1]}
                   </Button>
                 ))}
                 {need.goal > 1 && progress < need.goal ? (
