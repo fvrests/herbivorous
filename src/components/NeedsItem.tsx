@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import NeedsItemDetails from "./NeedsItemDetails";
-import Plus from "./icons/Plus";
-import Check from "./icons/Check";
+import { Check, Plus } from "react-feather";
 
 interface Props {
   need: NeedsItem;
@@ -68,7 +67,7 @@ export default function NeedsItem({ need }: Props) {
         className="group ml-4 grid grid-rows-3 shrink-0 h-full relative justify-end place-items-center text-f-low hover:text-f-high"
       >
         <span className="row-start-2">
-          <Plus size={24} />
+          <Plus />
         </span>
         <span className="row-start-3 w-full text-xs invisible group-hover:visible">
           Log 1

@@ -1,17 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import useOptions from "../app/store";
-import { useEffect } from "react";
+import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 
 import RadioGroupOption from "./RadioGroupOption";
 
 import Button from "./Button";
-import Check from "./icons/Check";
-import ChevronDown from "./icons/ChevronDown";
-import ChevronUp from "./icons/ChevronUp";
-import Rotate from "./icons/Rotate";
-import X from "./icons/X";
 
 interface Props {
   incrementProgress: (amount: number) => void;
@@ -68,7 +64,7 @@ export default function ItemEditMenu({
               aria-label="close details"
               onClick={toggleDetails}
             >
-              <X size={30} />
+              <X />
             </button>
             <div className="relative w-full mb-8">
               <div className="mb-8">
@@ -184,7 +180,7 @@ export default function ItemEditMenu({
                 onClick={() => resetProgress()}
                 classes="flex flex-row gap-2"
               >
-                <Rotate size={14} /> <span>Reset</span>
+                <RotateCcw size={14} /> <span>Reset</span>
               </Button>
             </div>
           </div>
