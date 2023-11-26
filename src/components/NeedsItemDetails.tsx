@@ -5,6 +5,7 @@ import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import useOptions from "../app/store";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 
+import ProgressBar from "./ProgressBar";
 import RadioGroupOption from "./RadioGroupOption";
 
 import Button from "./Button";
@@ -15,7 +16,8 @@ interface Props {
   toggleDetails: () => void;
   isDetailsOpen: boolean;
   progress: number;
-  need: any;
+  need: Need;
+  progressOverflow: boolean;
 }
 
 const fractionsMap = new Map([
@@ -25,28 +27,30 @@ const fractionsMap = new Map([
   [1, "1"],
 ]);
 
-const parseNumberToString = (number: number) => {
-  let remainder = number % 1;
-  console.log("remainder", remainder);
-  if (fractionsMap.has(number)) {
-    return fractionsMap.get(number);
-  } else if (remainder !== 1 && fractionsMap.has(remainder)) {
-    return `${Math.floor(number)} ${fractionsMap.get(remainder)}`;
-  } else {
-    return number;
+const parseQuantity = (quantity: number | string) => {
+  if (typeof quantity === "number") {
+    let remainder = quantity % 1;
+    if (fractionsMap.has(quantity)) {
+      return fractionsMap.get(quantity);
+    } else if (remainder !== 1 && fractionsMap.has(remainder)) {
+      return `${Math.floor(quantity)} ${fractionsMap.get(remainder)}`;
+    }
   }
+  return quantity;
 };
 
-export default function ItemEditMenu({
+export default function NeedsItemDetails({
   incrementProgress,
   resetProgress,
   toggleDetails,
   isDetailsOpen,
   progress,
   need,
+  progressOverflow,
 }: Props) {
   const [options, setOptions] = useOptions();
 
+  // todo: set storage
   useEffect(() => {
     console.log({ options, setOptions });
   }, [options]);
@@ -77,15 +81,26 @@ export default function ItemEditMenu({
                     {progress >= need.goal && <Check size={16} />}
                   </span>
                 </div>
-                <div className="w-full h-3 relative mb-2 rounded-md flex items-center overflow-hidden bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 border-b-high border-2">
-                  <div
-                    className="absolute top-0 bottom-0 right-0 bg-b-med transition-[width]"
-                    style={{
-                      width: `${
-                        100 -
-                        (progress <= need.goal ? progress / need.goal : 1) * 100
-                      }%`,
-                    }}
+                {/* <div */}
+                {/*   className={`w-full h-3 relative mb-2 rounded-md flex items-center overflow-hidden bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 border-b-high border-2 transition-transform ${ */}
+                {/*     progressOverflow ? "translate-x-2" : "" */}
+                {/*   }`} */}
+                {/* > */}
+                {/*   <div */}
+                {/*     className="absolute top-0 bottom-0 right-0 bg-b-med transition-[width]" */}
+                {/*     style={{ */}
+                {/*       width: `${ */}
+                {/*         100 - */}
+                {/*         (progress <= need.goal ? progress / need.goal : 1) * 100 */}
+                {/*       }%`, */}
+                {/*     }} */}
+                {/*   /> */}
+                {/* </div> */}
+                <div className="w-full h-3">
+                  <ProgressBar
+                    need={need}
+                    progress={progress}
+                    progressOverflow={progressOverflow}
                   />
                 </div>
               </div>
@@ -111,9 +126,7 @@ export default function ItemEditMenu({
               <ul className="text-sm mb-8">
                 {need.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
-                    {parseNumberToString(
-                      suggestion.portion[selectedUnits].quantity,
-                    )}{" "}
+                    {parseQuantity(suggestion.portion[selectedUnits].quantity)}{" "}
                     {suggestion.portion[selectedUnits].unit} {suggestion.name}{" "}
                   </li>
                 ))}
@@ -141,7 +154,7 @@ export default function ItemEditMenu({
                       >
                         <Disclosure.Panel className="text-sm px-2 w-full mt-2">
                           <ul>
-                            {need.types.map((type: string) => (
+                            {need.types?.map((type: string) => (
                               <li
                                 key={type}
                                 className="first-letter:capitalize mb-2"

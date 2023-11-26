@@ -2,17 +2,26 @@
 
 import { useState } from "react";
 import NeedsItemDetails from "./NeedsItemDetails";
+import ProgressBar from "./ProgressBar";
 import { Check, Plus } from "react-feather";
 
 interface Props {
-  need: NeedsItem;
+  need: Need;
 }
 
 export default function NeedsItem({ need }: Props) {
   const [progress, setProgress] = useState(0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
+  let [progressOverflow, setProgressOverflow] = useState(false);
+
   const incrementProgress = (amount: number) => {
+    if (progress >= need.goal) {
+      setProgressOverflow(true);
+      setTimeout(() => {
+        setProgressOverflow(false);
+      }, 100);
+    }
     setProgress(progress + amount);
   };
 
@@ -27,40 +36,30 @@ export default function NeedsItem({ need }: Props) {
   return (
     <div className="flex flex-row justify-between items-center max-w-full text-f-high">
       <button
-        className="w-full h-20 relative mb-2 rounded-xl flex flex-row items-center justify-between bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 overflow-hidden border-2 border-b-high hover:border-f-med opacity-95 hover:opacity-100"
+        className="h-20 w-full"
         aria-label="open item details"
         onClick={() => toggleDetails()}
       >
-        <div className="flex flex-row items-center">
-          {/* todo: wiggle bar on increment if progress is full */}
-          <div
-            className="absolute inset-y-0 right-0 bg-b-low hover:bg-b-med transition-[width]"
-            style={{
-              width: `${
-                100 - (progress <= need.goal ? progress / need.goal : 1) * 100
-              }%`,
-            }}
-          />
-          {/* dashed vertical portion markers */}
-          {[...Array(need.goal - 1)].map((_, i) => (
-            <span
-              className="absolute h-24 border-dashed border-neutral-700 border-l-2 w-0 transition-opacity duration-500"
-              style={{
-                left: `${((i + 1) / need.goal) * 100}%`,
-                opacity: `${progress < i + 1 ? 1 : 0}`,
-              }}
-            ></span>
-          ))}
-          {/* fix: doesn't truncate enough to show progress on long items / truncates early */}
-          <div className="z-10 ml-6 font-bold first-letter:capitalize whitespace-nowrap truncate">
-            {need.name}
+        <ProgressBar
+          progress={progress}
+          need={need}
+          progressOverflow={progressOverflow}
+          hoverable={true}
+        >
+          <div className="flex justify-between flex-row items-center w-full">
+            <div className="flex flex-row items-center w-full">
+              <div className="z-10 ml-6 font-bold first-letter:capitalize whitespace-nowrap truncate">
+                {need.name}
+              </div>
+              <div className="z-10 ml-4 shrink-0">
+                {progress} / {need.goal}
+              </div>
+            </div>
+            <div className="p-8">{progress >= need.goal && <Check />}</div>
           </div>
-          <div className="z-10 ml-4 shrink-0">
-            {progress} / {need.goal}
-          </div>
-        </div>
-        <span className="p-8">{progress >= need.goal && <Check />}</span>
+        </ProgressBar>
       </button>
+
       <button
         onClick={() => incrementProgress(1)}
         aria-label="increase progress by 1"
@@ -82,6 +81,7 @@ export default function NeedsItem({ need }: Props) {
           resetProgress={resetProgress}
           progress={progress}
           need={need}
+          progressOverflow={progressOverflow}
         />
       ) : (
         ""
