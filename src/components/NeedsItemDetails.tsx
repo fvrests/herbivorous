@@ -70,7 +70,9 @@ export default function NeedsItemDetails({
             >
               <X />
             </button>
+            {/* margin-bottom affects entire menu content */}
             <div className="relative w-full mb-8">
+              {/* header section */}
               <div className="mb-8">
                 <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">
                   {need.name}
@@ -81,21 +83,6 @@ export default function NeedsItemDetails({
                     {progress >= need.goal && <Check size={16} />}
                   </span>
                 </div>
-                {/* <div */}
-                {/*   className={`w-full h-3 relative mb-2 rounded-md flex items-center overflow-hidden bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 border-b-high border-2 transition-transform ${ */}
-                {/*     progressOverflow ? "translate-x-2" : "" */}
-                {/*   }`} */}
-                {/* > */}
-                {/*   <div */}
-                {/*     className="absolute top-0 bottom-0 right-0 bg-b-med transition-[width]" */}
-                {/*     style={{ */}
-                {/*       width: `${ */}
-                {/*         100 - */}
-                {/*         (progress <= need.goal ? progress / need.goal : 1) * 100 */}
-                {/*       }%`, */}
-                {/*     }} */}
-                {/*   /> */}
-                {/* </div> */}
                 <div className="w-full h-3">
                   <ProgressBar
                     need={need}
@@ -103,6 +90,33 @@ export default function NeedsItemDetails({
                     progressOverflow={progressOverflow}
                   />
                 </div>
+              </div>
+              <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
+              <div className="mb-8 flex justify-between gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {Array.from(fractionsMap.entries()).map((entry) => (
+                    <Button
+                      key={entry[0]}
+                      onClick={() => incrementProgress(entry[0])}
+                    >
+                      + {entry[1]}
+                    </Button>
+                  ))}
+                  {progress < need.goal &&
+                  !fractionsMap.has(need.goal - progress) ? (
+                    <Button onClick={() => incrementProgress(need.goal)}>
+                      All (+ {parseQuantity(need.goal - progress)})
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <Button
+                  onClick={() => resetProgress()}
+                  classes="flex flex-row gap-2"
+                >
+                  <RotateCcw size={14} /> <span>Reset</span>
+                </Button>
               </div>
               <h3 className="font-bold text-sm mb-4">Units</h3>
               {/* fix: units setting doesn't persist to other need menus -- needs state to be stored */}
@@ -169,32 +183,6 @@ export default function NeedsItemDetails({
                   )}
                 </Disclosure>
               </div>
-              <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
-              <div className="mb-8 flex flex-row flex-wrap gap-4 items-center justify-start">
-                {Array.from(fractionsMap.entries()).map((entry) => (
-                  <Button
-                    key={entry[0]}
-                    onClick={() => incrementProgress(entry[0])}
-                  >
-                    {entry[1]}
-                  </Button>
-                ))}
-                {need.goal > 1 && progress < need.goal ? (
-                  <Button onClick={() => incrementProgress(need.goal)}>
-                    Remaining ({need.goal - progress})
-                  </Button>
-                ) : (
-                  ""
-                )}
-              </div>
-
-              <h3 className="font-bold text-sm mb-4">Reset progess</h3>
-              <Button
-                onClick={() => resetProgress()}
-                classes="flex flex-row gap-2"
-              >
-                <RotateCcw size={14} /> <span>Reset</span>
-              </Button>
             </div>
           </div>
         </Dialog.Panel>
