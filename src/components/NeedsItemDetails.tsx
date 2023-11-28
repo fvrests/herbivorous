@@ -104,7 +104,9 @@ export default function NeedsItemDetails({
                   ))}
                   {progress < need.goal &&
                   !fractionsMap.has(need.goal - progress) ? (
-                    <Button onClick={() => incrementProgress(need.goal)}>
+                    <Button
+                      onClick={() => incrementProgress(need.goal - progress)}
+                    >
                       All (+ {parseQuantity(need.goal - progress)})
                     </Button>
                   ) : (
