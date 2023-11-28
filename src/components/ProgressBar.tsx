@@ -40,6 +40,7 @@ export default function ProgressBar({
               left: `${((i + 1) / need.goal) * 100}%`,
               opacity: `${progress < i + 1 ? 1 : 0}`,
             }}
+            key={i}
           ></span>
         ))}
         {children}
