@@ -1,10 +1,15 @@
 "use client";
-import { useFirebaseAuth } from "../app/firebase";
+import { useAuth } from "../app/firebase-auth";
+import { useEffect } from "react";
 
 import Link from "./Link";
 
 export default function Nav() {
-  let user = useFirebaseAuth();
+  let [user] = useAuth();
+  useEffect(() => {
+    console.log("from nav", user);
+  }, [user]);
+
   return (
     <nav className="flex items-center justify-between mb-16">
       <a href="/">

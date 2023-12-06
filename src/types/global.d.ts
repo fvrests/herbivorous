@@ -16,4 +16,25 @@ declare global {
     suggestions: Suggestion[];
     types: string[];
   }
+
+  interface UserData {
+    settings?: {
+      units?: "metric" | "imperial";
+    };
+    goalProgress?: {
+      [key: Date]: {
+        [key: string]: number;
+      };
+    };
+  }
+
+  interface UserProfile {
+    displayName?: string | null;
+    photoURL?: string | null;
+  }
+
+  interface User extends UserProfile {
+    uid: string;
+    email: string | null;
+  }
 }

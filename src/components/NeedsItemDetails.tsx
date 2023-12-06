@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
-import useOptions from "../app/store";
+import { useAuth } from "../app/firebase-auth";
+import { useFirestore, setFirestore } from "../app/firebase-firestore";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 
 import ProgressBar from "./ProgressBar";
@@ -48,14 +48,13 @@ export default function NeedsItemDetails({
   need,
   progressOverflow,
 }: Props) {
-  const [options, setOptions] = useOptions();
+  let [user] = useAuth();
+  let userData = useFirestore();
 
-  // todo: set storage
-  useEffect(() => {
-    console.log({ options, setOptions });
-  }, [options]);
-
-  const selectedUnits = options.units === "metric" ? "metric" : "imperial";
+  const handleChangeUnits = (newValue: string) => {
+    if (!user) return console.error("couldn't change units -- no user found");
+    setFirestore(user.uid, { settings: { units: newValue } });
+  };
 
   return (
     <>
@@ -72,6 +71,7 @@ export default function NeedsItemDetails({
             </button>
             {/* margin-bottom affects entire menu content */}
             <div className="relative w-full mb-8">
+              {/* <div>units: {user?.settings.units}</div> */}
               {/* header section */}
               <div className="mb-8">
                 <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">
@@ -121,12 +121,9 @@ export default function NeedsItemDetails({
                 </Button>
               </div>
               <h3 className="font-bold text-sm mb-4">Units</h3>
-              {/* fix: units setting doesn't persist to other need menus -- needs state to be stored */}
               <RadioGroup
-                value={options.units}
-                onChange={(newValue) =>
-                  setOptions({ ...options, units: newValue })
-                }
+                value={userData?.settings?.units || "metric"}
+                onChange={(newValue) => handleChangeUnits(newValue)}
               >
                 <RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
                 <div className="mb-8 flex flex-row">
@@ -142,8 +139,15 @@ export default function NeedsItemDetails({
               <ul className="text-sm mb-8">
                 {need.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
-                    {parseQuantity(suggestion.portion[selectedUnits].quantity)}{" "}
-                    {suggestion.portion[selectedUnits].unit} {suggestion.name}{" "}
+                    {parseQuantity(
+                      suggestion.portion[userData?.settings?.units || "metric"]
+                        .quantity,
+                    )}{" "}
+                    {
+                      suggestion.portion[userData?.settings?.units || "metric"]
+                        .unit
+                    }{" "}
+                    {suggestion.name}{" "}
                   </li>
                 ))}
                 <li></li>
