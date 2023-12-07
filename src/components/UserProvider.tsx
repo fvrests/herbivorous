@@ -7,7 +7,14 @@ interface Props {
 import { useAuth } from "../app/firebase-auth";
 import { createContext } from "react";
 
-export const UserContext = createContext<User | null>(null);
+interface UserContext {
+  user: User | null;
+  setUser: (userInfo: User) => void;
+}
+export const UserContext = createContext<UserContext>({
+  user: null,
+  setUser: (userInfo: User) => {},
+});
 
 export default function UserProvider({ children }: Props) {
   let [user, setUser] = useAuth();

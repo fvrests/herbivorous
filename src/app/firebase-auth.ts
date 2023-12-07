@@ -37,8 +37,7 @@ export const useAuth = () => {
     };
   }, []);
 
-  // todo: return a setter function to manually set on change
-  // does not run automatically on auth data change, just on auth state (login / logout)
+  // does not run automatically on auth data change, just on auth state (login / logout). when updating user should set user in context too
   return [user, setUser] as const;
 };
 

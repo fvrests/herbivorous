@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useContext } from "react";
 import {
-  useAuth,
   signUp,
   signIn,
   signOut,
@@ -14,16 +13,16 @@ import Button from "../../components/Button";
 import { UserContext } from "../../components/UserProvider";
 
 export default function SignIn() {
+  const { user, setUser } = useContext(UserContext);
   let userData = useFirestore();
 
-  const { user, setUser } = useContext(UserContext);
-
-  console.log({ user });
-  const [formData, setFormData] = useState({
+  const formDefaults = {
     email: "",
     displayName: "",
     photoURL: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(formDefaults);
 
   let [formUpdated, setFormUpdated] = useState(false);
 
@@ -47,10 +46,6 @@ export default function SignIn() {
     setFormUpdated(isFormUpdated());
   }, [formData]);
 
-  useEffect(() => {
-    console.log("updated user", user);
-  }, [user]);
-
   const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!user)
@@ -60,13 +55,14 @@ export default function SignIn() {
       updateAuthEmail(email);
     }
     const profileUpdates = Object.fromEntries(
-      Object.entries(profileForm).filter(([key, value]) => {
+      Object.entries(profileForm).filter(([key, _]) => {
         return isKeyUpdated(key);
       }),
     );
     if (Object.keys(profileUpdates).length > 0) {
       setUser({ ...user, ...profileUpdates });
       updateAuthProfile(profileUpdates);
+      setFormData(formDefaults);
     }
   };
 
