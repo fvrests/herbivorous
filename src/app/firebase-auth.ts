@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -14,8 +14,8 @@ import { firebaseConfig } from "./firebase-config";
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
+// subscribe to auth changes
 export const useAuth = () => {
-  // subscribe to auth changes
   const [user, setUser] = useState<User | null>(null);
   // useEffect with no dependencies: run on component mount
   // info: https://react.dev/reference/react/useEffect

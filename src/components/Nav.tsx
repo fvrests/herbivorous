@@ -1,11 +1,12 @@
 "use client";
 import { useAuth } from "../app/firebase-auth";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../components/UserProvider";
 
 import Link from "./Link";
 
 export default function Nav() {
-  let [user] = useAuth();
+  const { user, setUser } = useContext(UserContext);
   useEffect(() => {
     console.log("from nav", user);
   }, [user]);

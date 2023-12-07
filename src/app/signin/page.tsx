@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   useAuth,
   signUp,
@@ -11,11 +11,14 @@ import {
 } from "../firebase-auth";
 import { useFirestore } from "../firebase-firestore";
 import Button from "../../components/Button";
+import { UserContext } from "../../components/UserProvider";
 
 export default function SignIn() {
-  let [user, setUser] = useAuth();
   let userData = useFirestore();
 
+  const { user, setUser } = useContext(UserContext);
+
+  console.log({ user });
   const [formData, setFormData] = useState({
     email: "",
     displayName: "",

@@ -53,7 +53,7 @@ export const useFirestore = () => {
       return;
     }
     const unsubscribe = onSnapshot(doc(db, "users", user.uid), (doc) => {
-      if (doc.data()) {
+      if (doc.exists()) {
         setUserData(doc.data());
       } else {
         setUserData(null);
