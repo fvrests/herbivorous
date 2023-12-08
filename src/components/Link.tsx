@@ -2,7 +2,7 @@ import NextLink from "next/link";
 
 interface Props {
   href: string;
-  children: any;
+  children: React.ReactNode;
 }
 
 export default function Link({ href, children }: Props) {
