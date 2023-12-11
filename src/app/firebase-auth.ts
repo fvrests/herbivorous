@@ -14,11 +14,10 @@ import { firebaseConfig } from "./firebase-config";
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// subscribe to auth changes
 export const useAuth = () => {
+  // subscribe to auth changes
   const [user, setUser] = useState<User | null>(null);
-  // useEffect with no dependencies: run on component mount
-  // info: https://react.dev/reference/react/useEffect
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,6 +29,7 @@ export const useAuth = () => {
         // could redirect to login here
         // or nextjs route guards
       }
+      setIsLoading(false);
     });
     // cleanup on unmount
     return () => {
@@ -38,7 +38,7 @@ export const useAuth = () => {
   }, []);
 
   // does not run automatically on auth data change, just on auth state (login / logout). when updating user should set user in context too
-  return [user, setUser] as const;
+  return [user, setUser, isLoading] as const;
 };
 
 export const signUp = (email: string, password: string) => {

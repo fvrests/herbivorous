@@ -21,8 +21,8 @@ declare global {
     settings?: {
       units?: "metric" | "imperial";
     };
-    goalProgress?: {
-      [key: Date]: {
+    progress?: {
+      [key: string]: {
         [key: string]: number;
       };
     };

@@ -1,8 +1,6 @@
-"use client";
-
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import { useAuth } from "../app/firebase-auth";
-import { useFirestore, setFirestore } from "../app/firebase-firestore";
+import { useUserData, updateUserData } from "../app/firebase-firestore";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 
 import ProgressBar from "./ProgressBar";
@@ -49,11 +47,11 @@ export default function NeedsItemDetails({
   progressOverflow,
 }: Props) {
   let [user] = useAuth();
-  let userData = useFirestore();
+  let [userData, isLoading] = useUserData();
 
   const handleChangeUnits = (newValue: string) => {
     if (!user) return console.error("couldn't change units -- no user found");
-    setFirestore(user.uid, { settings: { units: newValue } });
+    updateUserData(user.uid, { settings: { units: newValue } });
   };
 
   return (
@@ -71,7 +69,6 @@ export default function NeedsItemDetails({
             </button>
             {/* margin-bottom affects entire menu content */}
             <div className="relative w-full mb-8">
-              {/* <div>units: {user?.settings.units}</div> */}
               {/* header section */}
               <div className="mb-8">
                 <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">

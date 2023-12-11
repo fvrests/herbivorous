@@ -16,9 +16,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-export async function setFirestore(uid: string, userData?: object) {
-  // const user = useAuth();
-  // if (!user) return console.error("error setting firestore -- can't find user");
+export async function updateUserData(uid: string, userData?: object) {
   try {
     await setDoc(
       doc(db, "users", uid),
@@ -33,21 +31,26 @@ export async function setFirestore(uid: string, userData?: object) {
   }
 }
 
-export const readFirestore = async (uid: string) => {
+export const readUserData = async (uid: string) => {
   // get data from firestore once
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const docRef = doc(db, "users", uid);
-  return getDoc(docRef)
+  getDoc(docRef)
     .then((doc) => {
-      return doc.data();
+      setUserData(doc.data());
     })
     .catch((error) => {
       console.error("error getting user details", error);
-    });
+    })
+    .then(() => setIsLoading(false));
+  return [userData, isLoading];
 };
 
-export const useFirestore = () => {
+export const useUserData = () => {
   const [user] = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (!user) {
       return;
@@ -58,29 +61,12 @@ export const useFirestore = () => {
       } else {
         setUserData(null);
       }
+      setIsLoading(false);
       console.log("Current data: ", doc.data());
     });
     return () => {
       unsubscribe();
     };
   }, [user]);
-  return userData;
+  return [userData, isLoading];
 };
-
-// /**
-//  * @usage const unsubscribe = listenToDocument('users/<id>')
-//  */
-// export function listenToDocument(
-//   documentPath: string,
-//   callback: (data: {}) => void,
-// ) {
-//   const unsubscribe = onSnapshot(doc(db, documentPath), (doc) => {
-//     if (doc.data()) {
-//       callback(doc.data());
-//     } else {
-//       callback(null);
-//     }
-//   });
-//
-//   return unsubscribe;
-// }

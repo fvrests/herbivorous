@@ -71,7 +71,7 @@ export default function UpdateUserForm() {
       >
         {formFields.map((field) => {
           return (
-            <label className="w-full mb-4">
+            <label className="w-full mb-4" key={field.name}>
               <h3 className="font-bold text-sm mb-2">{field.label}</h3>
               <input
                 className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
