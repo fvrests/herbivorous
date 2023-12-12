@@ -37,6 +37,7 @@ export const readUserData = async (uid: string) => {
   const [isLoading, setIsLoading] = useState(true);
   const docRef = doc(db, "users", uid);
   getDoc(docRef)
+    // fix: breaks build
     .then((doc) => {
       setUserData(doc.data());
     })
@@ -62,11 +63,10 @@ export const useUserData = () => {
         setUserData(null);
       }
       setIsLoading(false);
-      console.log("Current data: ", doc.data());
     });
     return () => {
       unsubscribe();
     };
   }, [user]);
-  return [userData, isLoading];
+  return [userData, isLoading] as const;
 };

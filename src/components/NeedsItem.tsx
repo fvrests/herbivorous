@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserProvider";
 import NeedsItemDetails from "./NeedsItemDetails";
 import ProgressBar from "./ProgressBar";
@@ -14,11 +14,20 @@ interface Props {
 
 export default function NeedsItem({ need }: Props) {
   const { user } = useContext(UserContext);
+  let [userData, isLoading] = useUserData();
   const [progress, setProgress] = useState(0);
+  const today = getDate();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   let [progressOverflow, setProgressOverflow] = useState(false);
 
-  let [userData, isLoading] = useUserData();
+  const getCurrentProgress = () => {
+    return userData?.progress?.[today]?.[need.name];
+  };
+  useEffect(() => {
+    // get data on load
+    const needProgress = getCurrentProgress();
+    needProgress && setProgress(needProgress);
+  }, [isLoading]);
 
   const incrementProgress = (amount: number) => {
     if (progress >= need.goal) {
@@ -37,6 +46,7 @@ export default function NeedsItem({ need }: Props) {
     }
   };
 
+  // todo: needs to update database
   const resetProgress = () => {
     setProgress(0);
   };
