@@ -1,9 +1,19 @@
-export const getDate = () => {
-  // fix: use local timezone not UTC
-  // note: maybe add feature to allow shift of time window (for users with reverse schedule e.g.)
-  const epochDate = new Date();
-  const timezoneOffset = epochDate.getTimezoneOffset() / 60;
-  console.log("timezone offset", timezoneOffset);
-  const today = epochDate.toISOString().split("T")[0];
-  return today;
+export const getDate = (offsetOverride?: number) => {
+  // todo: add feature to settings to allow offset override
+
+  // date in UTC
+  const today = new Date();
+
+  // get offset in hours (default for method is minutes)
+  const timezoneOffset = (-1 * today.getTimezoneOffset()) / 60;
+
+  // update today's hours with override or local timezone offset
+  today.setHours(
+    today.getHours() + (offsetOverride ? offsetOverride : timezoneOffset),
+  );
+
+  // get date in YYYY-MM-DD
+  const dateString = today.toJSON().split("T")[0];
+
+  return dateString;
 };
