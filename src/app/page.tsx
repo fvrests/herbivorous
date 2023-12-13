@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {needs.map((need) => (
-        <div className="mb-8" key={need.name}>
+        <div className="mb-6" key={need.name}>
           <NeedsItem need={need} />
         </div>
       ))}

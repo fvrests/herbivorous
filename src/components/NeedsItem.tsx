@@ -59,7 +59,7 @@ export default function NeedsItem({ need }: Props) {
     return (
       <div className="flex flex-row justify-between items-center max-w-full text-f-high">
         <button
-          className="h-20 w-full"
+          className="h-16 w-full"
           aria-label="open item details"
           onClick={() => toggleDetails()}
         >
