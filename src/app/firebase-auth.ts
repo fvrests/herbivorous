@@ -38,7 +38,7 @@ export const useAuth = () => {
   }, []);
 
   // does not run automatically on auth data change, just on auth state (login / logout). when updating user should set user in context too
-  return [user, setUser, isLoading] as const;
+  return { user, setUser, isLoading } as const;
 };
 
 export const signUp = (email: string, password: string) => {

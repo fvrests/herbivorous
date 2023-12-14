@@ -9,13 +9,13 @@ import RadioGroupOption from "./RadioGroupOption";
 import Button from "./Button";
 
 interface Props {
-  incrementProgress: (amount: number) => void;
-  resetProgress: () => void;
+  increment: (amount?: number) => void;
   toggleDetails: () => void;
+  reset: () => void;
   isDetailsOpen: boolean;
   progress: number;
   need: Need;
-  progressOverflow: boolean;
+  overflow: boolean;
 }
 
 const fractionsMap = new Map([
@@ -38,16 +38,15 @@ const parseQuantity = (quantity: number | string) => {
 };
 
 export default function NeedsItemDetails({
-  incrementProgress,
-  resetProgress,
+  increment,
   toggleDetails,
   isDetailsOpen,
   progress,
   need,
-  progressOverflow,
+  overflow,
 }: Props) {
-  let [user] = useAuth();
-  let [userData, isLoading] = useUserData();
+  let { user } = useAuth();
+  let { userData } = useUserData();
 
   const handleChangeUnits = (newValue: string) => {
     if (!user) return console.error("couldn't change units -- no user found");
@@ -84,7 +83,7 @@ export default function NeedsItemDetails({
                   <ProgressBar
                     need={need}
                     progress={progress}
-                    progressOverflow={progressOverflow}
+                    overflow={overflow}
                   />
                 </div>
               </div>
@@ -92,28 +91,20 @@ export default function NeedsItemDetails({
               <div className="mb-8 flex justify-between gap-2">
                 <div className="flex flex-wrap gap-2">
                   {Array.from(fractionsMap.entries()).map((entry) => (
-                    <Button
-                      key={entry[0]}
-                      onClick={() => incrementProgress(entry[0])}
-                    >
+                    <Button key={entry[0]} onClick={() => increment(entry[0])}>
                       + {entry[1]}
                     </Button>
                   ))}
                   {progress < need.goal &&
                   !fractionsMap.has(need.goal - progress) ? (
-                    <Button
-                      onClick={() => incrementProgress(need.goal - progress)}
-                    >
+                    <Button onClick={() => increment(need.goal - progress)}>
                       All (+ {parseQuantity(need.goal - progress)})
                     </Button>
                   ) : (
                     ""
                   )}
                 </div>
-                <Button
-                  onClick={() => resetProgress()}
-                  classes="flex flex-row gap-2"
-                >
+                <Button onClick={() => reset()} classes="flex flex-row gap-2">
                   <RotateCcw size={14} /> <span>Reset</span>
                 </Button>
               </div>

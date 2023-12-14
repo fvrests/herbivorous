@@ -1,4 +1,4 @@
-export const getDate = (offsetOverride?: number) => {
+export const getDateString = (offsetOverride?: number) => {
   // todo: add feature to settings to allow offset override
 
   // date in UTC

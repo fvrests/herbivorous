@@ -5,8 +5,7 @@ import { UserContext } from "./UserProvider";
 import NeedsItemDetails from "./NeedsItemDetails";
 import ProgressBar from "./ProgressBar";
 import { Check, Plus } from "react-feather";
-import { updateUserData, useUserData } from "@/app/firebase-firestore";
-import { getDate } from "@/utils/utils";
+import { useUserData, useProgress } from "@/app/firebase-firestore";
 
 interface Props {
   need: Need;
@@ -14,42 +13,10 @@ interface Props {
 
 export default function NeedsItem({ need }: Props) {
   const { user } = useContext(UserContext);
-  let [userData, isLoading] = useUserData();
-  const [progress, setProgress] = useState(0);
-  const today = getDate();
+  let { isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  let [progressOverflow, setProgressOverflow] = useState(false);
 
-  const getCurrentProgress = () => {
-    return userData?.progress?.[today]?.[need.name];
-  };
-  useEffect(() => {
-    // get data on load
-    const needProgress = getCurrentProgress();
-    needProgress && setProgress(needProgress);
-  }, [isLoading]);
-
-  const incrementProgress = (amount: number) => {
-    if (progress >= need.goal) {
-      setProgressOverflow(true);
-      setTimeout(() => {
-        setProgressOverflow(false);
-      }, 100);
-    }
-    const newProgress = progress + amount;
-    setProgress(newProgress);
-    if (user) {
-      // todo: method to standardize date to user time zone?
-      updateUserData(user.uid, {
-        progress: { [getDate()]: { [need.name]: newProgress } },
-      });
-    }
-  };
-
-  // todo: needs to update database
-  const resetProgress = () => {
-    setProgress(0);
-  };
+  const { progress, increment, reset, overflow } = useProgress(user, need);
 
   const toggleDetails = () => {
     setIsDetailsOpen(!isDetailsOpen);
@@ -66,7 +33,7 @@ export default function NeedsItem({ need }: Props) {
           <ProgressBar
             progress={progress}
             need={need}
-            progressOverflow={progressOverflow}
+            overflow={overflow}
             hoverable={true}
           >
             <div className="flex justify-between flex-row items-center w-full">
@@ -84,7 +51,7 @@ export default function NeedsItem({ need }: Props) {
         </button>
 
         <button
-          onClick={() => incrementProgress(1)}
+          onClick={() => increment()}
           aria-label="increase progress by 1"
           className="group ml-4 grid grid-rows-3 shrink-0 h-full relative justify-end place-items-center text-f-low hover:text-f-high"
         >
@@ -99,12 +66,12 @@ export default function NeedsItem({ need }: Props) {
         {isDetailsOpen ? (
           <NeedsItemDetails
             toggleDetails={toggleDetails}
-            incrementProgress={incrementProgress}
+            increment={increment}
+            reset={reset}
             isDetailsOpen={isDetailsOpen}
-            resetProgress={resetProgress}
             progress={progress}
             need={need}
-            progressOverflow={progressOverflow}
+            overflow={overflow}
           />
         ) : (
           ""

@@ -1,7 +1,7 @@
 interface Props {
   progress: number;
   need: Need;
-  progressOverflow: boolean;
+  overflow: boolean;
   children?: any;
   hoverable?: boolean;
 }
@@ -9,7 +9,7 @@ interface Props {
 export default function ProgressBar({
   progress,
   need,
-  progressOverflow,
+  overflow,
   hoverable,
   children,
 }: Props) {
@@ -17,7 +17,7 @@ export default function ProgressBar({
     <>
       <div
         className={`w-full h-full relative mb-2 rounded-xl flex items-center overflow-hidden bg-gradient-to-r from-indigo-400 to-orange-200 via-pink-200 border-b-high border-2 transition-transform ${
-          progressOverflow ? "translate-x-2" : ""
+          overflow ? "translate-x-2" : ""
         } ${
           hoverable
             ? "border-b-high hover:border-f-low opacity-95 hover:opacity-100"

@@ -19,7 +19,7 @@ export const UserContext = createContext<UserContext>({
 });
 
 export default function UserProvider({ children }: Props) {
-  let [user, setUser, isLoading] = useAuth();
+  let { user, setUser, isLoading } = useAuth();
 
   return (
     <UserContext.Provider value={{ user, setUser, isLoading }}>
