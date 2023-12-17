@@ -9,7 +9,6 @@ export default function SignUpForm() {
     confirmPassword: "",
   };
   const [formData, setFormData] = useState(formDefaults);
-  let [formComplete, setFormComplete] = useState(false);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -18,26 +17,24 @@ export default function SignUpForm() {
     });
   };
 
-  const isKeyUpdated = (key: any) => {
-    return formData[key] !== "";
-  };
-  const isFormComplete = () => {
-    let updatedKeys = Object.keys(formData).filter(isKeyUpdated);
-    return (
-      updatedKeys.length == 3 && formData.password === formData.confirmPassword
-    );
-  };
-  useEffect(() => {
-    setFormComplete(isFormComplete());
-    console.log({ formData });
-  }, [formData]);
-
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formComplete) {
-      signUp(formData.email, formData.password);
-    }
+    signUp(formData.email, formData.password);
   };
+
+  // wait to access document until render - prevents breaking error
+  useEffect(() => {
+    const confirmPassword =
+      (document.getElementById("confirmPassword") as HTMLInputElement) || null;
+
+    confirmPassword?.addEventListener("input", (event) => {
+      if (confirmPassword.validity.patternMismatch) {
+        confirmPassword.setCustomValidity("Passwords must match");
+      } else {
+        confirmPassword.setCustomValidity("");
+      }
+    });
+  }, []);
 
   return (
     <form
@@ -50,16 +47,22 @@ export default function SignUpForm() {
           className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
           name="email"
           type="email"
+          required
           value={formData.email}
           onChange={handleChangeInput}
         ></input>
       </label>
       <label className="w-full mb-4">
-        <h3 className="font-bold text-sm mb-2">Password</h3>
+        <h3 className="font-bold text-sm mb-1">Password</h3>
+        <p className="text-xs mb-2 text-f-med">
+          Must be at least 6 characters.
+        </p>
         <input
           className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
           name="password"
           type="password"
+          required
+          minLength={6}
           value={formData.password}
           onChange={handleChangeInput}
         ></input>
@@ -70,13 +73,15 @@ export default function SignUpForm() {
           className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
           name="confirmPassword"
           type="password"
+          id="confirmPassword"
+          required
+          minLength={6}
+          pattern={`^${formData.password}$`}
           value={formData.confirmPassword}
           onChange={handleChangeInput}
         ></input>
       </label>
-      <Button type="submit" disabled={!formComplete}>
-        Sign up
-      </Button>
+      <Button type="submit">Sign up</Button>
     </form>
   );
 }

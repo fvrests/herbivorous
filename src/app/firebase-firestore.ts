@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  onSnapshot,
-} from "firebase/firestore";
+import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
 import { useAuth } from "./firebase-auth";
 import { firebaseConfig } from "./firebase-config";
 import { getDateString } from "@/utils/utils";
@@ -69,20 +63,16 @@ export async function updateProgress(
 export function useProgress(
   user: User | null,
   goal: Goal,
-  dateString?: string,
+  dateString: string = getDateString(),
 ) {
   const { userData } = useUserData();
   const [progress, setProgress] = useState(0);
   const [overflow, setOverflow] = useState(false);
 
-  if (!dateString) {
-    dateString = getDateString();
-  }
-
   // sync to progress stored in database
   useEffect(() => {
     if (!userData) return;
-    const storedProgress = userData?.progress?.[dateString]?.[goal.name] ?? 0;
+    const storedProgress = userData?.progress?.[dateString][goal.name] ?? 0;
     storedProgress && setProgress(storedProgress);
   }, [userData?.progress?.[dateString]]);
 

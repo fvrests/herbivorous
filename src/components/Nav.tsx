@@ -14,7 +14,7 @@ export default function Nav() {
       </a>
       {!isLoading && (
         <Link href="/signin">
-          {user?.displayName ? user?.displayName : "Sign in"}
+          {user?.displayName ? user?.displayName : "Not signed in"}
         </Link>
       )}
     </nav>

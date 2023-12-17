@@ -15,10 +15,10 @@ export default function UpdateUserForm() {
   };
 
   const formFields = [
-    { name: "email", type: "text", label: "Email address" },
+    { name: "email", type: "email", label: "Email address" },
     { name: "displayName", type: "name", label: "Display name" },
     { name: "photoURL", type: "url", label: "Profile image (url)" },
-  ];
+  ] as const;
 
   const [formData, setFormData] = useState(formDefaults);
   let [formUpdated, setFormUpdated] = useState(false);
@@ -30,11 +30,15 @@ export default function UpdateUserForm() {
     });
   };
 
-  const isKeyUpdated = (key: any) => {
-    return user && formData[key] !== user[key] && formData[key] !== "";
+  const isKeyUpdated = (key: keyof typeof formData): boolean => {
+    return (
+      (user && formData[key] !== user[key] && formData[key] !== "") ?? false
+    );
   };
-  const isFormUpdated = () => {
-    let updatedKeys = Object.keys(formData).filter(isKeyUpdated);
+  const isFormUpdated = (): boolean => {
+    let updatedKeys = (
+      Object.keys(formData) as Array<keyof typeof formData>
+    ).filter(isKeyUpdated);
     return updatedKeys.length > 0;
   };
   useEffect(() => {
@@ -49,7 +53,7 @@ export default function UpdateUserForm() {
     const { email, ...profileForm } = formData;
     const profileUpdates = Object.fromEntries(
       Object.entries(profileForm).filter(([key, _]) => {
-        return isKeyUpdated(key);
+        return isKeyUpdated(key as keyof typeof formData);
       }),
     );
 
@@ -64,30 +68,35 @@ export default function UpdateUserForm() {
   };
 
   return (
-    <>
-      <form
-        className="flex flex-col max-w-full gap-2 mb-16"
-        onSubmit={(e) => handleUpdateUser(e)}
-      >
-        {formFields.map((field) => {
-          return (
-            <label className="w-full mb-4" key={field.name}>
-              <h3 className="font-bold text-sm mb-2">{field.label}</h3>
-              <input
-                className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
-                name={field.name}
-                type={field.type}
-                placeholder={user[field.name] || undefined}
-                value={formData[field.name]}
-                onChange={handleChangeInput}
-              ></input>
-            </label>
-          );
-        })}
-        <Button type="submit" disabled={!formUpdated}>
-          Save changes
-        </Button>
-      </form>
-    </>
+    user && (
+      <>
+        <form
+          className="flex flex-col max-w-full gap-2 mb-16"
+          onSubmit={(e) => handleUpdateUser(e)}
+        >
+          {formFields.map((field) => {
+            return (
+              <label
+                className="w-full mb-4"
+                key={field.name as keyof typeof user}
+              >
+                <h3 className="font-bold text-sm mb-2">{field.label}</h3>
+                <input
+                  className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
+                  name={field.name}
+                  type={field.type}
+                  placeholder={user[field.name] || undefined}
+                  value={formData[field.name]}
+                  onChange={handleChangeInput}
+                ></input>
+              </label>
+            );
+          })}
+          <Button type="submit" disabled={!formUpdated}>
+            Save changes
+          </Button>
+        </form>
+      </>
+    )
   );
 }

@@ -12,8 +12,5 @@ export const getDateString = (offsetOverride?: number) => {
     today.getHours() + (offsetOverride ? offsetOverride : timezoneOffset),
   );
 
-  // get date in YYYY-MM-DD
-  const dateString = today.toJSON().split("T")[0];
-
-  return dateString;
+  return today.toJSON().split("T")[0];
 };
