@@ -1,7 +1,7 @@
 [
   {
     "name": "beans",
-    "goal": 3,
+    "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/beans/"],
     "suggestions": [
       {
@@ -61,7 +61,7 @@
   },
   {
     "name": "berries",
-    "goal": 1,
+    "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/berries/"],
     "suggestions": [
       {
@@ -96,7 +96,7 @@
   },
   {
     "name": "other fruits",
-    "goal": 3,
+    "quantity": 3,
     "info": [
       "https://nutritionfacts.org/topics/fruit/",
       "https://nutritionfacts.org/topics/dried-fruit/"
@@ -157,7 +157,7 @@
   },
   {
     "name": "cruciferous vegetables",
-    "goal": 1,
+    "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/cruciferous-vegetables/"],
     "suggestions": [
       {
@@ -208,7 +208,7 @@
   },
   {
     "name": "greens",
-    "goal": 2,
+    "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/greens/"],
     "suggestions": [
       {
@@ -241,7 +241,7 @@
   },
   {
     "name": "other vegetables",
-    "goal": 2,
+    "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/vegetables/"],
     "suggestions": [
       {
@@ -296,7 +296,7 @@
   },
   {
     "name": "flaxseeds",
-    "goal": 1,
+    "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/flax-seeds/"],
     "suggestions": [
       {
@@ -311,7 +311,7 @@
   },
   {
     "name": "nuts and seeds",
-    "goal": 1,
+    "quantity": 1,
     "info": [
       "https://nutritionfacts.org/topics/nuts/",
       "https://nutritionfacts.org/topics/seeds/"
@@ -351,7 +351,7 @@
   },
   {
     "name": "herbs and spices",
-    "goal": 1,
+    "quantity": 1,
     "info": [
       "https://nutritionfacts.org/topics/herbs/",
       "https://nutritionfacts.org/topics/spices/"
@@ -409,7 +409,7 @@
   },
   {
     "name": "whole grains",
-    "goal": 3,
+    "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/grains/"],
     "suggestions": [
       {
@@ -463,7 +463,7 @@
   },
   {
     "name": "beverages",
-    "goal": 5,
+    "quantity": 5,
     "info": ["https://nutritionfacts.org/topics/beverages/"],
     "suggestions": [
       {
@@ -495,7 +495,7 @@
   },
   {
     "name": "exercise",
-    "goal": 1,
+    "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/exercise/"],
     "suggestions": [
       {
@@ -568,7 +568,7 @@
   },
   {
     "name": "vitamin B12",
-    "goal": 1,
+    "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
     "suggestions": [
       {

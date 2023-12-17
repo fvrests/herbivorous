@@ -14,7 +14,7 @@ interface Props {
   reset: () => void;
   isDetailsOpen: boolean;
   progress: number;
-  need: Need;
+  goal: Goal;
   overflow: boolean;
 }
 
@@ -37,12 +37,12 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
-export default function NeedsItemDetails({
+export default function GoalDetails({
   increment,
   toggleDetails,
   isDetailsOpen,
   progress,
-  need,
+  goal,
   overflow,
 }: Props) {
   let { user } = useAuth();
@@ -71,17 +71,17 @@ export default function NeedsItemDetails({
               {/* header section */}
               <div className="mb-8">
                 <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">
-                  {need.name}
+                  {goal.name}
                 </Dialog.Title>
                 <div className="text-f-med mb-4 text-sm flex flex-row items-center ">
-                  Progress: {progress} / {need.goal}
+                  Progress: {progress} / {goal.quantity}
                   <span className="pl-2 text-f-high">
-                    {progress >= need.goal && <Check size={16} />}
+                    {progress >= goal.quantity && <Check size={16} />}
                   </span>
                 </div>
                 <div className="w-full h-3">
                   <ProgressBar
-                    need={need}
+                    goal={goal}
                     progress={progress}
                     overflow={overflow}
                   />
@@ -95,10 +95,10 @@ export default function NeedsItemDetails({
                       + {entry[1]}
                     </Button>
                   ))}
-                  {progress < need.goal &&
-                  !fractionsMap.has(need.goal - progress) ? (
-                    <Button onClick={() => increment(need.goal - progress)}>
-                      All (+ {parseQuantity(need.goal - progress)})
+                  {progress < goal.quantity &&
+                  !fractionsMap.has(goal.quantity - progress) ? (
+                    <Button onClick={() => increment(goal.quantity - progress)}>
+                      All (+ {parseQuantity(goal.quantity - progress)})
                     </Button>
                   ) : (
                     ""
@@ -125,7 +125,7 @@ export default function NeedsItemDetails({
               </RadioGroup>
               <h3 className="font-bold text-sm mb-4">Suggestions</h3>
               <ul className="text-sm mb-8">
-                {need.suggestions.map((suggestion: Suggestion) => (
+                {goal.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
                     {parseQuantity(
                       suggestion.portion[userData?.settings?.units || "metric"]
@@ -162,7 +162,7 @@ export default function NeedsItemDetails({
                       >
                         <Disclosure.Panel className="text-sm px-2 w-full mt-2">
                           <ul>
-                            {need.types?.map((type: string) => (
+                            {goal.types?.map((type: string) => (
                               <li
                                 key={type}
                                 className="first-letter:capitalize mb-2"

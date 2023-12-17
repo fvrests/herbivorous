@@ -9,9 +9,9 @@ declare global {
     };
   }
 
-  interface Need {
+  interface Goal {
     name: string;
-    goal: number;
+    quantity: number;
     info: string[];
     suggestions: Suggestion[];
     types: string[];

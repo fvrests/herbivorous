@@ -1,14 +1,14 @@
 "use client";
 
-import needs from "./needs.json";
-import NeedsItem from "../components/NeedsItem";
+import goals from "./goals.json";
+import Goal from "../components/Goal";
 
 export default function Home() {
   return (
     <>
-      {needs.map((need) => (
-        <div className="mb-6" key={need.name}>
-          <NeedsItem need={need} />
+      {goals.map((goal) => (
+        <div className="mb-6" key={goal.name}>
+          <Goal goal={goal} />
         </div>
       ))}
     </>

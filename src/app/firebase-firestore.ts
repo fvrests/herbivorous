@@ -57,18 +57,18 @@ export async function updateUserData(uid: string, userData?: object) {
 
 export async function updateProgress(
   uid: string,
-  need: string,
+  goal: string,
   newValue: number,
   dateString?: string,
 ) {
   updateUserData(uid, {
-    progress: { [dateString || getDateString()]: { [need]: newValue } },
+    progress: { [dateString || getDateString()]: { [goal]: newValue } },
   });
 }
 
 export function useProgress(
   user: User | null,
-  need: Need,
+  goal: Goal,
   dateString?: string,
 ) {
   const { userData } = useUserData();
@@ -82,14 +82,14 @@ export function useProgress(
   // sync to progress stored in database
   useEffect(() => {
     if (!userData) return;
-    const storedProgress = userData?.progress?.[dateString]?.[need.name] ?? 0;
+    const storedProgress = userData?.progress?.[dateString]?.[goal.name] ?? 0;
     storedProgress && setProgress(storedProgress);
   }, [userData?.progress?.[dateString]]);
 
   // update database progress (or local if no user)
   const update = (newValue: number) => {
     if (user) {
-      updateProgress(user.uid, need.name, newValue);
+      updateProgress(user.uid, goal.name, newValue);
     } else {
       setProgress(newValue);
     }
@@ -106,7 +106,7 @@ export function useProgress(
 
   // if progress is increased past goal, temporarily set progressOverflow to true -- allows animation on overflow
   useEffect(() => {
-    if (progress > need.goal) {
+    if (progress > goal.quantity) {
       setOverflow(true);
       setTimeout(() => {
         setOverflow(false);

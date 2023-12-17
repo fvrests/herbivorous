@@ -1,6 +1,6 @@
 interface Props {
   progress: number;
-  need: Need;
+  goal: Goal;
   overflow: boolean;
   children?: any;
   hoverable?: boolean;
@@ -8,7 +8,7 @@ interface Props {
 
 export default function ProgressBar({
   progress,
-  need,
+  goal,
   overflow,
   hoverable,
   children,
@@ -28,16 +28,17 @@ export default function ProgressBar({
           className="absolute inset-y-0 right-0 bg-b-med transition-[width]"
           style={{
             width: `${
-              100 - (progress <= need.goal ? progress / need.goal : 1) * 100
+              100 -
+              (progress <= goal.quantity ? progress / goal.quantity : 1) * 100
             }%`,
           }}
         />
         {/* dashed vertical portion markers */}
-        {[...Array(need.goal - 1)].map((_, i) => (
+        {[...Array(goal.quantity - 1)].map((_, i) => (
           <span
             className="absolute h-full border-dashed border-neutral-700 border-l-2 w-0 transition-opacity duration-500"
             style={{
-              left: `${((i + 1) / need.goal) * 100}%`,
+              left: `${((i + 1) / goal.quantity) * 100}%`,
               opacity: `${progress < i + 1 ? 1 : 0}`,
             }}
             key={i}
