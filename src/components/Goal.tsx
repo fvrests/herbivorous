@@ -26,7 +26,7 @@ export default function Goal({ goal }: Props) {
     return (
       <div className="flex flex-row justify-between items-center max-w-full text-f-high">
         <button
-          className="h-16 w-full"
+          className="h-24 w-full"
           aria-label="open item details"
           onClick={() => toggleDetails()}
         >
@@ -38,6 +38,10 @@ export default function Goal({ goal }: Props) {
           >
             <div className="flex justify-between flex-row items-center w-full">
               <div className="flex flex-row items-center w-full">
+                <img
+                  className="z-10 h-12 ml-6"
+                  src={`./goals/${goal.icons[0] ?? "beans"}.png`}
+                />
                 <div className="z-10 ml-6 font-bold first-letter:capitalize whitespace-nowrap truncate">
                   {goal.name}
                 </div>

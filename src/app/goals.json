@@ -3,6 +3,7 @@
     "name": "beans",
     "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/beans/"],
+    "icons": ["beans", "beans-dark"],
     "suggestions": [
       {
         "name": "hummus or bean dip",
@@ -63,6 +64,7 @@
     "name": "berries",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/berries/"],
+    "icons": ["berries", "berries-dark"],
     "suggestions": [
       {
         "name": "fresh or frozen",
@@ -101,6 +103,7 @@
       "https://nutritionfacts.org/topics/fruit/",
       "https://nutritionfacts.org/topics/dried-fruit/"
     ],
+    "icons": ["other-fruits", "other-fruits-dark"],
     "suggestions": [
       {
         "name": "medium-sized fruit",
@@ -159,6 +162,7 @@
     "name": "cruciferous vegetables",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/cruciferous-vegetables/"],
+    "icons": ["cruciferous", "cruciferous-dark"],
     "suggestions": [
       {
         "name": "chopped",
@@ -210,6 +214,7 @@
     "name": "greens",
     "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/greens/"],
+    "icons": ["greens", "greens-dark"],
     "suggestions": [
       {
         "name": "raw",
@@ -243,6 +248,7 @@
     "name": "other vegetables",
     "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/vegetables/"],
+    "icons": ["other-veg", "other-veg-dark"],
     "suggestions": [
       {
         "name": "raw leafy vegetables",
@@ -298,6 +304,7 @@
     "name": "flaxseeds",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/flax-seeds/"],
+    "icons": ["flax", "flax-dark"],
     "suggestions": [
       {
         "name": "ground",
@@ -316,6 +323,7 @@
       "https://nutritionfacts.org/topics/nuts/",
       "https://nutritionfacts.org/topics/seeds/"
     ],
+    "icons": ["nuts-seeds", "nuts-seeds-dark"],
     "suggestions": [
       {
         "name": "nuts or seeds",
@@ -356,6 +364,7 @@
       "https://nutritionfacts.org/topics/herbs/",
       "https://nutritionfacts.org/topics/spices/"
     ],
+    "icons": ["herbs-spices", "herbs-spices-dark"],
     "suggestions": [
       {
         "name": "turmeric",
@@ -411,6 +420,7 @@
     "name": "whole grains",
     "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/grains/"],
+    "icons": ["whole-grains", "whole-grains-dark"],
     "suggestions": [
       {
         "name": "hot cereal or cooked grains, pasta, or corn kernels",
@@ -465,6 +475,7 @@
     "name": "beverages",
     "quantity": 5,
     "info": ["https://nutritionfacts.org/topics/beverages/"],
+    "icons": ["beverages", "beverages-dark"],
     "suggestions": [
       {
         "name": "",
@@ -497,6 +508,7 @@
     "name": "exercise",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/exercise/"],
+    "icons": ["exercise", "exercise-dark"],
     "suggestions": [
       {
         "name": "moderate-intensity activity",
@@ -570,6 +582,7 @@
     "name": "vitamin B12",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
+    "icons": ["b12", "b12-dark"],
     "suggestions": [
       {
         "name": "per individual needs / doctor recommendation",
