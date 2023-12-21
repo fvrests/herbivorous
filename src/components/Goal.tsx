@@ -16,7 +16,7 @@ export default function Goal({ goal }: Props) {
   let { isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  const { progress, increment, overflow } = useProgress(user, goal);
+  const { progress, increment, reset, overflow } = useProgress(user, goal);
 
   const toggleDetails = () => {
     setIsDetailsOpen(!isDetailsOpen);
@@ -72,6 +72,10 @@ export default function Goal({ goal }: Props) {
             toggleDetails={toggleDetails}
             isDetailsOpen={isDetailsOpen}
             goal={goal}
+            progress={progress}
+            increment={increment}
+            reset={reset}
+            overflow={overflow}
           />
         ) : (
           ""

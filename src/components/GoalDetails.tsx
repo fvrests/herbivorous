@@ -1,10 +1,6 @@
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import { useAuth } from "../app/firebase-auth";
-import {
-  useUserData,
-  updateUserData,
-  useProgress,
-} from "../app/firebase-firestore";
+import { useUserData, updateUserData } from "../app/firebase-firestore";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 
 import ProgressBar from "./ProgressBar";
@@ -16,6 +12,10 @@ interface Props {
   toggleDetails: () => void;
   isDetailsOpen: boolean;
   goal: Goal;
+  progress: number;
+  increment: () => void;
+  reset: () => void;
+  overflow: boolean;
 }
 
 const fractionsMap = new Map([
@@ -41,10 +41,13 @@ export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,
   goal,
+  progress,
+  increment,
+  reset,
+  overflow,
 }: Props) {
   let { user } = useAuth();
   let { userData } = useUserData();
-  const { progress, increment, reset, overflow } = useProgress(user, goal);
 
   const handleChangeUnits = (newValue: string) => {
     if (!user) return console.error("couldn't change units -- no user found");
