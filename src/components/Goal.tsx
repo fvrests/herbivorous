@@ -24,37 +24,35 @@ export default function Goal({ goal }: Props) {
 
   if (!isLoading) {
     return (
-      <div className="flex flex-row justify-between items-center max-w-full text-f-high">
-        <button
-          className="h-24 w-full"
-          aria-label="open item details"
-          onClick={() => toggleDetails()}
+      <div className="flex justify-between items-center max-w-full text-f-high">
+        <ProgressBar
+          progress={progress}
+          goal={goal}
+          overflow={overflow}
+          hoverable={true}
         >
-          <ProgressBar
-            progress={progress}
-            goal={goal}
-            overflow={overflow}
-            hoverable={true}
+          <button
+            className="h-20 w-full flex items-center z-10"
+            aria-label="open item details"
+            onClick={() => toggleDetails()}
           >
-            <div className="flex justify-between flex-row items-center w-full">
-              <div className="flex flex-row items-center w-full">
-                <img
-                  className="z-10 h-12 ml-6"
-                  src={`./goals/${goal.icons[0] ?? "beans"}.png`}
-                />
-                <div className="z-10 ml-6 font-bold first-letter:capitalize whitespace-nowrap truncate">
-                  {goal.name}
-                </div>
-                <div className="z-10 ml-4 shrink-0">
-                  {progress} / {goal.quantity}
-                </div>
+            <img
+              className="h-12 ml-4"
+              src={`./goals/${goal.icons[0] ?? "beans"}.png`}
+            />
+            <div className="flex flex-col items-start ml-4 truncate">
+              <div className="font-bold first-letter:capitalize truncate max-w-full">
+                {goal.name}
               </div>
-              <div className="p-8">
-                {progress >= goal.quantity && <Check />}
+              <div>
+                {progress} / {goal.quantity}
               </div>
             </div>
-          </ProgressBar>
-        </button>
+            <div className="p-8 justify-self-end">
+              {progress >= goal.quantity && <Check />}
+            </div>
+          </button>
+        </ProgressBar>
 
         <button
           onClick={() => increment()}

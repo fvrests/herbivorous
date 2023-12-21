@@ -86,7 +86,7 @@ export default function GoalDetails({
                 </div>
               </div>
               <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
-              <div className="mb-8 flex justify-between gap-2">
+              <div className="mb-8 flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
                   {Array.from(fractionsMap.entries()).map((entry) => (
                     <Button key={entry[0]} onClick={() => increment(entry[0])}>
@@ -102,7 +102,10 @@ export default function GoalDetails({
                     ""
                   )}
                 </div>
-                <Button onClick={() => reset()} classes="flex flex-row gap-2">
+                <Button
+                  onClick={() => reset()}
+                  classes="flex flex-row gap-2 w-min"
+                >
                   <RotateCcw size={14} /> <span>Reset</span>
                 </Button>
               </div>

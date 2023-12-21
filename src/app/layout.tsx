@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex min-h-screen flex-col p-12 max-w-2xl mx-auto`}
+        className={`${inter.className} flex min-h-screen flex-col p-4 sm:p-12 max-w-2xl mx-auto`}
       >
         <UserProvider>
           <Nav />
