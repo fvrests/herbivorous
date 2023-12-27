@@ -1,5 +1,3 @@
-import { useUserData } from "@/app/firebase-firestore";
-
 interface Props {
   progress: number;
   goal: Goal;
@@ -15,7 +13,6 @@ export default function ProgressBar({
   hoverable,
   children,
 }: Props) {
-  let { isLoading } = useUserData();
   return (
     <>
       <div

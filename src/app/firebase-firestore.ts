@@ -6,7 +6,8 @@ import { firebaseConfig } from "./firebase-config";
 import {
   getDateString,
   getLocalStorage,
-  updateLocalStorage,
+  updateLocalProgress,
+  updateLocalSetting,
 } from "@/utils/utils";
 
 // Initialize Firebase
@@ -37,6 +38,7 @@ export const useUserData = () => {
       unsubscribe();
     };
   }, [user, isAuthLoading]);
+
   return { userData, isLoading } as const;
 };
 
@@ -49,7 +51,6 @@ export async function updateUserData(uid: string, userData?: object) {
       },
       { merge: true },
     );
-    console.log("User document set");
   } catch (error) {
     console.error("Error setting document: ", error);
   }
@@ -74,12 +75,10 @@ export function useProgress(
     setProgress(0);
     if (!isLoading) {
       if (user) {
-        console.log("logged in, using db");
         const storedProgress =
           userData?.progress?.[dateString]?.[goal.name] ?? 0;
         storedProgress && setProgress(storedProgress);
       } else {
-        console.log("not logged in, using local");
         const localProgress = localData?.progress?.[dateString][goal.name];
         setProgress(localProgress ?? 0);
       }
@@ -94,7 +93,7 @@ export function useProgress(
     setProgress(newValue);
     if (user) {
       updateUserData(user.uid, updatedData);
-    } else updateLocalStorage(updatedData);
+    } else updateLocalProgress(dateString, goal.name, newValue);
   };
 
   const increment = (amount?: number) => {

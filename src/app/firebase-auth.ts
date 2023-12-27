@@ -21,7 +21,6 @@ export const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("rerunning auth listener");
       if (user) {
         setUser(user);
       } else {
@@ -45,7 +44,6 @@ export const signUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed up
-      console.log("user signed up", userCredential.user);
     })
     .catch((error) => {
       console.error("error signing up - code:", error.code);
@@ -54,11 +52,9 @@ export const signUp = (email: string, password: string) => {
 };
 
 export const signIn = (email: string, password: string) => {
-  console.log("attempting signin");
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      console.log("signed in", userCredential.user);
     })
     .catch((error) => {
       console.error("error signing in -- code:", error.code);
@@ -70,7 +66,6 @@ export const signOut = () => {
   authSignOut(auth)
     .then(() => {
       // Signed out
-      console.log("signed out");
     })
     .catch((error) => {
       console.error("error signing out", error);
@@ -83,7 +78,7 @@ export const updateAuthProfile = (profile: UserProfile) => {
       ...profile,
     })
       .then(() => {
-        console.log("profile updated");
+        // profile updated
       })
       .catch((error) => {
         console.error("error updating user profile", error);
@@ -97,7 +92,7 @@ export const updateAuthEmail = (email: string) => {
   if (auth.currentUser) {
     updateEmail(auth.currentUser, email)
       .then(() => {
-        console.log("email updated");
+        // email updated
       })
       .catch((error) => {
         console.error("error updating user email", error);

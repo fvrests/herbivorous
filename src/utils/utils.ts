@@ -17,17 +17,28 @@ export const getDateString = (offsetOverride?: number) => {
 
 export const getLocalStorage = async () => {
   const storedData = window.localStorage.getItem("herbivorous");
-  console.log("stored", storedData);
   if (storedData) {
     return JSON.parse(storedData);
   } else return null;
 };
 
-// fix: needs to update, not overwrite
-export const updateLocalStorage = (newdata: UserData) => {
+export const updateLocalSetting = (key: string, value: string) => {
   getLocalStorage().then((result) => {
-    let mergedData = result ? { ...result, ...newdata } : newdata;
-    window.localStorage.setItem("herbivorous", JSON.stringify(mergedData));
+    let updatedData = result;
+    updatedData.settings[key] = value;
+    window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
+  });
+};
+
+export const updateLocalProgress = (
+  dateString: string = getDateString(),
+  goal: string,
+  progress: number,
+) => {
+  getLocalStorage().then((result) => {
+    let updatedData = result;
+    updatedData.progress[dateString][goal] = progress;
+    window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
   });
 };
 
