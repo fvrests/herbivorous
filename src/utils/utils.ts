@@ -14,3 +14,23 @@ export const getDateString = (offsetOverride?: number) => {
 
   return today.toJSON().split("T")[0];
 };
+
+export const getLocalStorage = async () => {
+  const storedData = window.localStorage.getItem("herbivorous");
+  console.log("stored", storedData);
+  if (storedData) {
+    return JSON.parse(storedData);
+  } else return null;
+};
+
+// fix: needs to update, not overwrite
+export const updateLocalStorage = (newdata: UserData) => {
+  getLocalStorage().then((result) => {
+    let mergedData = result ? { ...result, ...newdata } : newdata;
+    window.localStorage.setItem("herbivorous", JSON.stringify(mergedData));
+  });
+};
+
+export const resetLocalStorage = () => {
+  window.localStorage.setItem("herbivorous", "");
+};

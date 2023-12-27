@@ -49,6 +49,7 @@ export default function GoalDetails({
   let { user } = useAuth();
   let { userData } = useUserData();
 
+  // todo: set localstorage if not logged in
   const handleChangeUnits = (newValue: string) => {
     if (!user) return console.error("couldn't change units -- no user found");
     updateUserData(user.uid, { settings: { units: newValue } });

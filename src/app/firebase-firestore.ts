@@ -3,7 +3,11 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
 import { useAuth } from "./firebase-auth";
 import { firebaseConfig } from "./firebase-config";
-import { getDateString } from "@/utils/utils";
+import {
+  getDateString,
+  getLocalStorage,
+  updateLocalStorage,
+} from "@/utils/utils";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -12,11 +16,13 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const useUserData = () => {
-  const { user } = useAuth();
+  const { user, isLoading: isAuthLoading } = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (!user) {
+    if (isAuthLoading) {
+      return;
+    } else if (!user) {
       return setIsLoading(false);
     }
     const unsubscribe = onSnapshot(doc(db, "users", user.uid), (doc) => {
@@ -30,7 +36,7 @@ export const useUserData = () => {
     return () => {
       unsubscribe();
     };
-  }, [user]);
+  }, [user, isAuthLoading]);
   return { userData, isLoading } as const;
 };
 
@@ -49,40 +55,46 @@ export async function updateUserData(uid: string, userData?: object) {
   }
 }
 
-export async function updateProgress(
-  uid: string,
-  goal: string,
-  newValue: number,
-  dateString?: string,
-) {
-  updateUserData(uid, {
-    progress: { [dateString || getDateString()]: { [goal]: newValue } },
-  });
-}
+let localData: UserData | null = null;
+getLocalStorage().then((result) => {
+  localData = result;
+});
 
 export function useProgress(
   user: User | null,
   goal: Goal,
   dateString: string = getDateString(),
 ) {
-  const { userData } = useUserData();
+  const { userData, isLoading } = useUserData();
   const [progress, setProgress] = useState(0);
   const [overflow, setOverflow] = useState(false);
 
-  // sync to progress stored in database
+  // sync to database or local progress
   useEffect(() => {
-    if (!userData) return;
-    const storedProgress = userData?.progress?.[dateString][goal.name] ?? 0;
-    storedProgress && setProgress(storedProgress);
-  }, [userData?.progress?.[dateString]]);
-
-  // update database progress (or local if no user)
-  const update = (newValue: number) => {
-    if (user) {
-      updateProgress(user.uid, goal.name, newValue);
-    } else {
-      setProgress(newValue);
+    setProgress(0);
+    if (!isLoading) {
+      if (user) {
+        console.log("logged in, using db");
+        const storedProgress =
+          userData?.progress?.[dateString]?.[goal.name] ?? 0;
+        storedProgress && setProgress(storedProgress);
+      } else {
+        console.log("not logged in, using local");
+        const localProgress = localData?.progress?.[dateString][goal.name];
+        setProgress(localProgress ?? 0);
+      }
     }
+  }, [isLoading, user, userData?.progress?.[dateString]]);
+
+  // update progress hook and database or local progress
+  const update = (newValue: number) => {
+    const updatedData = {
+      progress: { [dateString || getDateString()]: { [goal.name]: newValue } },
+    };
+    setProgress(newValue);
+    if (user) {
+      updateUserData(user.uid, updatedData);
+    } else updateLocalStorage(updatedData);
   };
 
   const increment = (amount?: number) => {
