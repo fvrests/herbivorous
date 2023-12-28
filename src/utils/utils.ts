@@ -25,6 +25,7 @@ export const getLocalStorage = async () => {
 export const updateLocalSetting = (key: string, value: string) => {
   getLocalStorage().then((result) => {
     let updatedData = result;
+    if (!updatedData.settings) updatedData.settings = {};
     updatedData.settings[key] = value;
     window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
   });
@@ -37,6 +38,9 @@ export const updateLocalProgress = (
 ) => {
   getLocalStorage().then((result) => {
     let updatedData = result;
+    if (!updatedData.progress) updatedData.progress = {};
+    if (!updatedData.progress[dateString])
+      updatedData.progress[dateString] = {};
     updatedData.progress[dateString][goal] = progress;
     window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
   });

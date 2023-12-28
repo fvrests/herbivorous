@@ -1,12 +1,12 @@
-import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
+import { useState } from "react";
 import { useAuth } from "../app/firebase-auth";
 import { useUserData, updateUserData } from "../app/firebase-firestore";
+import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
-
 import ProgressBar from "./ProgressBar";
 import RadioGroupOption from "./RadioGroupOption";
-
 import Button from "./Button";
+import { getLocalStorage, updateLocalSetting } from "@/utils/utils";
 
 interface Props {
   toggleDetails: () => void;
@@ -37,6 +37,11 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
+let localData: UserData | null = null;
+getLocalStorage().then((result) => {
+  localData = result;
+});
+
 export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,
@@ -49,10 +54,16 @@ export default function GoalDetails({
   let { user } = useAuth();
   let { userData } = useUserData();
 
-  // todo: set localstorage if not logged in
-  const handleChangeUnits = (newValue: string) => {
-    if (!user) return console.error("couldn't change units -- no user found");
-    updateUserData(user.uid, { settings: { units: newValue } });
+  const [units, setUnits] = useState(
+    userData?.settings?.units || localData?.settings?.units || "metric",
+  );
+  const handleChangeUnits = (newValue: "metric" | "imperial") => {
+    if (user) {
+      updateUserData(user.uid, { settings: { units: newValue } });
+    } else {
+      updateLocalSetting("units", newValue);
+    }
+    setUnits(newValue);
   };
 
   return (
@@ -115,7 +126,7 @@ export default function GoalDetails({
               </div>
               <h3 className="font-bold text-sm mb-4">Units</h3>
               <RadioGroup
-                value={userData?.settings?.units || "metric"}
+                value={units}
                 onChange={(newValue) => handleChangeUnits(newValue)}
               >
                 <RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
@@ -132,21 +143,14 @@ export default function GoalDetails({
               <ul className="text-sm mb-8">
                 {goal.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
-                    {parseQuantity(
-                      suggestion.portion[userData?.settings?.units || "metric"]
-                        .quantity,
-                    )}{" "}
-                    {
-                      suggestion.portion[userData?.settings?.units || "metric"]
-                        .unit
-                    }{" "}
-                    {suggestion.name}{" "}
+                    {parseQuantity(suggestion.portion[units].quantity)}{" "}
+                    {suggestion.portion[units].unit} {suggestion.name}{" "}
                   </li>
                 ))}
                 <li></li>
               </ul>
               <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-b-high">
-                <Disclosure>
+                <Disclosure defaultOpen={true}>
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="font-bold text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-high rounded-lg">

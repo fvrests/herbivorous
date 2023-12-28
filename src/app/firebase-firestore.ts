@@ -79,7 +79,7 @@ export function useProgress(
           userData?.progress?.[dateString]?.[goal.name] ?? 0;
         storedProgress && setProgress(storedProgress);
       } else {
-        const localProgress = localData?.progress?.[dateString][goal.name];
+        const localProgress = localData?.progress?.[dateString]?.[goal.name];
         setProgress(localProgress ?? 0);
       }
     }
@@ -90,10 +90,10 @@ export function useProgress(
     const updatedData = {
       progress: { [dateString || getDateString()]: { [goal.name]: newValue } },
     };
-    setProgress(newValue);
     if (user) {
       updateUserData(user.uid, updatedData);
     } else updateLocalProgress(dateString, goal.name, newValue);
+    setProgress(newValue);
   };
 
   const increment = (amount?: number) => {
