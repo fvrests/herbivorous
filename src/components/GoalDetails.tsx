@@ -6,7 +6,7 @@ import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 import ProgressBar from "./ProgressBar";
 import RadioGroupOption from "./RadioGroupOption";
 import Button from "./Button";
-import { getLocalStorage, updateLocalSetting } from "@/utils/utils";
+import { getLocalStorage, updateLocalSetting } from "@/utils/localStorage";
 
 interface Props {
   toggleDetails: () => void;

@@ -1,12 +1,14 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { signOut } from "../firebase-auth";
 import { UserContext } from "../../components/UserProvider";
 import Button from "../../components/Button";
 import UpdateUserForm from "./UpdateUserForm";
 import SignInForm from "./SignInForm";
 import Link from "@/components/Link";
+
+// todo: push to home page on signout
 
 export default function SignIn() {
   const { user, isLoading } = useContext(UserContext);

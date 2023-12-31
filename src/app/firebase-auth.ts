@@ -25,8 +25,6 @@ export const useAuth = () => {
         setUser(user);
       } else {
         setUser(null);
-        // could redirect to login here
-        // or nextjs route guards
       }
       setIsLoading(false);
     });

@@ -9,13 +9,18 @@ import { useProgress } from "@/app/firebase-firestore";
 
 interface Props {
   goal: Goal;
+  date: string;
 }
 
-export default function Goal({ goal }: Props) {
+export default function Goal({ goal, date }: Props) {
   const { user } = useContext(UserContext);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  const { progress, increment, reset, overflow } = useProgress(user, goal);
+  const { progress, increment, reset, overflow } = useProgress(
+    user,
+    goal,
+    date,
+  );
 
   const toggleDetails = () => {
     setIsDetailsOpen(!isDetailsOpen);
@@ -35,8 +40,8 @@ export default function Goal({ goal }: Props) {
           onClick={() => toggleDetails()}
         >
           <img
-            className="h-12 ml-4"
-            src={`./goals/${goal.icons[0] ?? "beans"}.png`}
+            className="h-10 w-10 ml-4"
+            src={`/goals/${goal.icons[0] ?? "beans"}.png`}
           />
           <div className="flex flex-col items-start ml-4 truncate">
             <div className="font-bold first-letter:capitalize truncate max-w-full">

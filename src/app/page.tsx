@@ -1,16 +1,17 @@
 "use client";
 
-import goals from "./goals.json";
-import Goal from "../components/Goal";
+import Link from "@/components/Link";
+import { getDateString } from "@/utils/date";
 
 export default function Home() {
   return (
     <>
-      {goals.map((goal) => (
-        <div className="mb-6" key={goal.name}>
-          <Goal goal={goal} />
-        </div>
-      ))}
+      <h2 className="font-bold text-3xl mt-20 mb-20">
+        A daily dozen food planner
+      </h2>
+      <div className="mb-8">
+        <Link href={`/day/${getDateString()}`}>Log now</Link>
+      </div>
     </>
   );
 }

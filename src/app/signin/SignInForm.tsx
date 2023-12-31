@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { signIn } from "../firebase-auth";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
-// test data:
-// tasks_issuer.0w@icloud.com
-// testherbivorous
+const router = useRouter();
 
 export default function signInForm() {
   const formDefaults = {
@@ -23,6 +22,7 @@ export default function signInForm() {
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signIn(formData.email, formData.password);
+    router.push("/");
   };
 
   return (
