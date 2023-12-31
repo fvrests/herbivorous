@@ -3,9 +3,9 @@ import { signIn } from "../firebase-auth";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 
-const router = useRouter();
-
 export default function signInForm() {
+  const router = useRouter();
+
   const formDefaults = {
     email: "",
     password: "",
