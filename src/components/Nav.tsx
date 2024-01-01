@@ -13,7 +13,7 @@ export default function Nav() {
         <h1 className="font-bold text-xl">Herbivorous</h1>
       </a>
       {!isLoading && (
-        <Link href="/signin">
+        <Link href={user ? "/user" : "/signin"}>
           {user?.displayName ? user?.displayName : "Not signed in"}
         </Link>
       )}

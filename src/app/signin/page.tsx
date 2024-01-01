@@ -1,34 +1,16 @@
 "use client";
 
 import { useContext } from "react";
-import { signOut } from "../firebase-auth";
-import { UserContext } from "../../components/UserProvider";
-import Button from "../../components/Button";
-import UpdateUserForm from "./UpdateUserForm";
+import { UserContext } from "@/components/UserProvider";
+import { useRouter } from "next/navigation";
 import SignInForm from "./SignInForm";
 import Link from "@/components/Link";
 
-// todo: push to home page on signout
-
 export default function SignIn() {
   const { user, isLoading } = useContext(UserContext);
+  const router = useRouter();
   if (!isLoading) {
-    return user ? (
-      <>
-        <div className="flex flex-col items-center mb-16">
-          {user.photoURL && (
-            <img
-              src={user.photoURL}
-              alt={`profile image for ${user.displayName}`}
-              className="rounded-full w-20 h-20 mb-4 object-cover shadow-inner"
-            />
-          )}
-          <h2 className="font-bold text-lg">{user.displayName}</h2>
-        </div>
-        <UpdateUserForm />
-        <Button onClick={() => signOut()}>Sign out</Button>
-      </>
-    ) : (
+    return !user ? (
       <>
         <h2 className="font-bold text-lg mb-4">You're not signed in.</h2>
         <p className="mb-8">
@@ -40,6 +22,8 @@ export default function SignIn() {
           <Link href="/signup">Sign up</Link>
         </div>
       </>
+    ) : (
+      router.push("/user")
     );
   }
 }

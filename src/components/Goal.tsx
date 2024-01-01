@@ -40,7 +40,7 @@ export default function Goal({ goal, date }: Props) {
           onClick={() => toggleDetails()}
         >
           <img
-            className="h-10 w-10 ml-4"
+            className="ml-4 h-8 w-8"
             src={`/goals/${goal.icons[0] ?? "beans"}.png`}
           />
           <div className="flex flex-col items-start ml-4 truncate">

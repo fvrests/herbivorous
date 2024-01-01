@@ -9,14 +9,30 @@
 
   --b-low: theme("colors.black");
   --b-med: theme("colors.neutral.900");
-  --b-high: theme("colors.neutral.800");
+  --border: theme("colors.neutral.700");
 }
 
-/* @media (prefers-color-scheme: dark) { */
-/*   :root { */
-/*   } */
-/* } */
+@media (prefers-color-scheme: light) {
+  :root {
+    --f-low: theme("colors.neutral.800");
+    --f-med: theme("colors.neutral.900");
+    --f-high: theme("colors.black");
+
+    --b-low: theme("colors.neutral.100");
+    --b-med: theme("colors.neutral.300");
+    --border: theme("colors.neutral.400");
+  }
+}
 
 body {
-  @apply bg-black text-neutral-100;
+  @apply bg-b-low text-f-high;
+}
+
+.gradient {
+  @apply bg-gradient-to-r from-indigo-900 via-rose-700 to-amber-600;
+}
+@media (prefers-color-scheme: light) {
+  .gradient {
+    @apply bg-gradient-to-r from-indigo-300 via-rose-200 to-amber-400;
+  }
 }

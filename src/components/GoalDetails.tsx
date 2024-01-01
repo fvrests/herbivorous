@@ -71,7 +71,7 @@ export default function GoalDetails({
       <Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
         <div className="fixed inset-0 bg-black/80 z-30" aria-hidden="true" />
         <Dialog.Panel>
-          <div className="fixed z-40 border-b-high border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
+          <div className="fixed z-40 border-border border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             <button
               className="z-50 absolute top-8 right-8 text-f-low hover:text-f-high"
               aria-label="close details"
@@ -149,11 +149,11 @@ export default function GoalDetails({
                 ))}
                 <li></li>
               </ul>
-              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-b-high">
+              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border">
                 <Disclosure defaultOpen={true}>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className="font-bold text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-high rounded-lg">
+                      <Disclosure.Button className="font-bold text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-med rounded-lg">
                         <span>Types</span>
                         {open ? (
                           <ChevronUp size={16} />

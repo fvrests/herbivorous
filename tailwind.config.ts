@@ -14,7 +14,7 @@ const config: Config = {
         "f-high": "var(--f-high)",
         "b-low": "var(--b-low)",
         "b-med": "var(--b-med)",
-        "b-high": "var(--b-high)",
+        border: "var(--border)",
       },
     },
   },

@@ -44,7 +44,7 @@ export default function SignUpForm() {
       <label className="w-full mb-4">
         <h3 className="font-bold text-sm mb-2">Email</h3>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
           name="email"
           type="email"
           required
@@ -58,7 +58,7 @@ export default function SignUpForm() {
           Must be at least 6 characters.
         </p>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
           name="password"
           type="password"
           required
@@ -70,7 +70,7 @@ export default function SignUpForm() {
       <label className="w-full mb-4">
         <h3 className="font-bold text-sm mb-2">Confirm password</h3>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-b-high rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
           name="confirmPassword"
           type="password"
           id="confirmPassword"

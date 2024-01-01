@@ -1,12 +1,12 @@
 "use client";
 
+import { getDateString } from "@/utils/date";
+import { addDays, subDays, format, isToday } from "date-fns";
 import goals from "@/app/goals.json";
 import Goal from "@/components/Goal";
 import Link from "@/components/Link";
-import { getDateString } from "@/utils/date";
-import { addDays, subDays, format, isToday } from "date-fns";
 
-export default function DateView({
+export default function DayView({
   params,
 }: {
   params: { dateString: string };

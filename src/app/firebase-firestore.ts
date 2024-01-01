@@ -4,11 +4,7 @@ import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
 import { useAuth } from "./firebase-auth";
 import { firebaseConfig } from "./firebase-config";
 import { getDateString } from "@/utils/date";
-import {
-  getLocalStorage,
-  updateLocalProgress,
-  updateLocalSetting,
-} from "@/utils/localStorage";
+import { getLocalStorage, updateLocalProgress } from "@/utils/localStorage";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
