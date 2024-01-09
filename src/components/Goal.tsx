@@ -1,10 +1,12 @@
 "use client";
 
 import { useContext, useState } from "react";
+import Image from "next/image";
 import { UserContext } from "./UserProvider";
 import GoalDetails from "./GoalDetails";
 import ProgressBar from "./ProgressBar";
 import { Check, Plus } from "react-feather";
+import { useTheme } from "@/utils/useTheme";
 import { useUserData, useProgress } from "@/utils/firebase-firestore";
 
 interface Props {
@@ -16,6 +18,7 @@ export default function Goal({ goal, date }: Props) {
   const { user } = useContext(UserContext);
   const { userData, isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const { theme, themeVariant } = useTheme({});
 
   const { progress, increment, reset, overflow } = useProgress(
     user,
@@ -29,7 +32,23 @@ export default function Goal({ goal, date }: Props) {
 
   return (
     <div className="flex flex-col items-start justify-between max-w-full text-f-high ml-8 truncate">
-      <div className="flex flex-row gap-4">
+      <button
+        className="flex flex-row gap-4 "
+        aria-label="open item details"
+        onClick={() => toggleDetails()}
+      >
+        <div className="ml-1 flex items-center z-10">
+          {!isLoading && (
+            <Image
+              alt=""
+              width={24}
+              height={24}
+              src={`/goals/${goal.icons[0] ?? "beans"}${
+                theme === "light" ? "-dark" : ""
+              }.png`}
+            ></Image>
+          )}
+        </div>
         <div className="font-bold first-letter:capitalize truncate max-w-full">
           {goal.name}
         </div>
@@ -37,7 +56,7 @@ export default function Goal({ goal, date }: Props) {
           {progress} / {goal.quantity}
         </div>
         <div className="ml-8">{progress >= goal.quantity && <Check />}</div>
-      </div>
+      </button>
       <div className="flex flex-row w-full items-center">
         <ProgressBar
           progress={progress}
@@ -46,19 +65,10 @@ export default function Goal({ goal, date }: Props) {
           hoverable={true}
         >
           <button
-            className="h-12 w-full flex items-center justify-start z-10"
+            className="h-8 w-full flex items-center justify-start z-10"
             aria-label="open item details"
             onClick={() => toggleDetails()}
-          >
-            <div className="ml-4 flex items-center z-10">
-              <img
-                className="h-8 w-8"
-                src={`/goals/${goal.icons[0] ?? "beans"}${
-                  userData?.settings?.themeVariant === "light" ? "-dark" : ""
-                }.png`}
-              />
-            </div>
-          </button>
+          ></button>
         </ProgressBar>
 
         <button

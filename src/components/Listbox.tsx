@@ -12,13 +12,13 @@ export default function Listbox({ title, value, onChange, options }: Props) {
     <div className="flex flex-row items-center justify-start h-10">
       <div className="h-full">
         <UIListbox value={value} onChange={onChange}>
-          <UIListbox.Button className="rounded-lg h-full pl-3 pr-10 text-left shadow-md focus:outline-none border-2 border-border focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm relative">
+          <UIListbox.Button className="rounded-lg h-full pl-3 pr-10 text-left shadow-md focus:outline-none border-2 border-border  focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-2 focus-visible:ring-offset-b-low sm:text-sm relative">
             <span className="block truncate">{title}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronDown aria-hidden="true" />
             </span>
           </UIListbox.Button>
-          <UIListbox.Options className="absolute mt-1 max-h-60 overflow-auto rounded-md py-1 border-2 border-border shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+          <UIListbox.Options className="absolute mt-1 max-h-60 overflow-auto rounded-md py-1 border-2 border-border bg-b-med shadow-lg focus:outline-none sm:text-sm">
             {options.map((option) => (
               <UIListbox.Option
                 key={option}

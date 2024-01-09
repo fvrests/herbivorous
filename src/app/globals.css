@@ -9,8 +9,9 @@
 
   --b-low: theme("colors.black");
   --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.700");
+  --border: theme("colors.neutral.300");
 
+  --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
   --gradient-via: theme("colors.rose.700");
   --gradient-to: theme("colors.amber.600");
@@ -23,8 +24,9 @@
 
   --b-low: theme("colors.black");
   --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.700");
+  --border: theme("colors.neutral.300");
 
+  --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
   --gradient-via: theme("colors.rose.400");
   --gradient-to: theme("colors.amber.500");
@@ -37,8 +39,9 @@
 
   --b-low: theme("colors.neutral.100");
   --b-med: theme("colors.neutral.200");
-  --border: theme("colors.neutral.300");
+  --border: theme("colors.neutral.500");
 
+  --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
   --gradient-via: theme("colors.rose.200");
   --gradient-to: theme("colors.amber.400");
@@ -51,8 +54,9 @@
 
   --b-low: theme("colors.neutral.100");
   --b-med: theme("colors.neutral.200");
-  --border: theme("colors.neutral.300");
+  --border: theme("colors.neutral.500");
 
+  --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
   --gradient-via: theme("colors.rose.200");
   --gradient-to: theme("colors.amber.400");
@@ -65,8 +69,9 @@
 
   --b-low: theme("colors.black");
   --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.700");
+  --border: theme("colors.neutral.300");
 
+  --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
   --gradient-via: theme("colors.rose.400");
   --gradient-to: theme("colors.amber.500");
@@ -77,26 +82,29 @@
   --f-med: theme("colors.teal.900");
   --f-high: theme("colors.teal.950");
 
-  --b-low: #f2e9e1;
-  --b-med: #faf4ed;
-  --border: theme("colors.stone.300");
+  --b-low: #faf4ed;
+  --b-med: #f2e9e1;
+  --border: theme("colors.stone.900");
 
-  --gradient-from: theme("colors.teal.900");
-  --gradient-via: theme("colors.teal.900");
-  --gradient-to: theme("colors.teal.900");
+  --theme: theme("colors.teal.900");
+  --gradient-from: var(--theme);
+  --gradient-via: var(--theme);
+  --gradient-to: var(--theme);
 }
+
 .natural.dark:root {
   --b-low: theme("colors.teal.950");
   --b-med: theme("colors.stone.900");
-  --border: theme("colors.stone.400");
+  --border: theme("colors.stone.100");
 
   --f-low: theme("colors.stone.100");
   --f-med: theme("colors.stone.200");
   --f-high: theme("colors.stone.300");
 
-  --gradient-from: theme("colors.teal.900");
-  --gradient-via: theme("colors.teal.900");
-  --gradient-to: theme("colors.teal.900");
+  --theme: theme("colors.teal.900");
+  --gradient-from: var(--theme);
+  --gradient-via: var(--theme);
+  --gradient-to: var(--theme);
 }
 
 body {

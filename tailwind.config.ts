@@ -15,6 +15,7 @@ const config: Config = {
         "b-low": "var(--b-low)",
         "b-med": "var(--b-med)",
         border: "var(--border)",
+        theme: "var(--theme)",
         "gradient-from": "var(--gradient-from)",
         "gradient-via": "var(--gradient-via)",
         "gradient-to": "var(--gradient-to)",

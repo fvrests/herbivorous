@@ -42,7 +42,6 @@ export default function ProgressBar({
             className="absolute h-full border-dashed border-border border-l-2 w-0 transition-opacity duration-500"
             style={{
               left: `${((i + 1) / goal.quantity) * 100}%`,
-              opacity: `${progress < i + 1 ? 1 : 0}`,
             }}
             key={i}
           ></span>
