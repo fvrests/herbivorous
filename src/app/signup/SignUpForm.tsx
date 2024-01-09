@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { signUp } from "../firebase-auth";
+import { signUp } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 
 export default function SignUpForm() {

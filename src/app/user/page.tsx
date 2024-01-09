@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { signOut } from "../firebase-auth";
+import { signOut } from "@/utils/firebase-auth";
 import { UserContext } from "../../components/UserProvider";
 import Button from "../../components/Button";
 import UpdateUserForm from "./UpdateUserForm";

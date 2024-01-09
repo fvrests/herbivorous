@@ -9,7 +9,7 @@ import {
   updateEmail,
   updateProfile,
 } from "firebase/auth";
-import { firebaseConfig } from "./firebase-config";
+import { firebaseConfig } from "@/utils/firebase-config";
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

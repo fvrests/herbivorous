@@ -4,7 +4,7 @@ interface Props {
   children?: any;
 }
 
-import { useAuth } from "../app/firebase-auth";
+import { useAuth } from "@/utils/firebase-auth";
 import { createContext } from "react";
 
 interface UserContext {
@@ -17,6 +17,8 @@ export const UserContext = createContext<UserContext>({
   setUser: (userInfo: User) => {},
   isLoading: true,
 });
+
+// todo: use userProvider where possible vs. useAuth
 
 export default function UserProvider({ children }: Props) {
   let { user, setUser, isLoading } = useAuth();

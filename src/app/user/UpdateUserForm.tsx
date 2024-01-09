@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
-import { updateAuthEmail, updateAuthProfile } from "../firebase-auth";
+import { updateAuthEmail, updateAuthProfile } from "@/utils/firebase-auth";
 import Button from "../../components/Button";
 import { UserContext } from "../../components/UserProvider";
 

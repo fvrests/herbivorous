@@ -1,5 +1,5 @@
 interface Props {
-  children?: any;
+  children?: React.ReactNode;
   classes?: string;
   secondary?: boolean;
   type?: "button" | "submit" | "reset" | undefined;

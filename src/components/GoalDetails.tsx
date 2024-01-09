@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAuth } from "../app/firebase-auth";
-import { useUserData, updateUserData } from "../app/firebase-firestore";
+import { useAuth } from "@/utils/firebase-auth";
+import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 import ProgressBar from "./ProgressBar";
 import RadioGroupOption from "./RadioGroupOption";
 import Button from "./Button";
-import { getLocalStorage, updateLocalSetting } from "@/utils/localStorage";
+import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 
 interface Props {
   toggleDetails: () => void;
@@ -61,7 +61,7 @@ export default function GoalDetails({
     if (user) {
       updateUserData(user.uid, { settings: { units: newValue } });
     } else {
-      updateLocalSetting("units", newValue);
+      updateLocalSettings({ units: newValue });
     }
     setUnits(newValue);
   };
@@ -69,7 +69,10 @@ export default function GoalDetails({
   return (
     <>
       <Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
-        <div className="fixed inset-0 bg-black/80 z-30" aria-hidden="true" />
+        <div
+          className="fixed inset-0 bg-b-low opacity-40 z-30"
+          aria-hidden="true"
+        />
         <Dialog.Panel>
           <div className="fixed z-40 border-border border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             <button

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
-import { useAuth } from "./firebase-auth";
-import { firebaseConfig } from "./firebase-config";
+import { useAuth } from "@/utils/firebase-auth";
+import { firebaseConfig } from "@/utils/firebase-config";
 import { getDateString } from "@/utils/date";
 import { getLocalStorage, updateLocalProgress } from "@/utils/localStorage";
 
@@ -12,32 +12,12 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-export const useUserData = () => {
-  const { user, isLoading: isAuthLoading } = useAuth();
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    if (isAuthLoading) {
-      return;
-    } else if (!user) {
-      return setIsLoading(false);
-    }
-    const unsubscribe = onSnapshot(doc(db, "users", user.uid), (doc) => {
-      if (doc.exists()) {
-        setUserData(doc.data());
-      } else {
-        setUserData(null);
-      }
-      setIsLoading(false);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [user, isAuthLoading]);
+let localData: UserData | null = null;
+getLocalStorage().then((result) => {
+  localData = result;
+});
 
-  return { userData, isLoading } as const;
-};
-
+// must be at top level due to async
 export async function updateUserData(uid: string, userData?: object) {
   try {
     await setDoc(
@@ -52,10 +32,43 @@ export async function updateUserData(uid: string, userData?: object) {
   }
 }
 
-let localData: UserData | null = null;
-getLocalStorage().then((result) => {
-  localData = result;
-});
+export const useUserData = () => {
+  const { user, isLoading: isAuthLoading } = useAuth();
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if (isAuthLoading) {
+      return;
+    } else if (!user) {
+      return setIsLoading(false);
+    }
+    const unsubscribe = onSnapshot(doc(db, "users", user.uid), (doc) => {
+      if (doc.exists()) {
+        setUserData(doc.data());
+        setIsLoading(false);
+        document.documentElement.classList.add(
+          doc.data().settings.theme,
+          doc.data().settings.themeVariant,
+        );
+      } else {
+        setUserData(null);
+        document.documentElement.className = "";
+        if (localData) {
+          document.documentElement.classList.add(
+            localData.settings?.theme ?? "",
+            localData.settings?.themeVariant ?? "",
+          );
+        }
+      }
+      setIsLoading(false);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [user, isAuthLoading]);
+
+  return { userData, isLoading } as const;
+};
 
 export function useProgress(
   user: User | null,

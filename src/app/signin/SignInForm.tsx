@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signIn } from "../firebase-auth";
+import { signIn } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 

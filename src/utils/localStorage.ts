@@ -7,12 +7,12 @@ export const getLocalStorage = async () => {
   } else return null;
 };
 
-export const updateLocalSetting = (key: string, value: string) => {
+export const updateLocalSettings = (settings: Record<string, string>) => {
   getLocalStorage().then((result) => {
-    let updatedData = result;
-    if (!updatedData.settings) updatedData.settings = {};
-    updatedData.settings[key] = value;
-    window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
+    let localData = result;
+    if (!localData.settings) localData.settings = {};
+    localData.settings = { ...localData.settings, ...settings };
+    window.localStorage.setItem("herbivorous", JSON.stringify(localData));
   });
 };
 
