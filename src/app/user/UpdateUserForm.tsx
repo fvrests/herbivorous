@@ -70,28 +70,27 @@ export default function UpdateUserForm() {
   return (
     user && (
       <>
-        <form
-          className="flex flex-col max-w-full gap-2 mb-16"
-          onSubmit={(e) => handleUpdateUser(e)}
-        >
-          {formFields.map((field) => {
-            return (
-              <label
-                className="w-full mb-4"
-                key={field.name as keyof typeof user}
-              >
-                <h3 className="font-bold text-sm mb-2">{field.label}</h3>
-                <input
-                  className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
-                  name={field.name}
-                  type={field.type}
-                  placeholder={user[field.name] || undefined}
-                  value={formData[field.name]}
-                  onChange={handleChangeInput}
-                ></input>
-              </label>
-            );
-          })}
+        <form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
+          <div className="flex flex-col max-w-full gap-2 mb-2">
+            {formFields.map((field) => {
+              return (
+                <label
+                  className="w-full mb-4"
+                  key={field.name as keyof typeof user}
+                >
+                  <h3 className="font-bold text-sm mb-2">{field.label}</h3>
+                  <input
+                    className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
+                    name={field.name}
+                    type={field.type}
+                    placeholder={user[field.name] || undefined}
+                    value={formData[field.name]}
+                    onChange={handleChangeInput}
+                  ></input>
+                </label>
+              );
+            })}
+          </div>
           <Button type="submit" disabled={!formUpdated}>
             Save changes
           </Button>

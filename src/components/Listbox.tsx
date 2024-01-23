@@ -24,8 +24,8 @@ export default function Listbox({ title, value, onChange, options }: Props) {
                 key={option}
                 value={option}
                 className={({ active }) =>
-                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                    active ? "bg-b-med text-f-high" : "text-f-med"
+                  `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                    active ? "bg-b-low text-f-high" : "text-f-med"
                   }`
                 }
               >

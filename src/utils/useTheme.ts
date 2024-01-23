@@ -59,5 +59,9 @@ export function useTheme(config: {
       setThemeVariant(newThemeVariant ?? theme);
     }
   }
-  return { theme, themeVariant, updateTheme };
+  function toggleMode() {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    updateTheme({ newTheme: newTheme });
+  }
+  return { theme, themeVariant, updateTheme, toggleMode };
 }

@@ -86,7 +86,7 @@
   --b-med: #f2e9e1;
   --border: theme("colors.stone.900");
 
-  --theme: theme("colors.teal.900");
+  --theme: theme("colors.teal.800");
   --gradient-from: var(--theme);
   --gradient-via: var(--theme);
   --gradient-to: var(--theme);
@@ -95,7 +95,7 @@
 .natural.dark:root {
   --b-low: theme("colors.teal.950");
   --b-med: theme("colors.stone.900");
-  --border: theme("colors.stone.100");
+  --border: theme("colors.stone.300");
 
   --f-low: theme("colors.stone.100");
   --f-med: theme("colors.stone.200");
