@@ -20,7 +20,7 @@ export default function About() {
       </div>
       <div className="mb-8">
         Please consult a medical professional about the right diet for you. You
-        can browse Dr. Greger's work on nutrition at{" "}
+        can browse Dr. Greger&apos;s work on nutrition at{" "}
         <Link href="https://nutritionfacts.org">nutritionfacts.org</Link>.
       </div>
       <div className="mb-8">

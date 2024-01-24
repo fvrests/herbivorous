@@ -4,7 +4,7 @@ import { Listbox as UIListbox } from "@headlessui/react";
 interface Props {
   title: string;
   value: string;
-  onChange: (e) => void;
+  onChange: (v: string) => void;
   options: string[];
 }
 export default function Listbox({ title, value, onChange, options }: Props) {

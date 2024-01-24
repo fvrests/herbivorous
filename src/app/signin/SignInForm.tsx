@@ -3,7 +3,7 @@ import { signIn } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 
-export default function signInForm() {
+export default function SignInForm() {
   const router = useRouter();
 
   const formDefaults = {

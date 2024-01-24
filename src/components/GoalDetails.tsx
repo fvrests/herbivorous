@@ -13,7 +13,7 @@ interface Props {
   isDetailsOpen: boolean;
   goal: Goal;
   progress: number;
-  increment: () => void;
+  increment: (amount?: number | undefined) => void;
   reset: () => void;
   overflow: boolean;
 }
