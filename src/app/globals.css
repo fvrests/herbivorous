@@ -47,7 +47,7 @@
   --gradient-to: theme("colors.amber.400");
 }
 
-.light:root {
+:root[data-mode="light"] {
   --f-low: theme("colors.neutral.800");
   --f-med: theme("colors.neutral.900");
   --f-high: theme("colors.black");
@@ -62,7 +62,7 @@
   --gradient-to: theme("colors.amber.400");
 }
 
-.dark:root {
+:root[data-mode="dark"] {
   --f-low: theme("colors.neutral.400");
   --f-med: theme("colors.neutral.300");
   --f-high: theme("colors.neutral.100");
@@ -77,7 +77,7 @@
   --gradient-to: theme("colors.amber.500");
 }
 
-.natural.light:root {
+:root[data-mode="light"][data-theme="natural"] {
   --f-low: theme("colors.teal.800");
   --f-med: theme("colors.teal.900");
   --f-high: theme("colors.teal.950");
@@ -92,7 +92,7 @@
   --gradient-to: var(--theme);
 }
 
-.natural.dark:root {
+:root[data-mode="dark"][data-theme="natural"] {
   --b-low: theme("colors.teal.950");
   --b-med: theme("colors.stone.900");
   --border: theme("colors.stone.300");

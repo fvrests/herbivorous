@@ -1,14 +1,22 @@
 import { getDateString } from "@/utils/date";
 
-export const getLocalStorage = async () => {
-  const storedData = window.localStorage.getItem("herbivorous");
+export const getLocalStorage = async (item: string) => {
+  const storedData = window.localStorage.getItem(item);
   if (storedData) {
     return JSON.parse(storedData);
   } else return null;
 };
 
+export const updateLocalOnlyData = (data: Record<string, string>) => {
+  getLocalStorage("localOnly").then((result) => {
+    let localData = result;
+    localData = { ...localData, ...data };
+    window.localStorage.setItem("localOnly", JSON.stringify(localData));
+  });
+};
+
 export const updateLocalSettings = (settings: Record<string, string>) => {
-  getLocalStorage().then((result) => {
+  getLocalStorage("herbivorous").then((result) => {
     let localData = result;
     if (!localData.settings) localData.settings = {};
     localData.settings = { ...localData.settings, ...settings };
@@ -21,7 +29,7 @@ export const updateLocalProgress = (
   goal: string,
   progress: number,
 ) => {
-  getLocalStorage().then((result) => {
+  getLocalStorage("herbivorous").then((result) => {
     let updatedData = result;
     if (!updatedData.progress) updatedData.progress = {};
     if (!updatedData.progress[dateString])
@@ -33,4 +41,5 @@ export const updateLocalProgress = (
 
 export const resetLocalStorage = () => {
   window.localStorage.setItem("herbivorous", "");
+  window.localStorage.setItem("localOnly", "");
 };

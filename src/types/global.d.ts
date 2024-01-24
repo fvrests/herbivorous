@@ -18,14 +18,12 @@ declare global {
     types: string[];
   }
 
-  type Theme = "dark" | "light" | "system";
-  type ThemeVariant = "modern" | "natural";
+  type Mode = "dark" | "light" | "system";
+  type Theme = "modern" | "natural";
 
   interface UserData {
     settings?: {
       units?: "metric" | "imperial";
-      theme?: Theme;
-      themeVariant?: ThemeVariant;
     };
     progress?: {
       [key: string]: {

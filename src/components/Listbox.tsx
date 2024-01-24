@@ -13,7 +13,9 @@ export default function Listbox({ title, value, onChange, options }: Props) {
       <div className="h-full">
         <UIListbox value={value} onChange={onChange}>
           <UIListbox.Button className="rounded-lg h-full pl-3 pr-10 text-left shadow-md focus:outline-none border-2 border-border  focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-2 focus-visible:ring-offset-b-low sm:text-sm relative">
-            <span className="block truncate">{title}</span>
+            <span className="block truncate first-letter:capitalize">
+              {title}
+            </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronDown aria-hidden="true" />
             </span>
@@ -24,25 +26,27 @@ export default function Listbox({ title, value, onChange, options }: Props) {
                 key={option}
                 value={option}
                 className={({ active }) =>
-                  `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                  `relative cursor-pointer select-none py-2 px-4 ${
                     active ? "bg-b-low text-f-high" : "text-f-med"
                   }`
                 }
               >
                 {({ selected }) => (
                   <>
-                    <span
-                      className={`block truncate ${
+                    <div
+                      className={`flex ${
                         selected ? "font-medium" : "font-normal"
                       }`}
                     >
-                      {option}
-                    </span>
-                    {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-f-high">
-                        <Check aria-hidden="true" />
+                      <span className="first-letter:capitalize truncate ">
+                        {option}
                       </span>
-                    ) : null}
+                      {selected ? (
+                        <span className="flex items-center pl-3 text-f-high">
+                          <Check size="18" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </div>
                   </>
                 )}
               </UIListbox.Option>

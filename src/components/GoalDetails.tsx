@@ -38,7 +38,7 @@ const parseQuantity = (quantity: number | string) => {
 };
 
 let localData: UserData | null = null;
-getLocalStorage().then((result) => {
+getLocalStorage("herbivorous").then((result) => {
   localData = result;
 });
 

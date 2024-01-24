@@ -3,10 +3,10 @@
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { UserContext } from "./UserProvider";
+import { ThemeContext } from "./ThemeProvider";
 import GoalDetails from "./GoalDetails";
 import ProgressBar from "./ProgressBar";
 import { Check, Plus } from "react-feather";
-import { useTheme } from "@/utils/useTheme";
 import { useUserData, useProgress } from "@/utils/firebase-firestore";
 
 interface Props {
@@ -16,9 +16,9 @@ interface Props {
 
 export default function Goal({ goal, date }: Props) {
   const { user } = useContext(UserContext);
-  const { userData, isLoading } = useUserData();
+  const { mode } = useContext(ThemeContext);
+  const { isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const { theme, themeVariant } = useTheme({});
 
   const { progress, increment, reset, overflow } = useProgress(
     user,
@@ -44,7 +44,7 @@ export default function Goal({ goal, date }: Props) {
               width={24}
               height={24}
               src={`/goals/${goal.icons[0] ?? "beans"}${
-                theme === "light" ? "-dark" : ""
+                mode === "light" ? "-dark" : ""
               }.png`}
             ></Image>
           )}

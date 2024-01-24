@@ -1,16 +1,16 @@
 "use client";
 import { useContext } from "react";
 import { UserContext } from "../components/UserProvider";
+import { ThemeContext } from "../components/ThemeProvider";
 import { Moon, Sun } from "react-feather";
 
 import Link from "./Link";
-import Listbox from "@/components/Listbox";
-import { useTheme } from "@/utils/useTheme";
 
 export default function Nav() {
   const { user, isLoading } = useContext(UserContext);
-  const { theme, themeVariant, updateTheme, toggleMode } = useTheme({});
-  const themeVariants = ["modern", "natural"];
+
+  const { mode, toggleMode } = useContext(ThemeContext);
+
   return (
     <>
       <nav className="flex items-center justify-between mb-16">
@@ -19,10 +19,10 @@ export default function Nav() {
         </Link>
         <div className="flex flex-row items-center gap-4">
           <button
-            aria-label={`set mode to ${theme === "light" ? "dark" : "light"}`}
+            aria-label={`set mode to ${mode === "light" ? "dark" : "light"}`}
             onClick={toggleMode}
           >
-            {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+            {mode === "dark" ? <Moon size={20} /> : <Sun size={20} />}
           </button>
           {!isLoading && (
             <Link href={user ? "/user" : "/signin"}>

@@ -13,7 +13,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 let localData: UserData | null = null;
-getLocalStorage().then((result) => {
+getLocalStorage("herbivorous").then((result) => {
   localData = result;
 });
 
@@ -46,19 +46,8 @@ export const useUserData = () => {
       if (doc.exists()) {
         setUserData(doc.data());
         setIsLoading(false);
-        document.documentElement.classList.add(
-          doc.data().settings.theme,
-          doc.data().settings.themeVariant,
-        );
       } else {
         setUserData(null);
-        document.documentElement.className = "";
-        if (localData) {
-          document.documentElement.classList.add(
-            localData.settings?.theme ?? "",
-            localData.settings?.themeVariant ?? "",
-          );
-        }
       }
       setIsLoading(false);
     });
