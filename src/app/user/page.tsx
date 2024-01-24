@@ -2,9 +2,9 @@
 
 import { useContext } from "react";
 import { signOut } from "@/utils/firebase-auth";
-import { UserContext } from "../../components/UserProvider";
-import { ThemeContext } from "../../components/ThemeProvider";
-import Button from "../../components/Button";
+import { UserContext } from "@/components/UserProvider";
+import { ThemeContext } from "@/components/ThemeProvider";
+import Button from "@/components/Button";
 import UpdateUserForm from "./UpdateUserForm";
 import { useRouter } from "next/navigation";
 import Listbox from "@/components/Listbox";
@@ -30,15 +30,6 @@ export default function User() {
         <h3 className="font-bold text-lg mb-8">Update profile</h3>
         <div className="mb-8">
           <UpdateUserForm />
-        </div>
-        <h3 className="font-bold text-lg mb-4">Update theme</h3>
-        <div className="mb-8">
-          <Listbox
-            title={theme ?? "modern"}
-            value={theme ?? "modern"}
-            onChange={(e) => updateTheme(e)}
-            options={themes}
-          ></Listbox>
         </div>
         <h3 className="font-bold text-lg mb-4">Sign out</h3>
         <Button onClick={() => signOut()}>Sign out</Button>

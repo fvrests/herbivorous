@@ -19,7 +19,7 @@ export default function Button({
     <button
       className={`rounded-lg h-10 text-f-med hover:text-f-high px-4 shadow-md focus:outline-none border-2 focus-visible:border-indigo-400 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-indigo-300 text-xs sm:text-sm flex items-center justify-center ${classes} ${
         secondary
-          ? "border-transparent hover:underline underline-offset-2"
+          ? "border-transparent hover:underline"
           : "border-border hover:border-f-med"
       } `}
       onClick={() => onClick && onClick()}

@@ -31,7 +31,7 @@ export default function Goal({ goal, date }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-start justify-between max-w-full text-f-high ml-8 truncate">
+    <div className="flex flex-col items-start justify-between max-w-full text-f-high truncate">
       <button
         className="flex flex-row gap-4 "
         aria-label="open item details"

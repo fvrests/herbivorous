@@ -9,26 +9,26 @@ import { useState, useEffect } from "react";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 
 interface ThemeContext {
-  theme: Theme | null;
-  mode: Mode | null;
-  updateMode: ((newMode: Mode) => void) | null;
-  updateTheme: ((newTheme: Theme) => void) | null;
-  toggleMode: (() => void) | null;
+  theme?: Theme;
+  mode?: Mode;
+  updateMode: (newMode: Mode) => void;
+  updateTheme: (newTheme: Theme) => void;
+  toggleMode: () => void;
   isLoading: boolean;
 }
 
 export const ThemeContext = createContext<ThemeContext>({
-  theme: null,
-  mode: null,
-  updateMode: null,
-  updateTheme: null,
-  toggleMode: null,
+  theme: undefined,
+  mode: undefined,
+  updateMode: () => undefined,
+  updateTheme: () => undefined,
+  toggleMode: () => undefined,
   isLoading: true,
 });
 
 export default function ThemeProvider({ children }: Props) {
-  const [mode, setMode] = useState<Mode | null>(null);
-  const [theme, setTheme] = useState<Theme | null>(null);
+  const [mode, setMode] = useState<Mode>();
+  const [theme, setTheme] = useState<Theme>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import UserProvider from "../components/UserProvider";
 import ThemeProvider from "@/components/ThemeProvider";
 
@@ -19,16 +20,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} flex min-h-screen flex-col p-4 sm:p-12 max-w-3xl mx-auto`}
-      >
-        <ThemeProvider>
-          <UserProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <body
+            className={`${inter.className} flex min-h-screen flex-col p-4 sm:p-12 max-w-3xl mx-auto justify-between`}
+          >
             <Nav />
-            <main>{children}</main>
-          </UserProvider>
-        </ThemeProvider>
-      </body>
+            <main className="flex-1 mb-20">{children}</main>
+            <Footer />
+          </body>
+        </UserProvider>
+      </ThemeProvider>
     </html>
   );
 }

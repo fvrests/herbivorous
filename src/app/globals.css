@@ -108,7 +108,7 @@
 }
 
 body {
-  @apply bg-b-low text-f-high;
+  @apply bg-b-low text-f-med underline-offset-2;
 }
 
 .gradient {
