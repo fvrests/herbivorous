@@ -5,7 +5,7 @@ export const getLocalStorage = async (item: string) => {
   const storedData = window.localStorage.getItem(item);
   if (storedData) {
     return JSON.parse(storedData);
-  } else return null;
+  } else return {};
 };
 
 export const updateLocalOnlyData = (data: Record<string, string>) => {
