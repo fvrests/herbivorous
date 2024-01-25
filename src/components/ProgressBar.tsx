@@ -16,7 +16,7 @@ export default function ProgressBar({
   return (
     <>
       <div
-        className={`w-full h-full relative mb-2 rounded-xl flex items-center overflow-hidden border-2 transition-transform ${
+        className={`w-full h-full relative rounded-xl flex items-center overflow-hidden border-2 transition-transform ${
           overflow ? "translate-x-2" : ""
         } ${
           hoverable
