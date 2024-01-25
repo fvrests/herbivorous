@@ -41,7 +41,7 @@ export default function ThemeProvider({ children }: Props) {
 
       setIsLoading(false);
     });
-  });
+  }, []);
 
   function updateMode(newMode: Mode) {
     setMode(newMode);
