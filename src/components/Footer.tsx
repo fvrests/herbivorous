@@ -1,43 +1,61 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/components/ThemeProvider";
 import Link from "./Link";
+import { RadioGroup } from "@headlessui/react";
 
 export default function Footer() {
   const themeNames: Theme[] = ["modern", "natural"];
-  const { theme, updateTheme } = useContext(ThemeContext);
+  const { theme, updateTheme, isLoading } = useContext(ThemeContext);
+  const [selectedTheme, setSelectedTheme] = useState(theme ?? "modern");
+
+  useEffect(() => {
+    if (theme) setSelectedTheme(theme);
+  }, [isLoading]);
+
+  useEffect(() => {
+    updateTheme(selectedTheme);
+  }, [selectedTheme]);
+
   return (
     <>
       <nav>
         <ul className="w-full flex items-start justify-between text-sm">
-          <div>
+          <div className="mx-4">
             <h2 className="font-bold mb-2">Herbivorous</h2>
             <li>
               <Link href="/about">About</Link>
             </li>
           </div>
-          <div>
-            <h2 className="font-bold mb-2">Theme</h2>
-            <li className="flex items-center gap-2">
+          <div className="mx-4">
+            <RadioGroup
+              value={selectedTheme}
+              onChange={setSelectedTheme}
+              className="flex flex-col gap-2"
+            >
+              <RadioGroup.Label className="font-bold mb-2">
+                Theme
+              </RadioGroup.Label>
               {themeNames.map((themeName: Theme, i) => (
-                <span key={themeName}>
-                  <button
-                    onClick={() => updateTheme(themeName)}
-                    className={`${
-                      theme === themeName ? "underline" : ""
-                    } first-letter:uppercase`}
-                  >
-                    {themeName}
-                  </button>
-                  {i < themeNames.length - 1 && (
-                    <span className="ml-2">{"//"}</span>
+                <RadioGroup.Option key={themeName} value={themeName}>
+                  {({ checked }) => (
+                    <div className="relative cursor-pointer">
+                      {checked && <span className="absolute -left-4">•</span>}
+                      <li
+                        className={`${
+                          checked ? "underline" : ""
+                        } first-letter:uppercase`}
+                      >
+                        {themeName}
+                      </li>
+                    </div>
                   )}
-                </span>
+                </RadioGroup.Option>
               ))}
-            </li>
+            </RadioGroup>
           </div>
-          <div className="max-w-32">
+          <div className="mx-4 max-w-32">
             <li>
               <h2 className="font-bold mb-2">Site</h2>
               <p>
