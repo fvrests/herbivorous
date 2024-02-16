@@ -62,17 +62,23 @@ export default function Goal({ goal, date }: Props) {
               {progress + " / " + goal.quantity}
             </span>
           </div>
-          {progress < goal.quantity && (
-            <span style={{ width: (goal.quantity / maxQuantity) * 100 + "%" }}>
-              <ProgressBar progress={progress} goal={goal} overflow={overflow}>
-                <span
-                  className="h-8 w-full flex items-center justify-start z-10"
-                  aria-label={`progress: ${progress} / ${goal}`}
-                ></span>
-              </ProgressBar>
-            </span>
-          )}
-          {progress >= goal.quantity && <Check size={24} />}
+          <div className="w-full flex flex-row sm:justify-end">
+            {progress < goal.quantity && (
+              <div style={{ width: (goal.quantity / maxQuantity) * 100 + "%" }}>
+                <ProgressBar
+                  progress={progress}
+                  goal={goal}
+                  overflow={overflow}
+                >
+                  <span
+                    className="h-8 w-full flex items-center justify-start z-10"
+                    aria-label={`progress: ${progress} / ${goal}`}
+                  ></span>
+                </ProgressBar>
+              </div>
+            )}
+            {progress >= goal.quantity && <Check size={24} />}
+          </div>
         </div>
       </button>
       <button
