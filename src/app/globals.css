@@ -13,6 +13,7 @@
 
   --border: var(--f-low);
   --border-low: var(--b-high);
+  --capsule: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
@@ -31,6 +32,7 @@
 
   --border: var(--f-low);
   --border-low: var(--b-high);
+  --capsule: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
@@ -39,7 +41,7 @@
 }
 
 @media (prefers-color-scheme: light) :root {
-  --f-low: theme("colors.stone.800");
+  --f-low: theme("colors.stone.600");
   --f-med: theme("colors.stone.900");
   --f-high: theme("colors.black");
 
@@ -49,6 +51,7 @@
 
   --border: var(--f-low);
   --border-low: var(--b-low);
+  --capsule: var(--b-low);
 
   --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
@@ -57,7 +60,7 @@
 }
 
 :root[data-mode="light"] {
-  --f-low: theme("colors.stone.800");
+  --f-low: theme("colors.stone.600");
   --f-med: theme("colors.stone.900");
   --f-high: theme("colors.black");
 
@@ -67,6 +70,7 @@
 
   --border: var(--f-low);
   --border-low: var(--b-low);
+  --capsule: var(--b-low);
 
   --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
@@ -85,6 +89,7 @@
 
   --border: var(--f-low);
   --border-low: var(--b-high);
+  --capsule: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
