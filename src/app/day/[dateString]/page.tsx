@@ -37,11 +37,16 @@ export default function DayView({
           </span>
         ) : null}
       </div>
-      {goals.map((goal) => (
-        <div className="mb-6" key={goal.name}>
-          <Goal goal={goal} date={params.dateString ?? getDateString()} />
-        </div>
-      ))}
+      <div>
+        {goals.map((goal) => (
+          <div
+            key={goal.name}
+            className="border-t-[1px] border-b-[1px] border-border-low first:border-t-0 last:border-b-0"
+          >
+            <Goal goal={goal} date={params.dateString ?? getDateString()} />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

@@ -74,7 +74,7 @@ export default function GoalDetails({
           aria-hidden="true"
         />
         <Dialog.Panel>
-          <div className="fixed z-40 border-border border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
+          <div className="fixed z-40 border-border-low border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             <button
               className="z-50 absolute top-8 right-8 text-f-low hover:text-f-high"
               aria-label="close details"
@@ -152,7 +152,7 @@ export default function GoalDetails({
                 ))}
                 <li></li>
               </ul>
-              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border">
+              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border-low">
                 <Disclosure defaultOpen={true}>
                   {({ open }) => (
                     <>

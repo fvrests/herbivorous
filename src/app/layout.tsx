@@ -23,7 +23,7 @@ export default function RootLayout({
       <ThemeProvider>
         <UserProvider>
           <body
-            className={`${inter.className} flex min-h-screen flex-col p-4 sm:p-12 max-w-3xl mx-auto justify-between`}
+            className={`${inter.className} flex min-h-screen flex-col p-4 sm:p-12 max-w-4xl mx-auto justify-between`}
           >
             <Nav />
             <main className="flex-1 mb-20">{children}</main>

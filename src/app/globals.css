@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
+  --f-low: theme("colors.stone.400");
+  --f-med: theme("colors.stone.300");
+  --f-high: theme("colors.stone.100");
 
-  --b-low: theme("colors.black");
-  --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.300");
+  --b-low: theme("colors.stone.950");
+  --b-med: theme("colors.stone.900");
+  --b-high: theme("colors.stone.700");
+
+  --border: var(--f-low);
+  --border-low: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
@@ -18,13 +21,16 @@
 }
 
 @media (prefers-color-scheme: dark) :root {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
+  --f-low: theme("colors.stone.400");
+  --f-med: theme("colors.stone.300");
+  --f-high: theme("colors.stone.100");
 
-  --b-low: theme("colors.black");
-  --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.300");
+  --b-low: theme("colors.stone.950");
+  --b-med: theme("colors.stone.900");
+  --b-high: theme("colors.stone.700");
+
+  --border: var(--f-low);
+  --border-low: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
@@ -33,13 +39,16 @@
 }
 
 @media (prefers-color-scheme: light) :root {
-  --f-low: theme("colors.neutral.800");
-  --f-med: theme("colors.neutral.900");
+  --f-low: theme("colors.stone.800");
+  --f-med: theme("colors.stone.900");
   --f-high: theme("colors.black");
 
-  --b-low: theme("colors.neutral.100");
-  --b-med: theme("colors.neutral.200");
-  --border: theme("colors.neutral.500");
+  --b-low: theme("colors.stone.200");
+  --b-med: theme("colors.stone.100");
+  --b-high: theme("colors.stone.50");
+
+  --border: var(--f-low);
+  --border-low: var(--b-low);
 
   --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
@@ -48,13 +57,16 @@
 }
 
 :root[data-mode="light"] {
-  --f-low: theme("colors.neutral.800");
-  --f-med: theme("colors.neutral.900");
+  --f-low: theme("colors.stone.800");
+  --f-med: theme("colors.stone.900");
   --f-high: theme("colors.black");
 
-  --b-low: theme("colors.neutral.100");
-  --b-med: theme("colors.neutral.200");
-  --border: theme("colors.neutral.500");
+  --b-low: theme("colors.stone.200");
+  --b-med: theme("colors.stone.100");
+  --b-high: theme("colors.stone.50");
+
+  --border: var(--f-low);
+  --border-low: var(--b-low);
 
   --theme: theme("colors.indigo.300");
   --gradient-from: theme("colors.indigo.300");
@@ -63,13 +75,16 @@
 }
 
 :root[data-mode="dark"] {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
+  --f-low: theme("colors.stone.400");
+  --f-med: theme("colors.stone.300");
+  --f-high: theme("colors.stone.100");
 
-  --b-low: theme("colors.black");
-  --b-med: theme("colors.neutral.900");
-  --border: theme("colors.neutral.300");
+  --b-low: theme("colors.stone.950");
+  --b-med: theme("colors.stone.900");
+  --b-low: theme("colors.stone.800");
+
+  --border: var(--f-low);
+  --border-low: var(--b-high);
 
   --theme: theme("colors.indigo.900");
   --gradient-from: theme("colors.indigo.900");
@@ -78,37 +93,49 @@
 }
 
 :root[data-mode="light"][data-theme="natural"] {
-  --f-low: theme("colors.teal.800");
-  --f-med: theme("colors.teal.900");
-  --f-high: theme("colors.teal.950");
+  --f-low: #798078;
+  --f-med: #525951;
+  --f-high: #394039;
 
-  --b-low: #faf4ed;
-  --b-med: #f2e9e1;
-  --border: theme("colors.stone.900");
+  --b-low: #d9d0ca;
+  --b-med: #f3ebe6;
+  --b-high: #faf2ed;
 
-  --theme: theme("colors.teal.800");
+  --border: var(--f-low);
+  --border-low: var(--b-low);
+  --capsule: var(--b-low);
+
+  --theme: var(--f-med);
   --gradient-from: var(--theme);
   --gradient-via: var(--theme);
   --gradient-to: var(--theme);
 }
 
 :root[data-mode="dark"][data-theme="natural"] {
-  --b-low: theme("colors.teal.950");
-  --b-med: theme("colors.stone.900");
-  --border: theme("colors.stone.300");
+  --f-low: #a59b95;
+  --f-med: #d9d0ca;
+  --f-high: #f3ebe6;
 
-  --f-low: theme("colors.stone.100");
-  --f-med: theme("colors.stone.200");
-  --f-high: theme("colors.stone.300");
+  --b-low: #212620;
+  --b-med: #2e332d;
+  --b-high: #525951;
 
-  --theme: theme("colors.teal.900");
+  --border: var(--f-low);
+  --border-low: var(--b-high);
+  --capsule: var(--b-high);
+
+  --theme: var(--b-high);
   --gradient-from: var(--theme);
   --gradient-via: var(--theme);
   --gradient-to: var(--theme);
 }
 
+html {
+  @apply underline-offset-4 antialiased;
+}
+
 body {
-  @apply bg-b-low text-f-med underline-offset-2;
+  @apply bg-b-med text-f-med;
 }
 
 .gradient {

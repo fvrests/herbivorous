@@ -3,25 +3,19 @@ interface Props {
   goal: Goal;
   overflow: boolean;
   children?: any;
-  hoverable?: boolean;
 }
 
 export default function ProgressBar({
   progress,
   goal,
   overflow,
-  hoverable,
   children,
 }: Props) {
   return (
     <>
       <div
-        className={`w-full h-full relative rounded-xl flex items-center overflow-hidden border-2 transition-transform ${
+        className={`w-full h-full relative rounded-xl flex items-center overflow-hidden border-2 transition-transform border-border ${
           overflow ? "translate-x-2" : ""
-        } ${
-          hoverable
-            ? "border-border hover:border-f-low opacity-95 hover:opacity-100"
-            : "border-border"
         } gradient`}
       >
         <div

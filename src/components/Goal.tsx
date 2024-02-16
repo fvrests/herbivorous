@@ -30,60 +30,58 @@ export default function Goal({ goal, date }: Props) {
     setIsDetailsOpen(!isDetailsOpen);
   };
 
+  // todo: maybe set programmatically from goals list
+  // maximum servings: beverages
+  const maxQuantity = 5;
+
   return (
-    <div className="flex flex-col items-start justify-between max-w-full text-f-high truncate">
+    <div className="w-full flex flex-row items-center max-w-full gap-x-4 py-4">
       <button
-        className="flex flex-row gap-4 "
+        className="w-full flex flex-row items-center max-w-full gap-x-4"
         aria-label="open item details"
         onClick={() => toggleDetails()}
       >
-        <div className="ml-1 flex items-center z-10">
-          {!isLoading && (
+        {!isLoading && (
+          <div className="mr-4 shrink-0">
             <Image
               alt=""
-              width={24}
-              height={24}
+              width={36}
+              height={36}
               src={`/goals/${goal.icons[0] ?? "beans"}${
                 mode === "light" ? "-dark" : ""
               }.png`}
             ></Image>
+          </div>
+        )}
+        <div className="w-full flex flex-col sm:flex-row sm:items-center max-w-full gap-4">
+          <div className="flex w-full flex-row items-center gap-x-4">
+            <span className="text-left first-letter:capitalize font-bold">
+              {goal.name}
+            </span>
+            <span className="whitespace-nowrap bg-capsule font-semibold text-xs rounded-full px-2 py-1">
+              {progress + " / " + goal.quantity}
+            </span>
+          </div>
+          {progress < goal.quantity && (
+            <span style={{ width: (goal.quantity / maxQuantity) * 100 + "%" }}>
+              <ProgressBar progress={progress} goal={goal} overflow={overflow}>
+                <span
+                  className="h-8 w-full flex items-center justify-start z-10"
+                  aria-label={`progress: ${progress} / ${goal}`}
+                ></span>
+              </ProgressBar>
+            </span>
           )}
+          {progress >= goal.quantity && <Check size={24} />}
         </div>
-        <div className="font-bold first-letter:capitalize truncate max-w-full">
-          {goal.name}
-        </div>
-        <div>
-          {progress} / {goal.quantity}
-        </div>
-        <div className="ml-8">{progress >= goal.quantity && <Check />}</div>
       </button>
-      <div className="flex flex-row w-full items-center">
-        <ProgressBar
-          progress={progress}
-          goal={goal}
-          overflow={overflow}
-          hoverable={true}
-        >
-          <button
-            className="h-8 w-full flex items-center justify-start z-10"
-            aria-label="open item details"
-            onClick={() => toggleDetails()}
-          ></button>
-        </ProgressBar>
-
-        <button
-          onClick={() => increment()}
-          aria-label="increase progress by 1"
-          className="group ml-4 grid grid-rows-3 shrink-0 h-full relative justify-end place-items-center text-f-low hover:text-f-high"
-        >
-          <span className="row-start-2">
-            <Plus />
-          </span>
-          <span className="row-start-3 w-full text-xs invisible group-hover:visible">
-            Log 1
-          </span>
-        </button>
-      </div>
+      <button
+        onClick={() => increment()}
+        aria-label="increase progress by 1"
+        className="relative group ml-auto h-full justify-end place-items-center text-f-low hover:text-f-high after:content-['Log_1'] after:invisible hover:after:visible after:absolute after:-bottom-4 after:w-full after:left-0 after:right-0 after:mx-auto after:text-xs after:whitespace-nowrap"
+      >
+        <Plus width={26} height={26} />
+      </button>
 
       {isDetailsOpen ? (
         <GoalDetails
