@@ -55,10 +55,10 @@ export default function Goal({ goal, date }: Props) {
         )}
         <div className="w-full flex flex-col sm:flex-row sm:items-center max-w-full gap-4">
           <div className="flex w-full flex-row items-center gap-x-4">
-            <span className="text-left first-letter:capitalize font-bold">
+            <span className="whitespace-nowrap text-left first-letter:capitalize font-bold">
               {goal.name}
             </span>
-            <span className="whitespace-nowrap bg-capsule font-semibold text-xs rounded-full px-2 py-1">
+            <span className="whitespace-nowrap bg-capsule font-semibold text-xs rounded-full px-2 py-0.5">
               {progress + " / " + goal.quantity}
             </span>
           </div>
@@ -84,7 +84,7 @@ export default function Goal({ goal, date }: Props) {
       <button
         onClick={() => increment()}
         aria-label="increase progress by 1"
-        className="relative group ml-auto h-full justify-end place-items-center text-f-low hover:text-f-high after:content-['Log_1'] after:invisible hover:after:visible after:absolute after:-bottom-4 after:w-full after:left-0 after:right-0 after:mx-auto after:text-xs after:whitespace-nowrap"
+        className="relative group ml-auto h-full justify-end place-items-center text-f-low hover:text-f-high after:content-['Log_1'] after:invisible after:absolute hover:after:visible after:left-1/2 after:-translate-x-1/2 after:text-xs after:whitespace-nowrap"
       >
         <Plus width={26} height={26} />
       </button>
