@@ -18,7 +18,7 @@ export default function DayView({
 
   return (
     <>
-      <div className="font-bold text-sm mb-16 grid grid-cols-3 gap-4 auto-cols-max w-full items-end justify-between">
+      <div className="font-semibold tracking-tighter text-sm mb-16 grid grid-cols-3 gap-4 auto-cols-max w-full items-end justify-between">
         <span className="justify-self-start">
           ↤&nbsp;
           <Link href={`/day/${getDateString(prevDate)}`}>

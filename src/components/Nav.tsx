@@ -15,7 +15,9 @@ export default function Nav() {
     <>
       <nav className="flex items-center justify-between mb-16">
         <Link href="/">
-          <h1 className="font-bold text-xl">Herbivorous</h1>
+          <h1 className="font-semibold tracking-tighter text-xl">
+            Herbivorous
+          </h1>
         </Link>
         <div className="flex flex-row items-center gap-4">
           <button

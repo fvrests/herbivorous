@@ -12,7 +12,9 @@ export default function SignIn() {
   if (!isLoading) {
     return !user ? (
       <>
-        <h2 className="font-bold text-lg mb-4">You&apos;re not signed in.</h2>
+        <h2 className="font-semibold tracking-tighter text-lg mb-4">
+          You&apos;re not signed in.
+        </h2>
         <p className="mb-8">
           Sign in to save your daily progress and settings.
         </p>

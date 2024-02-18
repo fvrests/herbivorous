@@ -24,7 +24,7 @@ const config: Config = {
         "gradient-to": "var(--gradient-to)",
       },
       fontFamily: {
-        serif: ["var(--font-PT)"],
+        sans: ["var(--font-WorkSans)"],
       },
     },
   },

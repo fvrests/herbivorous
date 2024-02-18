@@ -6,7 +6,7 @@ import Link from "@/components/Link";
 export default function About() {
   return (
     <>
-      <h2 className="font-bold text-3xl mt-20 mb-20">
+      <h2 className="font-semibold tracking-tighter text-3xl mt-20 mb-20">
         A daily dozen food planner
       </h2>
       <div className="mb-8">
