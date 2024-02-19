@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --f-low: theme("colors.stone.400");
-  --f-med: theme("colors.stone.300");
-  --f-high: theme("colors.stone.100");
+  --f-low: theme("colors.neutral.400");
+  --f-med: theme("colors.neutral.300");
+  --f-high: theme("colors.neutral.100");
 
-  --b-low: theme("colors.stone.950");
-  --b-med: theme("colors.stone.900");
-  --b-high: theme("colors.stone.700");
+  --b-low: theme("colors.neutral.950");
+  --b-med: theme("colors.neutral.900");
+  --b-high: theme("colors.neutral.800");
 
   --border: var(--f-low);
   --border-low: var(--b-high);
@@ -22,13 +22,13 @@
 }
 
 @media (prefers-color-scheme: dark) :root {
-  --f-low: theme("colors.stone.400");
-  --f-med: theme("colors.stone.300");
-  --f-high: theme("colors.stone.100");
+  --f-low: theme("colors.neutral.400");
+  --f-med: theme("colors.neutral.300");
+  --f-high: theme("colors.neutral.100");
 
-  --b-low: theme("colors.stone.950");
-  --b-med: theme("colors.stone.900");
-  --b-high: theme("colors.stone.700");
+  --b-low: theme("colors.neutral.950");
+  --b-med: theme("colors.neutral.900");
+  --b-high: theme("colors.neutral.800");
 
   --border: var(--f-low);
   --border-low: var(--b-high);
@@ -41,13 +41,13 @@
 }
 
 @media (prefers-color-scheme: light) :root {
-  --f-low: theme("colors.stone.600");
-  --f-med: theme("colors.stone.900");
-  --f-high: theme("colors.black");
+  --f-low: theme("colors.neutral.500");
+  --f-med: theme("colors.neutral.700");
+  --f-high: theme("colors.neutral.900");
 
-  --b-low: theme("colors.stone.200");
-  --b-med: theme("colors.stone.100");
-  --b-high: theme("colors.stone.50");
+  --b-low: theme("colors.neutral.200");
+  --b-med: theme("colors.neutral.100");
+  --b-high: theme("colors.neutral.50");
 
   --border: var(--f-low);
   --border-low: var(--b-low);
@@ -60,13 +60,13 @@
 }
 
 :root[data-mode="light"] {
-  --f-low: theme("colors.stone.600");
-  --f-med: theme("colors.stone.900");
-  --f-high: theme("colors.black");
+  --f-low: theme("colors.neutral.500");
+  --f-med: theme("colors.neutral.700");
+  --f-high: theme("colors.neutral.900");
 
-  --b-low: theme("colors.stone.200");
-  --b-med: theme("colors.stone.100");
-  --b-high: theme("colors.stone.50");
+  --b-low: theme("colors.neutral.200");
+  --b-med: theme("colors.neutral.100");
+  --b-high: theme("colors.neutral.50");
 
   --border: var(--f-low);
   --border-low: var(--b-low);
@@ -79,13 +79,13 @@
 }
 
 :root[data-mode="dark"] {
-  --f-low: theme("colors.stone.400");
-  --f-med: theme("colors.stone.300");
-  --f-high: theme("colors.stone.100");
+  --f-low: theme("colors.neutral.400");
+  --f-med: theme("colors.neutral.300");
+  --f-high: theme("colors.neutral.100");
 
-  --b-low: theme("colors.stone.950");
-  --b-med: theme("colors.stone.900");
-  --b-low: theme("colors.stone.800");
+  --b-low: theme("colors.neutral.950");
+  --b-med: theme("colors.neutral.900");
+  --b-high: theme("colors.neutral.800");
 
   --border: var(--f-low);
   --border-low: var(--b-high);
@@ -102,7 +102,7 @@
   --f-med: #525951;
   --f-high: #394039;
 
-  --b-low: #d9d0ca;
+  --b-low: #e6dcd6;
   --b-med: #f3ebe6;
   --b-high: #faf2ed;
 
@@ -140,7 +140,7 @@ html {
 }
 
 body {
-  @apply bg-b-med text-f-med;
+  @apply bg-b-med text-f-med font-medium tracking-tight;
 }
 
 .gradient {

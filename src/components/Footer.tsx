@@ -44,7 +44,9 @@ export default function Footer() {
                       {checked && <span className="absolute -left-4">•</span>}
                       <li
                         className={`${
-                          checked ? "underline" : ""
+                          checked
+                            ? "text-f-high underline decoration-wavy"
+                            : "text-f-low"
                         } first-letter:uppercase`}
                       >
                         {themeName}

@@ -16,7 +16,7 @@ interface Props {
 
 export default function Goal({ goal, date }: Props) {
   const { user } = useContext(UserContext);
-  const { mode } = useContext(ThemeContext);
+  const { mode, theme } = useContext(ThemeContext);
   const { isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
@@ -35,60 +35,52 @@ export default function Goal({ goal, date }: Props) {
   const maxQuantity = 5;
 
   return (
-    <div className="py-4 sm:py-2 flex items-center gap-4">
+    <div className="py-2 flex items-center gap-4">
       <button
-        className="flex-1 flex items-center gap-4"
+        className="flex-1 flex items-center gap-4 rounded-md py-4 px-2 -mx-2 hover:text-f-high hover:bg-b-low"
         aria-label="open item details"
         onClick={() => toggleDetails()}
       >
-        <Image
-          alt=""
-          width={36}
-          height={36}
-          src={`/goals/${goal.icons[0] ?? "beans"}${
-            mode === "light" ? "-dark" : ""
-          }.png`}
-        ></Image>
-        <div className="sm:truncate flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
+        <div
+          className={`${mode === "light" ? "brightness-75" : "brightness-125"}`}
+        >
+          {/* // theme === "natural" ? "-n" : "" // mode === "light" ? "-dark" : "" */}
+          <Image
+            alt=""
+            width={36}
+            height={36}
+            src={`/goals/${goal.icons[0] ?? "beans"}${"-n"}${"-dark"}.png`}
+          ></Image>
+        </div>
+        <div className="truncate sm:overflow-visible flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
           <div className="grid grid-flow-col items-center justify-start gap-4">
-            <p className="text-left first-letter:capitalize font-semibold truncate max-w-full">
+            <p className="text-left first-letter:capitalize truncate max-w-full">
               {goal.name}
             </p>
-            <div className="whitespace-nowrap bg-capsule font-semibold text-xs rounded-full px-2 py-0.5">
+            <div className="whitespace-nowrap bg-capsule font-medium text-xs rounded-full px-2 py-0.5 border-2 border-border">
               {progress + " / " + goal.quantity}
             </div>
           </div>
           <div className="h-6 flex-1 flex sm:justify-end">
             {" "}
-            {progress < goal.quantity && (
-              <div
-                className="h-full"
-                style={{ width: (goal.quantity / maxQuantity) * 100 + "%" }}
-              >
-                {!isLoading && progress < goal.quantity && (
-                  <ProgressBar
-                    progress={progress}
-                    goal={goal}
-                    overflow={overflow}
-                  >
-                    <span
-                      className="w-full flex items-center justify-start z-10"
-                      aria-label={`progress: ${progress} / ${goal}`}
-                    ></span>
-                  </ProgressBar>
-                )}
-              </div>
-            )}
-            <span className="h-full flex items-center">
-              {progress >= goal.quantity && <Check size={24} />}
-            </span>
+            <div
+              className="h-full"
+              style={{ width: (goal.quantity / maxQuantity) * 100 + "%" }}
+            >
+              <ProgressBar progress={progress} goal={goal} overflow={overflow}>
+                <span
+                  className="w-full flex items-center justify-start z-10"
+                  aria-label={`progress: ${progress} / ${goal}`}
+                ></span>
+              </ProgressBar>
+            </div>
           </div>
         </div>
       </button>
       <button
         onClick={() => increment()}
         aria-label="increase progress by 1"
-        className="shrink-0 relative group h-full justify-end text-f-med p-2 hover:text-f-high after:content-['Log_1'] after:invisible after:absolute hover:after:visible after:left-1/2 after:-bottom-6 after:text-f-med after:-translate-x-1/2 after:text-xs after:whitespace-nowrap border-2 border-border-low rounded-full"
+        className="shrink-0 relative group h-full justify-end text-f-low p-2 hover:text-f-high after:content-['Log_1'] after:invisible after:absolute hover:after:visible after:left-1/2 after:-bottom-4 after:text-f-med after:-translate-x-1/2 after:text-xs after:whitespace-nowrap rounded-md after:rounded-full after:px-2 after:py-0.5"
       >
         <Plus width={26} height={26} />
       </button>
