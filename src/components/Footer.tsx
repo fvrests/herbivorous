@@ -6,9 +6,9 @@ import Link from "./Link";
 import { RadioGroup } from "@headlessui/react";
 
 export default function Footer() {
-  const themeNames: Theme[] = ["modern", "natural"];
+  const themeNames: Theme[] = ["natural", "neutral"];
   const { theme, updateTheme, isLoading } = useContext(ThemeContext);
-  const [selectedTheme, setSelectedTheme] = useState(theme ?? "modern");
+  const [selectedTheme, setSelectedTheme] = useState(theme ?? "natural");
 
   useEffect(() => {
     if (theme) setSelectedTheme(theme);

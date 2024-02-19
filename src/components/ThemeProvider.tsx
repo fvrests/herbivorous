@@ -37,7 +37,7 @@ export default function ThemeProvider({ children }: Props) {
       document.documentElement.dataset.mode = localData?.mode ?? "dark";
 
       setTheme(localData?.theme ?? null);
-      document.documentElement.dataset.theme = localData?.theme ?? "modern";
+      document.documentElement.dataset.theme = localData?.theme ?? "natural";
 
       setIsLoading(false);
     });
@@ -60,7 +60,7 @@ export default function ThemeProvider({ children }: Props) {
     updateLocalOnlyData({
       theme: newTheme,
     });
-    document.documentElement.dataset.theme = newTheme ?? "modern";
+    document.documentElement.dataset.theme = newTheme ?? "natural";
   }
 
   return (

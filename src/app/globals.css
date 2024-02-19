@@ -2,109 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* DEFAULT: dark natural theme */
+/* prefers dark: dark natural theme */
 :root {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
+  --cypress-light: #525951;
+  --cypress-med: #2e332d;
+  --cypress-dark: #212620;
 
-  --b-low: theme("colors.neutral.950");
-  --b-med: theme("colors.neutral.900");
-  --b-high: theme("colors.neutral.800");
+  --oat-light: #f3ebe6;
+  --oat-med: #d9d0ca;
+  --oat-dark: #a59b95;
 
-  --border: var(--f-low);
-  --border-low: var(--b-high);
-  --capsule: var(--b-high);
+  --f-low: var(--oat-dark);
+  --f-med: var(--oat-med);
+  --f-high: var(--oat-light);
 
-  --theme: theme("colors.indigo.900");
-  --gradient-from: theme("colors.indigo.900");
-  --gradient-via: theme("colors.rose.700");
-  --gradient-to: theme("colors.amber.600");
-}
-
-@media (prefers-color-scheme: dark) :root {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
-
-  --b-low: theme("colors.neutral.950");
-  --b-med: theme("colors.neutral.900");
-  --b-high: theme("colors.neutral.800");
+  --b-low: var(--cypress-dark);
+  --b-med: var(--cypress-med);
+  --b-high: var(--cypress-light);
 
   --border: var(--f-low);
   --border-low: var(--b-high);
   --capsule: var(--b-high);
 
-  --theme: theme("colors.indigo.900");
-  --gradient-from: theme("colors.indigo.900");
-  --gradient-via: theme("colors.rose.400");
-  --gradient-to: theme("colors.amber.500");
+  --theme: var(--b-high);
+  --gradient-from: var(--theme);
+  --gradient-via: var(--theme);
+  --gradient-to: var(--theme);
 }
 
+/* prefers light: light natural theme */
 @media (prefers-color-scheme: light) :root {
-  --f-low: theme("colors.neutral.500");
-  --f-med: theme("colors.neutral.700");
-  --f-high: theme("colors.neutral.900");
+  --cypress-light: #798078;
+  --cypress-med: #525951;
+  --cypress-dark: #394039;
 
-  --b-low: theme("colors.neutral.200");
-  --b-med: theme("colors.neutral.100");
-  --b-high: theme("colors.neutral.50");
+  --oat-light: #faf2ed;
+  --oat-med: #f3ebe6;
+  --oat-dark: #e6dcd6;
 
-  --border: var(--f-low);
-  --border-low: var(--b-low);
-  --capsule: var(--b-low);
+  --f-low: var(--cypress-light);
+  --f-med: var(--cypress-med);
+  --f-high: var(--cypress-dark);
 
-  --theme: theme("colors.indigo.300");
-  --gradient-from: theme("colors.indigo.300");
-  --gradient-via: theme("colors.rose.200");
-  --gradient-to: theme("colors.amber.400");
-}
-
-:root[data-mode="light"] {
-  --f-low: theme("colors.neutral.500");
-  --f-med: theme("colors.neutral.700");
-  --f-high: theme("colors.neutral.900");
-
-  --b-low: theme("colors.neutral.200");
-  --b-med: theme("colors.neutral.100");
-  --b-high: theme("colors.neutral.50");
-
-  --border: var(--f-low);
-  --border-low: var(--b-low);
-  --capsule: var(--b-low);
-
-  --theme: theme("colors.indigo.300");
-  --gradient-from: theme("colors.indigo.300");
-  --gradient-via: theme("colors.rose.200");
-  --gradient-to: theme("colors.amber.400");
-}
-
-:root[data-mode="dark"] {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
-
-  --b-low: theme("colors.neutral.950");
-  --b-med: theme("colors.neutral.900");
-  --b-high: theme("colors.neutral.800");
-
-  --border: var(--f-low);
-  --border-low: var(--b-high);
-  --capsule: var(--b-high);
-
-  --theme: theme("colors.indigo.900");
-  --gradient-from: theme("colors.indigo.900");
-  --gradient-via: theme("colors.rose.400");
-  --gradient-to: theme("colors.amber.500");
-}
-
-:root[data-mode="light"][data-theme="natural"] {
-  --f-low: #798078;
-  --f-med: #525951;
-  --f-high: #394039;
-
-  --b-low: #e6dcd6;
-  --b-med: #f3ebe6;
-  --b-high: #faf2ed;
+  --b-low: var(--oat-dark);
+  --b-med: var(--oat-med);
+  --b-high: var(--oat-light);
 
   --border: var(--f-low);
   --border-low: var(--b-low);
@@ -116,23 +59,72 @@
   --gradient-to: var(--theme);
 }
 
-:root[data-mode="dark"][data-theme="natural"] {
-  --f-low: #a59b95;
-  --f-med: #d9d0ca;
-  --f-high: #f3ebe6;
+/* light mode: default to natural theme */
+:root[data-mode="light"] {
+  --cypress-light: #798078;
+  --cypress-med: #525951;
+  --cypress-dark: #394039;
 
-  --b-low: #212620;
-  --b-med: #2e332d;
-  --b-high: #525951;
+  --oat-light: #faf2ed;
+  --oat-med: #f3ebe6;
+  --oat-dark: #e6dcd6;
+
+  --f-low: var(--cypress-light);
+  --f-med: var(--cypress-med);
+  --f-high: var(--cypress-dark);
+
+  --b-low: var(--oat-dark);
+  --b-med: var(--oat-med);
+  --b-high: var(--oat-light);
+
+  --border: var(--f-low);
+  --border-low: var(--b-low);
+  --capsule: var(--b-low);
+
+  --theme: var(--f-med);
+  --gradient-from: var(--theme);
+  --gradient-via: var(--theme);
+  --gradient-to: var(--theme);
+}
+
+/* light mode: neutral theme */
+:root[data-mode="light"][data-theme="neutral"] {
+  --f-low: theme("colors.neutral.500");
+  --f-med: theme("colors.neutral.700");
+  --f-high: theme("colors.neutral.900");
+
+  --b-low: theme("colors.neutral.200");
+  --b-med: theme("colors.neutral.100");
+  --b-high: theme("colors.neutral.50");
+
+  --border: var(--f-low);
+  --border-low: var(--b-low);
+  --capsule: var(--b-low);
+
+  --theme: theme("colors.indigo.300");
+  --gradient-from: theme("colors.indigo.300");
+  --gradient-via: theme("colors.rose.200");
+  --gradient-to: theme("colors.amber.400");
+}
+
+/* dark mode: neutral theme */
+:root[data-mode="dark"][data-theme="neutral"] {
+  --f-low: theme("colors.neutral.400");
+  --f-med: theme("colors.neutral.300");
+  --f-high: theme("colors.neutral.100");
+
+  --b-low: theme("colors.neutral.950");
+  --b-med: theme("colors.neutral.900");
+  --b-high: theme("colors.neutral.800");
 
   --border: var(--f-low);
   --border-low: var(--b-high);
   --capsule: var(--b-high);
 
-  --theme: var(--b-high);
-  --gradient-from: var(--theme);
-  --gradient-via: var(--theme);
-  --gradient-to: var(--theme);
+  --theme: theme("colors.indigo.900");
+  --gradient-from: theme("colors.indigo.900");
+  --gradient-via: theme("colors.rose.400");
+  --gradient-to: theme("colors.amber.500");
 }
 
 html {

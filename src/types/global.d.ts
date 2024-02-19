@@ -19,7 +19,7 @@ declare global {
   }
 
   type Mode = "dark" | "light" | "system";
-  type Theme = "modern" | "natural";
+  type Theme = "natural" | "neutral";
 
   interface UserData {
     settings?: {

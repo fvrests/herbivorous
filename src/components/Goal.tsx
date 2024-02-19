@@ -44,12 +44,13 @@ export default function Goal({ goal, date }: Props) {
         <div
           className={`${mode === "light" ? "brightness-75" : "brightness-125"}`}
         >
-          {/* // theme === "natural" ? "-n" : "" // mode === "light" ? "-dark" : "" */}
           <Image
             alt=""
             width={36}
             height={36}
-            src={`/goals/${goal.icons[0] ?? "beans"}${"-n"}${"-dark"}.png`}
+            src={`/goals/${goal.icons[0] ?? "beans"}${
+              theme === "natural" ? "-natural" : "-neutral"
+            }.png`}
           ></Image>
         </div>
         <div className="truncate sm:overflow-visible flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
