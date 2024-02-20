@@ -27,20 +27,20 @@ export const ThemeContext = createContext<ThemeContext>({
 });
 
 export default function ThemeProvider({ children }: Props) {
-  const [mode, setMode] = useState<Mode>();
-  const [theme, setTheme] = useState<Theme>();
+  let localData = getLocalStorage("localOnly");
+  const [mode, setMode] = useState<Mode>(getLocalStorage("localOnly").mode);
+  const [theme, setTheme] = useState<Theme>(getLocalStorage("localOnly").theme);
   const [isLoading, setIsLoading] = useState(true);
 
+  // todo: implement next-themes or similar to prevent flicker on reload
   useEffect(() => {
-    getLocalStorage("localOnly").then((localData) => {
-      setMode(localData?.mode ?? null);
-      document.documentElement.dataset.mode = localData?.mode ?? "dark";
+    setMode(localData?.mode ?? null);
+    document.documentElement.dataset.mode = localData?.mode ?? "dark";
 
-      setTheme(localData?.theme ?? null);
-      document.documentElement.dataset.theme = localData?.theme ?? "natural";
+    setTheme(localData?.theme ?? null);
+    document.documentElement.dataset.theme = localData?.theme ?? "natural";
 
-      setIsLoading(false);
-    });
+    setIsLoading(false);
   }, []);
 
   function updateMode(newMode: Mode) {

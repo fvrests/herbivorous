@@ -1,6 +1,6 @@
 import { getDateString } from "@/utils/date";
 
-export const getLocalStorage = async (item: string) => {
+export const getLocalStorage = (item: string) => {
   if (typeof window === "undefined") return;
   const storedData = window.localStorage.getItem(item);
   if (storedData) {
@@ -10,21 +10,17 @@ export const getLocalStorage = async (item: string) => {
 
 export const updateLocalOnlyData = (data: Record<string, string>) => {
   if (typeof window === "undefined") return;
-  getLocalStorage("localOnly").then((result) => {
-    let localData = result;
-    localData = { ...localData, ...data };
-    window.localStorage.setItem("localOnly", JSON.stringify(localData));
-  });
+  let localData = getLocalStorage("localOnly");
+  localData = { ...localData, ...data };
+  window.localStorage.setItem("localOnly", JSON.stringify(localData));
 };
 
 export const updateLocalSettings = (settings: Record<string, string>) => {
   if (typeof window === "undefined") return;
-  getLocalStorage("herbivorous").then((result) => {
-    let localData = result;
-    if (!localData.settings) localData.settings = {};
-    localData.settings = { ...localData.settings, ...settings };
-    window.localStorage.setItem("herbivorous", JSON.stringify(localData));
-  });
+  let localData = getLocalStorage("herbivorous");
+  if (!localData.settings) localData.settings = {};
+  localData.settings = { ...localData.settings, ...settings };
+  window.localStorage.setItem("herbivorous", JSON.stringify(localData));
 };
 
 export const updateLocalProgress = (
@@ -33,14 +29,11 @@ export const updateLocalProgress = (
   progress: number,
 ) => {
   if (typeof window === "undefined") return;
-  getLocalStorage("herbivorous").then((result) => {
-    let updatedData = result;
-    if (!updatedData.progress) updatedData.progress = {};
-    if (!updatedData.progress[dateString])
-      updatedData.progress[dateString] = {};
-    updatedData.progress[dateString][goal] = progress;
-    window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
-  });
+  let updatedData = getLocalStorage("herbivorous");
+  if (!updatedData.progress) updatedData.progress = {};
+  if (!updatedData.progress[dateString]) updatedData.progress[dateString] = {};
+  updatedData.progress[dateString][goal] = progress;
+  window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
 };
 
 export const resetLocalStorage = () => {

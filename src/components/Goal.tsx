@@ -6,8 +6,8 @@ import { UserContext } from "./UserProvider";
 import { ThemeContext } from "./ThemeProvider";
 import GoalDetails from "./GoalDetails";
 import ProgressBar from "./ProgressBar";
-import { Check, Plus } from "react-feather";
-import { useUserData, useProgress } from "@/utils/firebase-firestore";
+import { Plus } from "react-feather";
+import { useProgress } from "@/utils/firebase-firestore";
 
 interface Props {
   goal: Goal;
@@ -17,7 +17,6 @@ interface Props {
 export default function Goal({ goal, date }: Props) {
   const { user } = useContext(UserContext);
   const { mode, theme } = useContext(ThemeContext);
-  const { isLoading } = useUserData();
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const { progress, increment, reset, overflow } = useProgress(

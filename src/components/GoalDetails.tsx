@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/utils/firebase-auth";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
@@ -37,10 +37,11 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
-let localData: UserData | null = null;
-getLocalStorage("herbivorous").then((result) => {
-  localData = result;
-});
+let localData: UserData | null = getLocalStorage("herbivorous");
+// getLocalStorage("herbivorous").then((result) => {
+//   localData = result;
+// });
+// useEffect
 
 export default function GoalDetails({
   toggleDetails,
@@ -57,6 +58,13 @@ export default function GoalDetails({
   const [units, setUnits] = useState(
     userData?.settings?.units || localData?.settings?.units || "metric",
   );
+
+  useEffect(() => {
+    setUnits(
+      userData?.settings?.units || localData?.settings?.units || "metric",
+    );
+  }, [userData]);
+
   const handleChangeUnits = (newValue: "metric" | "imperial") => {
     if (user) {
       updateUserData(user.uid, { settings: { units: newValue } });
