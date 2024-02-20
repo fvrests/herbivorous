@@ -48,7 +48,7 @@ export default function Goal({ goal, date }: Props) {
             alt=""
             width={36}
             height={36}
-            src={`/goals/${goal.icons[0] ?? "beans"}${
+            src={`/goals/${goal.icon ?? "beans"}${
               theme === "natural" ? "-natural" : "-neutral"
             }.png`}
           ></Image>

@@ -3,7 +3,7 @@
     "name": "beans",
     "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/beans/"],
-    "icons": ["beans", "beans-dark"],
+    "icon": "beans",
     "suggestions": [
       {
         "name": "hummus or bean dip",
@@ -45,8 +45,8 @@
       "black beans",
       "black-eyed peas",
       "butter beans",
-      "cannelini beans",
-      "chickpeas / garbanzo beans",
+      "cannellini beans",
+      "chickpeas (garbanzo beans)",
       "edamame",
       "english peas",
       "great northern beans",
@@ -64,7 +64,7 @@
     "name": "berries",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/berries/"],
-    "icons": ["berries", "berries-dark"],
+    "icon": "berries",
     "suggestions": [
       {
         "name": "fresh or frozen",
@@ -82,7 +82,7 @@
       }
     ],
     "types": [
-      "acai berries",
+      "açai berries",
       "barberries",
       "blackberries",
       "blueberries",
@@ -103,7 +103,7 @@
       "https://nutritionfacts.org/topics/fruit/",
       "https://nutritionfacts.org/topics/dried-fruit/"
     ],
-    "icons": ["other-fruits", "other-fruits-dark"],
+    "icon": "other-fruits",
     "suggestions": [
       {
         "name": "medium-sized fruit",
@@ -162,7 +162,7 @@
     "name": "cruciferous vegetables",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/cruciferous-vegetables/"],
-    "icons": ["cruciferous", "cruciferous-dark"],
+    "icon": "cruciferous",
     "suggestions": [
       {
         "name": "chopped",
@@ -197,24 +197,24 @@
     "types": [
       "arugula",
       "bok choy",
-      "broccoli (incl. Romanesco)",
+      "broccoli",
       "brussels sprouts",
-      "cabbage (green, red, and savory)",
-      "cauliflower (white, green, orange and purple)",
+      "cabbage",
+      "cauliflower",
       "collard greens",
       "horseradish",
       "kale (black, green, and red)",
-      "kohlrabi (green and purple)",
       "mustard greens",
       "radishes",
-      "rutabaga"
+      "turnip greens",
+      "watercress"
     ]
   },
   {
     "name": "greens",
     "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/greens/"],
-    "icons": ["greens", "greens-dark"],
+    "icon": "greens",
     "suggestions": [
       {
         "name": "raw",
@@ -248,7 +248,7 @@
     "name": "other vegetables",
     "quantity": 2,
     "info": ["https://nutritionfacts.org/topics/vegetables/"],
-    "icons": ["other-veg", "other-veg-dark"],
+    "icon": "other-veg",
     "suggestions": [
       {
         "name": "raw leafy vegetables",
@@ -304,7 +304,7 @@
     "name": "flaxseeds",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/flax-seeds/"],
-    "icons": ["flax", "flax-dark"],
+    "icon": "flax",
     "suggestions": [
       {
         "name": "ground",
@@ -323,7 +323,7 @@
       "https://nutritionfacts.org/topics/nuts/",
       "https://nutritionfacts.org/topics/seeds/"
     ],
-    "icons": ["nuts-seeds", "nuts-seeds-dark"],
+    "icon": "nuts-seeds",
     "suggestions": [
       {
         "name": "nuts or seeds",
@@ -345,10 +345,9 @@
       "brazil nuts",
       "cashews",
       "chia seeds",
-      "hazelnuts",
+      "hazelnuts / filberts",
       "hemp seeds",
       "macademia nuts",
-      "peanuts",
       "pecans",
       "pistachios",
       "pumpkin seeds",
@@ -364,10 +363,10 @@
       "https://nutritionfacts.org/topics/herbs/",
       "https://nutritionfacts.org/topics/spices/"
     ],
-    "icons": ["herbs-spices", "herbs-spices-dark"],
+    "icon": "herbs-spices",
     "suggestions": [
       {
-        "name": "turmeric",
+        "name": "turmeric (recommended daily)",
         "portion": {
           "metric": { "quantity": 0.25, "unit": "tsp" },
           "imperial": { "quantity": 0.25, "unit": "tsp" }
@@ -420,13 +419,13 @@
     "name": "whole grains",
     "quantity": 3,
     "info": ["https://nutritionfacts.org/topics/grains/"],
-    "icons": ["whole-grains", "whole-grains-dark"],
+    "icon": "whole-grains",
     "suggestions": [
       {
         "name": "hot cereal or cooked grains, pasta, or corn kernels",
         "portion": {
           "metric": { "quantity": 100, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
+          "imperial": { "quantity": 0.5, "unit": "cup" }
         }
       },
       {
@@ -461,6 +460,7 @@
     ],
     "types": [
       "barley",
+      "brown rice",
       "buckwheat",
       "millet",
       "oats",
@@ -468,14 +468,15 @@
       "quinoa",
       "rye",
       "teff",
-      "whole-wheat pasta"
+      "whole-wheat pasta",
+      "wild rice"
     ]
   },
   {
     "name": "beverages",
     "quantity": 5,
     "info": ["https://nutritionfacts.org/topics/beverages/"],
-    "icons": ["beverages", "beverages-dark"],
+    "icon": "beverages",
     "suggestions": [
       {
         "name": "",
@@ -508,7 +509,7 @@
     "name": "exercise",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/exercise/"],
-    "icons": ["exercise", "exercise-dark"],
+    "icon": "exercise",
     "suggestions": [
       {
         "name": "moderate-intensity activity",
@@ -540,14 +541,14 @@
       "jumping on a trampoline",
       "paddle boating",
       "playing frisbee",
-      "roller-skating",
+      "roller skating",
       "shooting baskets",
       "shoveling light snow",
       "skateboarding",
       "snorkeling",
       "surfing",
-      "swimming",
-      "tennis",
+      "swimming (recreationally)",
+      "tennis (doubles)",
       "treading water",
       "walking briskly (4mph)",
       "water aerobics",
@@ -556,6 +557,7 @@
       "yoga",
       "backpacking",
       "basketball",
+      "bicycling uphill",
       "circuit weight training",
       "cross-country skiing",
       "football",
@@ -575,6 +577,8 @@
       "speed skating",
       "squash",
       "step aerobics",
+      "swimming laps",
+      "walking briskly uphill",
       "water jogging"
     ]
   },
@@ -582,7 +586,7 @@
     "name": "vitamin B12",
     "quantity": 1,
     "info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
-    "icons": ["b12", "b12-dark"],
+    "icon": "b12",
     "suggestions": [
       {
         "name": "per individual needs / doctor recommendation",

@@ -13,7 +13,7 @@ declare global {
     name: string;
     quantity: number;
     info: string[];
-    icons: string[];
+    icon: string;
     suggestions: Suggestion[];
     types: string[];
   }
