@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* DEFAULT: dark natural theme */
-/* prefers dark: dark natural theme */
+/* DEFAULT: dark earthy theme */
+/* prefers dark: dark earthy theme */
 :root {
   --cypress-light: #525951;
   --cypress-med: #2e332d;
@@ -31,7 +31,7 @@
   --gradient-to: var(--theme);
 }
 
-/* prefers light: light natural theme */
+/* prefers light: light earthy theme */
 @media (prefers-color-scheme: light) :root {
   --cypress-light: #798078;
   --cypress-med: #525951;
@@ -59,7 +59,7 @@
   --gradient-to: var(--theme);
 }
 
-/* light mode: default to natural theme */
+/* light mode: default to earthy / default theme */
 :root[data-mode="light"] {
   --cypress-light: #798078;
   --cypress-med: #525951;
@@ -87,8 +87,8 @@
   --gradient-to: var(--theme);
 }
 
-/* light mode: neutral theme */
-:root[data-mode="light"][data-theme="neutral"] {
+/* light mode: cosmic theme */
+:root[data-mode="light"][data-theme="cosmic"] {
   --f-low: theme("colors.neutral.500");
   --f-med: theme("colors.neutral.700");
   --f-high: theme("colors.neutral.900");
@@ -107,8 +107,8 @@
   --gradient-to: theme("colors.amber.400");
 }
 
-/* dark mode: neutral theme */
-:root[data-mode="dark"][data-theme="neutral"] {
+/* dark mode: cosmic theme */
+:root[data-mode="dark"][data-theme="cosmic"] {
   --f-low: theme("colors.neutral.400");
   --f-med: theme("colors.neutral.300");
   --f-high: theme("colors.neutral.100");

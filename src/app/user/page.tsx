@@ -13,7 +13,7 @@ export default function User() {
   const { user, isLoading } = useContext(UserContext);
   const { theme, updateTheme } = useContext(ThemeContext);
   const router = useRouter();
-  const themes = ["natural", "neutral"];
+  const themes = ["earthy", "cosmic"];
   if (!isLoading) {
     return user ? (
       <>

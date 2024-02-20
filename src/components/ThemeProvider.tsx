@@ -33,12 +33,13 @@ export default function ThemeProvider({ children }: Props) {
   const [isLoading, setIsLoading] = useState(true);
 
   // todo: implement next-themes or similar to prevent flicker on reload
+  // todo: fix issue with not following prefers-color-scheme
   useEffect(() => {
     setMode(localData?.mode ?? null);
     document.documentElement.dataset.mode = localData?.mode ?? "dark";
 
     setTheme(localData?.theme ?? null);
-    document.documentElement.dataset.theme = localData?.theme ?? "natural";
+    document.documentElement.dataset.theme = localData?.theme ?? "earthy";
 
     setIsLoading(false);
   }, []);
@@ -60,7 +61,7 @@ export default function ThemeProvider({ children }: Props) {
     updateLocalOnlyData({
       theme: newTheme,
     });
-    document.documentElement.dataset.theme = newTheme ?? "natural";
+    document.documentElement.dataset.theme = newTheme ?? "earthy";
   }
 
   return (

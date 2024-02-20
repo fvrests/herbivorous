@@ -20,7 +20,7 @@ declare global {
 
   type Mode = "dark" | "light" | "system";
   // todo: rename neutral
-  type Theme = "natural" | "neutral";
+  type Theme = "earthy" | "cosmic";
 
   interface UserData {
     settings?: {
