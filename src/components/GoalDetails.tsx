@@ -37,12 +37,6 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
-let localData: UserData | null = getLocalStorage("herbivorous");
-// getLocalStorage("herbivorous").then((result) => {
-//   localData = result;
-// });
-// useEffect
-
 export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,
@@ -52,6 +46,7 @@ export default function GoalDetails({
   reset,
   overflow,
 }: Props) {
+  let localData: UserData | null = getLocalStorage("herbivorous");
   let { user } = useAuth();
   let { userData } = useUserData();
 
@@ -63,7 +58,7 @@ export default function GoalDetails({
     setUnits(
       userData?.settings?.units || localData?.settings?.units || "metric",
     );
-  }, [userData]);
+  }, [userData, localData]);
 
   const handleChangeUnits = (newValue: "metric" | "imperial") => {
     if (user) {

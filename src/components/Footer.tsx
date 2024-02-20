@@ -37,7 +37,7 @@ export default function Footer() {
               <RadioGroup.Label className="font-semibold tracking-tighter">
                 Theme
               </RadioGroup.Label>
-              {themeNames.map((themeName: Theme, i) => (
+              {themeNames.map((themeName: Theme) => (
                 <RadioGroup.Option key={themeName} value={themeName}>
                   {({ checked }) => (
                     <div className="relative cursor-pointer">
