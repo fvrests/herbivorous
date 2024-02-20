@@ -53,15 +53,15 @@ export default function Goal({ goal, date }: Props) {
           ></Image>
         </div>
         <div className="truncate sm:overflow-visible flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
-          <div className="grid grid-flow-col items-center justify-start gap-4">
-            <p className="text-left first-letter:capitalize truncate max-w-full">
+          <div className="grid grid-flow-col items-center justify-start gap-4 flex-1">
+            <p className="sm:whitespace-nowrap text-left first-letter:capitalize truncate sm:overflow-visible max-w-full">
               {goal.name}
             </p>
-            <div className="whitespace-nowrap bg-capsule font-medium text-xs rounded-full px-2 py-0.5 border-2 border-border">
+            <div className="whitespace-nowrap bg-capsule font-medium text-xs rounded-full px-2 py-0.5 border-2 border-border ">
               {progress + " / " + goal.quantity}
             </div>
           </div>
-          <div className="h-6 flex-1 flex sm:justify-end">
+          <div className="h-6 flex flex-1 sm:justify-end">
             {" "}
             <div
               className="h-full"
