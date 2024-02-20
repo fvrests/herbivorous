@@ -28,8 +28,8 @@ export const ThemeContext = createContext<ThemeContext>({
 
 export default function ThemeProvider({ children }: Props) {
   let localData = getLocalStorage("localOnly");
-  const [mode, setMode] = useState<Mode>(getLocalStorage("localOnly").mode);
-  const [theme, setTheme] = useState<Theme>(getLocalStorage("localOnly").theme);
+  const [mode, setMode] = useState<Mode>();
+  const [theme, setTheme] = useState<Theme>();
   const [isLoading, setIsLoading] = useState(true);
 
   // todo: implement next-themes or similar to prevent flicker on reload
