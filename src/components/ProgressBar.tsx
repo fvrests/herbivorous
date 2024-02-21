@@ -15,7 +15,7 @@ export default function ProgressBar({
     <>
       <div
         className={`w-full h-full relative rounded-lg flex items-center overflow-hidden border-2 transition-transform border-border ${
-          overflow ? "translate-x-2" : ""
+          overflow ? "translate-x-1" : ""
         } gradient`}
       >
         <div

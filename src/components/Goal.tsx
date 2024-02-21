@@ -36,7 +36,7 @@ export default function Goal({ goal, date }: Props) {
   return (
     <div className="py-2 flex items-center gap-4">
       <button
-        className="flex-1 flex items-center gap-4 rounded-md py-4 px-2 -mx-2 hover:text-f-high hover:bg-b-low"
+        className="overflow-visible flex-1 flex items-center gap-4 rounded-md py-4 px-2 -mx-2 hover:text-f-high hover:bg-b-low"
         aria-label="open item details"
         onClick={() => toggleDetails()}
       >
@@ -52,7 +52,7 @@ export default function Goal({ goal, date }: Props) {
             }.png`}
           ></Image>
         </div>
-        <div className="truncate sm:overflow-visible flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
+        <div className="overflow-visible flex sm:flex-row flex-col sm:items-center gap-y-2 gap-x-8 w-full">
           <div className="grid grid-flow-col items-center justify-start gap-4 flex-1">
             <p className="sm:whitespace-nowrap text-left first-letter:capitalize truncate sm:overflow-visible max-w-full">
               {goal.name}
