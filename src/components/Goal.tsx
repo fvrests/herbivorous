@@ -80,7 +80,7 @@ export default function Goal({ goal, date }: Props) {
       <button
         onClick={() => increment()}
         aria-label="increase progress by 1"
-        className="shrink-0 relative group h-full justify-end text-f-low p-2 hover:text-f-high after:content-['Log_1'] after:invisible after:absolute hover:after:visible after:left-1/2 after:-bottom-4 after:text-f-med after:-translate-x-1/2 after:text-xs after:whitespace-nowrap rounded-md after:rounded-full after:px-2 after:py-0.5"
+        className="shrink-0 relative group h-full justify-end text-f-low p-2 -mr-2 hover:text-f-high after:content-['Log_1'] after:invisible after:absolute hover:after:visible after:left-1/2 after:-bottom-4 after:text-f-med after:-translate-x-1/2 after:text-xs after:whitespace-nowrap rounded-md after:rounded-full after:px-2 after:py-0.5"
       >
         <Plus width={26} height={26} />
       </button>
