@@ -20,12 +20,14 @@ export default function Nav() {
             <div
               className={mode === "light" ? "brightness-75" : "brightness-125"}
             >
-              <Image
-                src="/logo-earthy.png"
-                alt="app logo"
-                height="28"
-                width="28"
-              />
+              {theme && (
+                <Image
+                  src={`/icon-${theme}.png`}
+                  alt="app logo"
+                  height="28"
+                  width="28"
+                />
+              )}
             </div>
             <h1 className="font-semibold tracking-tighter text-xl">
               Herbivorous
