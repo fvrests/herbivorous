@@ -18,7 +18,7 @@ export default function DayView({
 
   return (
     <>
-      <div className="font-bold text-sm mb-16 grid grid-cols-3 gap-4 auto-cols-max w-full items-end justify-between">
+      <div className="font-semibold tracking-tighter text-sm mb-16 grid grid-cols-3 gap-4 auto-cols-max w-full items-end justify-between">
         <span className="justify-self-start">
           ↤&nbsp;
           <Link href={`/day/${getDateString(prevDate)}`}>
@@ -37,11 +37,16 @@ export default function DayView({
           </span>
         ) : null}
       </div>
-      {goals.map((goal) => (
-        <div className="mb-6" key={goal.name}>
-          <Goal goal={goal} date={params.dateString ?? getDateString()} />
-        </div>
-      ))}
+      <div>
+        {goals.map((goal) => (
+          <div
+            key={goal.name}
+            className="border-t-[1px] border-b-[1px] border-border-low first:border-t-0 last:border-b-0"
+          >
+            <Goal goal={goal} date={params.dateString ?? getDateString()} />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

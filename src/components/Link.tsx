@@ -20,7 +20,7 @@ export default function Link({
       href={href}
       rel={isExternal ? "external" : undefined}
       className={`${classes} ${
-        underline ? "underline" : null
+        underline ? "underline decoration-wavy" : null
       } text-f-med hover:text-f-high`}
     >
       {children}

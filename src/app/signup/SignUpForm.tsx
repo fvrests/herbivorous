@@ -42,9 +42,9 @@ export default function SignUpForm() {
       onSubmit={(e) => handleSignUp(e)}
     >
       <label className="w-full mb-4">
-        <h3 className="font-bold text-sm mb-2">Email</h3>
+        <h3 className="font-semibold tracking-tighter text-sm mb-2">Email</h3>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
           name="email"
           type="email"
           required
@@ -53,12 +53,14 @@ export default function SignUpForm() {
         ></input>
       </label>
       <label className="w-full mb-4">
-        <h3 className="font-bold text-sm mb-1">Password</h3>
+        <h3 className="font-semibold tracking-tighter text-sm mb-1">
+          Password
+        </h3>
         <p className="text-xs mb-2 text-f-med">
           Must be at least 6 characters.
         </p>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
           name="password"
           type="password"
           required
@@ -68,9 +70,11 @@ export default function SignUpForm() {
         ></input>
       </label>
       <label className="w-full mb-4">
-        <h3 className="font-bold text-sm mb-2">Confirm password</h3>
+        <h3 className="font-semibold tracking-tighter text-sm mb-2">
+          Confirm password
+        </h3>
         <input
-          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
+          className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
           name="confirmPassword"
           type="password"
           id="confirmPassword"

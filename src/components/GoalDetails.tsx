@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/utils/firebase-auth";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
@@ -37,11 +37,6 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
-let localData: UserData | null = null;
-getLocalStorage("herbivorous").then((result) => {
-  localData = result;
-});
-
 export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,
@@ -51,12 +46,20 @@ export default function GoalDetails({
   reset,
   overflow,
 }: Props) {
+  let localData: UserData | null = getLocalStorage("herbivorous");
   let { user } = useAuth();
   let { userData } = useUserData();
 
   const [units, setUnits] = useState(
     userData?.settings?.units || localData?.settings?.units || "metric",
   );
+
+  useEffect(() => {
+    setUnits(
+      userData?.settings?.units || localData?.settings?.units || "metric",
+    );
+  }, [userData, localData]);
+
   const handleChangeUnits = (newValue: "metric" | "imperial") => {
     if (user) {
       updateUserData(user.uid, { settings: { units: newValue } });
@@ -74,7 +77,7 @@ export default function GoalDetails({
           aria-hidden="true"
         />
         <Dialog.Panel>
-          <div className="fixed z-40 border-border border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
+          <div className="fixed z-40 border-border-low border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             <button
               className="z-50 absolute top-8 right-8 text-f-low hover:text-f-high"
               aria-label="close details"
@@ -86,7 +89,7 @@ export default function GoalDetails({
             <div className="relative w-full mb-8">
               {/* header section */}
               <div className="mb-8">
-                <Dialog.Title className="mb-1 text-xl font-bold first-letter:capitalize">
+                <Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
                   {goal.name}
                 </Dialog.Title>
                 <div className="text-f-med mb-4 text-sm flex flex-row items-center ">
@@ -103,7 +106,9 @@ export default function GoalDetails({
                   />
                 </div>
               </div>
-              <h3 className="font-bold text-sm mb-4">Log progess (servings)</h3>
+              <h3 className="font-semibold tracking-tighter text-sm mb-4">
+                Log progess (servings)
+              </h3>
               <div className="mb-8 flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
                   {Array.from(fractionsMap.entries()).map((entry) => (
@@ -127,7 +132,9 @@ export default function GoalDetails({
                   <RotateCcw size={14} /> <span>Reset</span>
                 </Button>
               </div>
-              <h3 className="font-bold text-sm mb-4">Units</h3>
+              <h3 className="font-semibold tracking-tighter text-sm mb-4">
+                Units
+              </h3>
               <RadioGroup
                 value={units}
                 onChange={(newValue) => handleChangeUnits(newValue)}
@@ -142,7 +149,7 @@ export default function GoalDetails({
                   </RadioGroupOption>
                 </div>
               </RadioGroup>
-              <h3 className="font-bold text-sm mb-4">Suggestions</h3>
+              <h3 className="font-semibold text-sm mb-4">Suggestions</h3>
               <ul className="text-sm mb-8">
                 {goal.suggestions.map((suggestion: Suggestion) => (
                   <li key={suggestion.name} className="mb-2">
@@ -152,11 +159,11 @@ export default function GoalDetails({
                 ))}
                 <li></li>
               </ul>
-              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border">
+              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border-low">
                 <Disclosure defaultOpen={true}>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className="font-bold text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-med rounded-lg">
+                      <Disclosure.Button className="font-semibold tracking-tighter text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-med rounded-lg">
                         <span>Types</span>
                         {open ? (
                           <ChevronUp size={16} />

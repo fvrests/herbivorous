@@ -27,20 +27,21 @@ export const ThemeContext = createContext<ThemeContext>({
 });
 
 export default function ThemeProvider({ children }: Props) {
+  let localData = getLocalStorage("localOnly");
   const [mode, setMode] = useState<Mode>();
   const [theme, setTheme] = useState<Theme>();
   const [isLoading, setIsLoading] = useState(true);
 
+  // todo: implement next-themes or similar to prevent flicker on reload
+  // todo: fix issue with not following prefers-color-scheme
   useEffect(() => {
-    getLocalStorage("localOnly").then((localData) => {
-      setMode(localData?.mode ?? null);
-      document.documentElement.dataset.mode = localData?.mode ?? "dark";
+    setMode(localData?.mode ?? null);
+    document.documentElement.dataset.mode = localData?.mode ?? "dark";
 
-      setTheme(localData?.theme ?? null);
-      document.documentElement.dataset.theme = localData?.theme ?? "modern";
+    setTheme(localData?.theme ?? null);
+    document.documentElement.dataset.theme = localData?.theme ?? "earthy";
 
-      setIsLoading(false);
-    });
+    setIsLoading(false);
   }, []);
 
   function updateMode(newMode: Mode) {
@@ -60,7 +61,7 @@ export default function ThemeProvider({ children }: Props) {
     updateLocalOnlyData({
       theme: newTheme,
     });
-    document.documentElement.dataset.theme = newTheme ?? "modern";
+    document.documentElement.dataset.theme = newTheme ?? "earthy";
   }
 
   return (

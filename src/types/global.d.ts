@@ -13,13 +13,13 @@ declare global {
     name: string;
     quantity: number;
     info: string[];
-    icons: string[];
+    icon: string;
     suggestions: Suggestion[];
     types: string[];
   }
 
   type Mode = "dark" | "light" | "system";
-  type Theme = "modern" | "natural";
+  type Theme = "earthy" | "cosmic";
 
   interface UserData {
     settings?: {

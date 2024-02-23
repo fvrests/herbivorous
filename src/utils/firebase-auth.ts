@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
@@ -9,9 +8,8 @@ import {
   updateEmail,
   updateProfile,
 } from "firebase/auth";
-import { firebaseConfig } from "@/utils/firebase-config";
+import { app } from "@/utils/firebase-config";
 
-const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const useAuth = () => {

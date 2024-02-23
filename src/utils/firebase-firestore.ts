@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
 import { useAuth } from "@/utils/firebase-auth";
-import { firebaseConfig } from "@/utils/firebase-config";
 import { getDateString } from "@/utils/date";
 import { getLocalStorage, updateLocalProgress } from "@/utils/localStorage";
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+import { app } from "@/utils/firebase-config";
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-let localData: UserData | null = null;
-getLocalStorage("herbivorous").then((result) => {
-  localData = result;
-});
+let localData: UserData | null = getLocalStorage("herbivorous");
 
 // must be at top level due to async
 export async function updateUserData(uid: string, userData?: object) {

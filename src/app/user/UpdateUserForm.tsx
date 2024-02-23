@@ -78,9 +78,11 @@ export default function UpdateUserForm() {
                   className="w-full mb-4"
                   key={field.name as keyof typeof user}
                 >
-                  <h3 className="font-bold text-sm mb-2">{field.label}</h3>
+                  <h3 className="font-semibold tracking-tighter text-sm mb-2">
+                    {field.label}
+                  </h3>
                   <input
-                    className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low"
+                    className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
                     name={field.name}
                     type={field.type}
                     placeholder={user[field.name] || undefined}

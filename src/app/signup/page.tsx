@@ -12,7 +12,7 @@ export default function SignUp() {
   if (!isLoading) {
     return !user ? (
       <>
-        <h2 className="font-bold text-lg mb-4">Sign up</h2>
+        <h2 className="font-semibold tracking-tighter text-lg mb-4">Sign up</h2>
         <p className="mb-8">Create an account with your email and password.</p>
         <SignUpForm />
         <div className="text-sm">

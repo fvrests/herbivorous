@@ -13,7 +13,7 @@ export default function User() {
   const { user, isLoading } = useContext(UserContext);
   const { theme, updateTheme } = useContext(ThemeContext);
   const router = useRouter();
-  const themes = ["modern", "natural"];
+  const themes = ["earthy", "cosmic"];
   if (!isLoading) {
     return user ? (
       <>
@@ -25,13 +25,19 @@ export default function User() {
               className="rounded-full w-20 h-20 mb-4 object-cover shadow-inner"
             />
           )}
-          <h2 className="font-bold text-lg">{user.displayName}</h2>
+          <h2 className="font-semibold tracking-tighter text-lg">
+            {user.displayName}
+          </h2>
         </div>
-        <h3 className="font-bold text-lg mb-8">Update profile</h3>
+        <h3 className="font-semibold tracking-tighter text-lg mb-8">
+          Update profile
+        </h3>
         <div className="mb-8">
           <UpdateUserForm />
         </div>
-        <h3 className="font-bold text-lg mb-4">Sign out</h3>
+        <h3 className="font-semibold tracking-tighter text-lg mb-4">
+          Sign out
+        </h3>
         <Button onClick={() => signOut()}>Sign out</Button>
       </>
     ) : (
