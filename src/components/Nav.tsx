@@ -10,7 +10,12 @@ import Link from "./Link";
 export default function Nav() {
   const { user, isLoading } = useContext(UserContext);
 
-  const { theme, mode, toggleMode } = useContext(ThemeContext);
+  const {
+    theme,
+    mode,
+    toggleMode,
+    isLoading: isThemeLoading,
+  } = useContext(ThemeContext);
 
   return (
     <>
@@ -20,9 +25,9 @@ export default function Nav() {
             <div
               className={mode === "light" ? "brightness-75" : "brightness-125"}
             >
-              {theme && (
+              {!isThemeLoading && (
                 <Image
-                  src={`/icon-${theme}.png`}
+                  src={`/icon-${theme ? theme : "earthy"}.png`}
                   alt="app logo"
                   height="28"
                   width="28"
