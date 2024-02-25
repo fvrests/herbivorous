@@ -21,6 +21,14 @@ const WorkSans = localFont({
 export const metadata: Metadata = {
   title: "Herbivorous",
   description: "Daily dozen nutrition tracker",
+  icons: [
+    {
+      rel: "icon",
+      url: "/icon.png",
+    },
+    { rel: "apple", url: "/apple-icon.png" },
+    { rel: "mask-icon", url: "/icon.svg" },
+  ],
 };
 
 export default function RootLayout({
