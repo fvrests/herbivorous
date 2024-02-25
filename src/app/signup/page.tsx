@@ -6,6 +6,7 @@ import Link from "@/components/Link";
 import { UserContext } from "@/components/UserProvider";
 import { useRouter } from "next/navigation";
 
+// fix: redirect to home page on signup / signin
 export default function SignUp() {
   const { user, isLoading } = useContext(UserContext);
   const router = useRouter();

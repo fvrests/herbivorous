@@ -3,17 +3,13 @@
 import { useContext } from "react";
 import { signOut } from "@/utils/firebase-auth";
 import { UserContext } from "@/components/UserProvider";
-import { ThemeContext } from "@/components/ThemeProvider";
 import Button from "@/components/Button";
 import UpdateUserForm from "./UpdateUserForm";
 import { useRouter } from "next/navigation";
-import Listbox from "@/components/Listbox";
 
 export default function User() {
   const { user, isLoading } = useContext(UserContext);
-  const { theme, updateTheme } = useContext(ThemeContext);
   const router = useRouter();
-  const themes = ["earthy", "cosmic"];
   if (!isLoading) {
     return user ? (
       <>

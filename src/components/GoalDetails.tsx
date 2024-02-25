@@ -37,6 +37,7 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
+// fix: 'x' button overlays heading on small screens
 export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,

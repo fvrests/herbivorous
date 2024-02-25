@@ -7,6 +7,8 @@ import Image from "next/image";
 
 import Link from "./Link";
 
+// fix: needs to show 'signed in' or similar if signed in but no display name set
+
 export default function Nav() {
   const { user, isLoading } = useContext(UserContext);
 
