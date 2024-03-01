@@ -7,8 +7,6 @@ import Image from "next/image";
 
 import Link from "./Link";
 
-// fix: needs to show 'signed in' or similar if signed in but no display name set
-
 export default function Nav() {
   const { user, isLoading } = useContext(UserContext);
 
@@ -37,7 +35,11 @@ export default function Nav() {
         <div className="flex flex-row items-center gap-4">
           {!isLoading && (
             <Link href={user ? "/user" : "/signin"}>
-              {user?.displayName ? user?.displayName : "Not signed in"}
+              {user?.displayName
+                ? user?.displayName
+                : user
+                  ? "Signed in"
+                  : "Not signed in"}
             </Link>
           )}
           <button
