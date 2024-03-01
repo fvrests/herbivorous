@@ -108,7 +108,7 @@ export default function GoalDetails({
                 </div>
               </div>
               <h3 className="font-semibold tracking-tighter text-sm mb-4">
-                Log progess (servings)
+                Log progress (servings)
               </h3>
               <div className="mb-8 flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
