@@ -37,7 +37,6 @@ const parseQuantity = (quantity: number | string) => {
   return quantity;
 };
 
-// fix: 'x' button overlays heading on small screens
 export default function GoalDetails({
   toggleDetails,
   isDetailsOpen,
@@ -74,25 +73,27 @@ export default function GoalDetails({
     <>
       <Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
         <div
-          className="fixed inset-0 bg-b-low opacity-40 z-30"
+          className="fixed inset-0 bg-b-low opacity-60 z-30"
           aria-hidden="true"
         />
         <Dialog.Panel>
-          <div className="fixed z-40 border-border-low border-2 bg-b-med inset-[10%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
-            <button
-              className="z-50 absolute top-8 right-8 text-f-low hover:text-f-high"
-              aria-label="close details"
-              onClick={toggleDetails}
-            >
-              <X />
-            </button>
+          <div className="fixed z-40 border-border-low border-2 bg-b-med inset-[5%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
             {/* margin-bottom affects entire menu content */}
             <div className="relative w-full mb-8">
               {/* header section */}
               <div className="mb-8">
-                <Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
-                  {goal.name}
-                </Dialog.Title>
+                <div className="w-full flex justify-between items-center">
+                  <Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
+                    {goal.name}
+                  </Dialog.Title>
+                  <button
+                    className="text-f-low hover:text-f-high p-2 -mr-2"
+                    aria-label="close details"
+                    onClick={toggleDetails}
+                  >
+                    <X />
+                  </button>
+                </div>
                 <div className="text-f-med mb-4 text-sm flex flex-row items-center ">
                   Progress: {progress} / {goal.quantity}
                   <span className="pl-2 text-f-high">
