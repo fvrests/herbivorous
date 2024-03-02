@@ -18,7 +18,9 @@ export default function Nav() {
         <Link href="/">
           <div className="flex items-center gap-2">
             <div
-              className={mode === "light" ? "brightness-75" : "brightness-125"}
+              className={`${
+                mode === "light" ? "brightness-75" : "brightness-125"
+              } -ml-2`}
             >
               <Image
                 src={`/icon-${theme ? theme : "earthy"}.png`}
