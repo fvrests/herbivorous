@@ -8,8 +8,6 @@ import { app } from "@/utils/firebase-config";
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-let localData: UserData | null = getLocalStorage("herbivorous");
-
 // must be at top level due to async
 export async function updateUserData(uid: string, userData?: object) {
   try {
@@ -63,6 +61,7 @@ export function useProgress(
 
   // sync to database or local progress
   useEffect(() => {
+    let localData: UserData | null = getLocalStorage("herbivorous");
     setProgress(0);
     if (!isLoading) {
       if (user) {
