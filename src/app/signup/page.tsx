@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext } from "react";
-import SignUpForm from "./SignUpForm";
+import { useRouter } from "next/navigation";
 import Link from "@/components/Link";
 import { UserContext } from "@/components/UserProvider";
-import { useRouter } from "next/navigation";
+import SignUpForm from "./SignUpForm";
 
 // fix: redirect to home page on signup / signin
 export default function SignUp() {

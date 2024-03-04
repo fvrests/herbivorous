@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext } from "react";
-import { UserContext } from "@/components/UserProvider";
 import { useRouter } from "next/navigation";
-import SignInForm from "./SignInForm";
+import { UserContext } from "@/components/UserProvider";
 import Link from "@/components/Link";
+import SignInForm from "./SignInForm";
 
 export default function SignIn() {
   const { user, isLoading } = useContext(UserContext);

@@ -1,7 +1,7 @@
 "use client";
 
-import { getDateString } from "@/utils/date";
 import { redirect } from "next/navigation";
+import { getDateString } from "@/utils/date";
 
 export default function Home() {
   redirect(`/day/${getDateString()}`);

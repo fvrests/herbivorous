@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { signIn } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
-import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -22,6 +22,8 @@ export default function SignInForm() {
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signIn(formData.email, formData.password);
+    // todo: only push if sign in successful
+    // todo: handle error if sign in unsuccessful
     router.push("/");
   };
 

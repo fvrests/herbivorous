@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/components/ThemeProvider";
-import Link from "./Link";
+import Link from "@/components/Link";
 import { RadioGroup } from "@headlessui/react";
 
 export default function Footer() {

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
+import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
+import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
 import { useAuth } from "@/utils/firebase-auth";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
-import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
-import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
-import ProgressBar from "./ProgressBar";
-import RadioGroupOption from "./RadioGroupOption";
-import Button from "./Button";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
+import ProgressBar from "@/components/ProgressBar";
+import RadioGroupOption from "@/components/RadioGroupOption";
+import Button from "@/components/Button";
 
 interface Props {
   toggleDetails: () => void;

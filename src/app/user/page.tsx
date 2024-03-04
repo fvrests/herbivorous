@@ -1,12 +1,12 @@
 "use client";
 
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { signOut } from "@/utils/firebase-auth";
 import { UserContext } from "@/components/UserProvider";
 import Button from "@/components/Button";
 import UpdateUserForm from "./UpdateUserForm";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 const imageLoader = ({ src }: { src: string }) => {
   return src;

@@ -2,12 +2,12 @@
 
 import { useContext, useState } from "react";
 import Image from "next/image";
-import { UserContext } from "./UserProvider";
-import { ThemeContext } from "./ThemeProvider";
-import GoalDetails from "./GoalDetails";
-import ProgressBar from "./ProgressBar";
 import { Plus } from "react-feather";
 import { useProgress } from "@/utils/firebase-firestore";
+import { UserContext } from "@/components/UserProvider";
+import { ThemeContext } from "@/components/ThemeProvider";
+import GoalDetails from "@/components/GoalDetails";
+import ProgressBar from "@/components/ProgressBar";
 
 interface Props {
   goal: Goal;

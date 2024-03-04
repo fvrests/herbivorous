@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useContext } from "react";
 import { updateAuthEmail, updateAuthProfile } from "@/utils/firebase-auth";
-import Button from "../../components/Button";
-import { UserContext } from "../../components/UserProvider";
+import Button from "@/components/Button";
+import { UserContext } from "@/components/UserProvider";
 
 export default function UpdateUserForm() {
   const { user, setUser } = useContext(UserContext);
@@ -44,6 +44,9 @@ export default function UpdateUserForm() {
   useEffect(() => {
     setFormUpdated(isFormUpdated());
   }, [formData]);
+
+  // todo: add remove display name button
+  // todo: add remove profile image button
 
   const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,9 +1,9 @@
 "use client";
 import { useContext } from "react";
-import { UserContext } from "../components/UserProvider";
-import { ThemeContext } from "../components/ThemeProvider";
 import { Moon, Sun } from "react-feather";
 import Image from "next/image";
+import { UserContext } from "@/components/UserProvider";
+import { ThemeContext } from "@/components/ThemeProvider";
 
 import Link from "./Link";
 

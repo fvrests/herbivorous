@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import localFont from "next/font/local";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import UserProvider from "../components/UserProvider";
+import UserProvider from "@/components/UserProvider";
 import ThemeProvider from "@/components/ThemeProvider";
-import localFont from "next/font/local";
 
 const WorkSans = localFont({
   src: [
