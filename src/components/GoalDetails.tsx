@@ -87,7 +87,7 @@ export default function GoalDetails({
                     {goal.name}
                   </Dialog.Title>
                   <button
-                    className="text-f-low hover:text-f-high p-2 -mr-2"
+                    className="rounded-md text-f-low hover:text-f-high p-2 -mr-2"
                     aria-label="close details"
                     onClick={toggleDetails}
                   >

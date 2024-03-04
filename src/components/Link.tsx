@@ -21,7 +21,7 @@ export default function Link({
       rel={isExternal ? "external" : undefined}
       className={`${classes} ${
         underline ? "underline decoration-wavy" : null
-      } text-f-med hover:text-f-high`}
+      } text-f-med hover:text-f-high rounded-sm`}
     >
       {children}
     </CustomTag>

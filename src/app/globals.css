@@ -135,6 +135,10 @@ body {
   @apply bg-b-med text-f-med font-medium tracking-tight;
 }
 
+* {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-f-high focus-visible:ring-offset-b-low;
+}
+
 .gradient {
   @apply bg-gradient-to-r from-gradient-from via-gradient-via to-gradient-to;
 }

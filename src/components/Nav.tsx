@@ -47,6 +47,7 @@ export default function Nav() {
           <button
             aria-label={`set mode to ${mode === "light" ? "dark" : "light"}`}
             onClick={toggleMode}
+            className="rounded-sm hover:text-f-high"
           >
             {mode === "dark" ? <Moon size={20} /> : <Sun size={20} />}
           </button>

@@ -38,7 +38,11 @@ export default function Footer() {
                 Theme
               </RadioGroup.Label>
               {themeNames.map((themeName: Theme) => (
-                <RadioGroup.Option key={themeName} value={themeName}>
+                <RadioGroup.Option
+                  key={themeName}
+                  value={themeName}
+                  className="rounded-sm"
+                >
                   {({ checked }) => (
                     <div className="relative cursor-pointer">
                       {checked && <span className="absolute -left-4">•</span>}
