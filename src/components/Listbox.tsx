@@ -12,7 +12,7 @@ export default function Listbox({ title, value, onChange, options }: Props) {
     <div className="flex flex-row items-center justify-start h-10">
       <div className="h-full">
         <UIListbox value={value} onChange={onChange}>
-          <UIListbox.Button className="rounded-lg h-full pl-3 pr-10 text-left shadow-sm focus:outline-none border-2 border-border  focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-2 focus-visible:ring-offset-b-low sm:text-sm relative">
+          <UIListbox.Button className="rounded-lg h-full pl-3 pr-10 text-left shadow-sm focus:outline-none border-2 border-border  focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-2 focus-visible:ring-offset-b-med sm:text-sm relative">
             <span className="block truncate first-letter:capitalize">
               {title}
             </span>
