@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
 import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
-import { useAuth } from "@/utils/firebase-auth";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 import ProgressBar from "@/components/ProgressBar";
 import RadioGroupOption from "@/components/RadioGroupOption";
 import Button from "@/components/Button";
+import { UserContext } from "@/components/UserProvider";
 
 interface Props {
   toggleDetails: () => void;
@@ -47,7 +47,7 @@ export default function GoalDetails({
   overflow,
 }: Props) {
   let localData: UserData | null = getLocalStorage("herbivorous");
-  let { user } = useAuth();
+  let { user } = useContext(UserContext);
   let { userData } = useUserData();
 
   const [units, setUnits] = useState(
