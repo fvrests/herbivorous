@@ -15,8 +15,8 @@ export default function SignIn() {
 					Reset password
 				</h2>
 				<p className="mb-8">
-					Enter your email below. If your account exists, we'll send you a link
-					to reset your password.
+					Enter your email below. If your account exists, we&apos;ll send you a
+					link to reset your password.
 				</p>
 				<ResetPasswordForm />
 			</>
