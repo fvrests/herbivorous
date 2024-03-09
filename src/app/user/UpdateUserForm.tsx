@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
-import router from "next/router";
 import { updateAuthEmail, updateAuthProfile } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
@@ -71,37 +70,36 @@ export default function UpdateUserForm() {
 		setFormData(formDefaults);
 	};
 
-	return user ? (
-		<>
-			<form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
-				<div className="mb-2 flex max-w-full flex-col gap-2">
-					{formFields.map((field) => {
-						return (
+	if (!user) return;
+	return (
+		<form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
+			<div className="mb-2 flex max-w-full flex-col gap-2">
+				{formFields.map((field) => {
+					return (
+						<div className="mb-4 w-full" key={field.name as keyof typeof user}>
+							{/* todo: revise markup for other forms to remove heading in label */}
 							<label
-								className="mb-4 w-full"
-								key={field.name as keyof typeof user}
+								htmlFor={field.name}
+								className="mb-2 text-sm font-semibold tracking-tighter"
 							>
-								<h3 className="mb-2 text-sm font-semibold tracking-tighter">
-									{field.label}
-								</h3>
-								<input
-									className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
-									name={field.name}
-									type={field.type}
-									placeholder={user[field.name] || undefined}
-									value={formData[field.name]}
-									onChange={handleChangeInput}
-								></input>
+								{field.label}
 							</label>
-						);
-					})}
-				</div>
-				<Button type="submit" disabled={!formUpdated}>
-					Save changes
-				</Button>
-			</form>
-		</>
-	) : (
-		router.push("/signin")
+							<input
+								className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+								name={field.name}
+								id={field.name}
+								type={field.type}
+								placeholder={user[field.name] || undefined}
+								value={formData[field.name]}
+								onChange={handleChangeInput}
+							></input>
+						</div>
+					);
+				})}
+			</div>
+			<Button type="submit" disabled={!formUpdated}>
+				Save changes
+			</Button>
+		</form>
 	);
 }
