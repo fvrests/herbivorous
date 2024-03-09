@@ -5,140 +5,140 @@
 /* DEFAULT: dark earthy theme */
 /* prefers dark: dark earthy theme */
 :root {
-  --cypress-light: #525951;
-  --cypress-med: #2e332d;
-  --cypress-dark: #212620;
+	--cypress-light: #525951;
+	--cypress-med: #2e332d;
+	--cypress-dark: #212620;
 
-  --oat-light: #f3ebe6;
-  --oat-med: #d9d0ca;
-  --oat-dark: #a59b95;
+	--oat-light: #f3ebe6;
+	--oat-med: #d9d0ca;
+	--oat-dark: #a59b95;
 
-  --f-low: var(--oat-dark);
-  --f-med: var(--oat-med);
-  --f-high: var(--oat-light);
+	--f-low: var(--oat-dark);
+	--f-med: var(--oat-med);
+	--f-high: var(--oat-light);
 
-  --b-low: var(--cypress-dark);
-  --b-med: var(--cypress-med);
-  --b-high: var(--cypress-light);
+	--b-low: var(--cypress-dark);
+	--b-med: var(--cypress-med);
+	--b-high: var(--cypress-light);
 
-  --border: var(--f-low);
-  --border-low: var(--b-high);
-  --capsule: var(--b-high);
+	--border: var(--f-low);
+	--border-low: var(--b-high);
+	--capsule: var(--b-high);
 
-  --theme: var(--b-high);
-  --gradient-from: var(--theme);
-  --gradient-via: var(--theme);
-  --gradient-to: var(--theme);
+	--theme: var(--b-high);
+	--gradient-from: var(--theme);
+	--gradient-via: var(--theme);
+	--gradient-to: var(--theme);
 }
 
 /* prefers light: light earthy theme */
 @media (prefers-color-scheme: light) :root {
-  --cypress-light: #798078;
-  --cypress-med: #525951;
-  --cypress-dark: #394039;
+	--cypress-light: #798078;
+	--cypress-med: #525951;
+	--cypress-dark: #394039;
 
-  --oat-light: #faf2ed;
-  --oat-med: #f3ebe6;
-  --oat-dark: #e6dcd6;
+	--oat-light: #faf2ed;
+	--oat-med: #f3ebe6;
+	--oat-dark: #e6dcd6;
 
-  --f-low: var(--cypress-light);
-  --f-med: var(--cypress-med);
-  --f-high: var(--cypress-dark);
+	--f-low: var(--cypress-light);
+	--f-med: var(--cypress-med);
+	--f-high: var(--cypress-dark);
 
-  --b-low: var(--oat-dark);
-  --b-med: var(--oat-med);
-  --b-high: var(--oat-light);
+	--b-low: var(--oat-dark);
+	--b-med: var(--oat-med);
+	--b-high: var(--oat-light);
 
-  --border: var(--f-low);
-  --border-low: var(--b-low);
-  --capsule: var(--b-low);
+	--border: var(--f-low);
+	--border-low: var(--b-low);
+	--capsule: var(--b-low);
 
-  --theme: var(--f-med);
-  --gradient-from: var(--theme);
-  --gradient-via: var(--theme);
-  --gradient-to: var(--theme);
+	--theme: var(--f-med);
+	--gradient-from: var(--theme);
+	--gradient-via: var(--theme);
+	--gradient-to: var(--theme);
 }
 
 /* light mode: default to earthy / default theme */
 :root[data-mode="light"] {
-  --cypress-light: #798078;
-  --cypress-med: #525951;
-  --cypress-dark: #394039;
+	--cypress-light: #798078;
+	--cypress-med: #525951;
+	--cypress-dark: #394039;
 
-  --oat-light: #faf2ed;
-  --oat-med: #f3ebe6;
-  --oat-dark: #e6dcd6;
+	--oat-light: #faf2ed;
+	--oat-med: #f3ebe6;
+	--oat-dark: #e6dcd6;
 
-  --f-low: var(--cypress-light);
-  --f-med: var(--cypress-med);
-  --f-high: var(--cypress-dark);
+	--f-low: var(--cypress-light);
+	--f-med: var(--cypress-med);
+	--f-high: var(--cypress-dark);
 
-  --b-low: var(--oat-dark);
-  --b-med: var(--oat-med);
-  --b-high: var(--oat-light);
+	--b-low: var(--oat-dark);
+	--b-med: var(--oat-med);
+	--b-high: var(--oat-light);
 
-  --border: var(--f-low);
-  --border-low: var(--b-low);
-  --capsule: var(--b-low);
+	--border: var(--f-low);
+	--border-low: var(--b-low);
+	--capsule: var(--b-low);
 
-  --theme: var(--f-med);
-  --gradient-from: var(--theme);
-  --gradient-via: var(--theme);
-  --gradient-to: var(--theme);
+	--theme: var(--f-med);
+	--gradient-from: var(--theme);
+	--gradient-via: var(--theme);
+	--gradient-to: var(--theme);
 }
 
 /* light mode: cosmic theme */
 :root[data-mode="light"][data-theme="cosmic"] {
-  --f-low: theme("colors.neutral.500");
-  --f-med: theme("colors.neutral.700");
-  --f-high: theme("colors.neutral.900");
+	--f-low: theme("colors.neutral.500");
+	--f-med: theme("colors.neutral.700");
+	--f-high: theme("colors.neutral.900");
 
-  --b-low: theme("colors.neutral.200");
-  --b-med: theme("colors.neutral.100");
-  --b-high: theme("colors.neutral.50");
+	--b-low: theme("colors.neutral.200");
+	--b-med: theme("colors.neutral.100");
+	--b-high: theme("colors.neutral.50");
 
-  --border: var(--f-low);
-  --border-low: var(--b-low);
-  --capsule: var(--b-low);
+	--border: var(--f-low);
+	--border-low: var(--b-low);
+	--capsule: var(--b-low);
 
-  --theme: theme("colors.indigo.300");
-  --gradient-from: theme("colors.indigo.300");
-  --gradient-via: theme("colors.rose.200");
-  --gradient-to: theme("colors.amber.400");
+	--theme: theme("colors.indigo.300");
+	--gradient-from: theme("colors.indigo.300");
+	--gradient-via: theme("colors.rose.200");
+	--gradient-to: theme("colors.amber.400");
 }
 
 /* dark mode: cosmic theme */
 :root[data-mode="dark"][data-theme="cosmic"] {
-  --f-low: theme("colors.neutral.400");
-  --f-med: theme("colors.neutral.300");
-  --f-high: theme("colors.neutral.100");
+	--f-low: theme("colors.neutral.400");
+	--f-med: theme("colors.neutral.300");
+	--f-high: theme("colors.neutral.100");
 
-  --b-low: theme("colors.neutral.950");
-  --b-med: theme("colors.neutral.900");
-  --b-high: theme("colors.neutral.800");
+	--b-low: theme("colors.neutral.950");
+	--b-med: theme("colors.neutral.900");
+	--b-high: theme("colors.neutral.800");
 
-  --border: var(--f-low);
-  --border-low: var(--b-high);
-  --capsule: var(--b-high);
+	--border: var(--f-low);
+	--border-low: var(--b-high);
+	--capsule: var(--b-high);
 
-  --theme: theme("colors.indigo.900");
-  --gradient-from: theme("colors.indigo.900");
-  --gradient-via: theme("colors.rose.400");
-  --gradient-to: theme("colors.amber.500");
+	--theme: theme("colors.indigo.900");
+	--gradient-from: theme("colors.indigo.900");
+	--gradient-via: theme("colors.rose.400");
+	--gradient-to: theme("colors.amber.500");
 }
 
 html {
-  @apply underline-offset-4 antialiased;
+	@apply underline-offset-4 antialiased;
 }
 
 body {
-  @apply bg-b-med text-f-med font-medium tracking-tight;
+	@apply bg-b-med font-medium tracking-tight text-f-med;
 }
 
 * {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-f-high focus-visible:ring-offset-b-med;
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-4 focus-visible:ring-offset-b-med;
 }
 
 .gradient {
-  @apply bg-gradient-to-r from-gradient-from via-gradient-via to-gradient-to;
+	@apply bg-gradient-to-r from-gradient-from via-gradient-via to-gradient-to;
 }
