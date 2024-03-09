@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
+import router from "next/router";
 import { updateAuthEmail, updateAuthProfile } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
@@ -70,37 +71,37 @@ export default function UpdateUserForm() {
     setFormData(formDefaults);
   };
 
-  return (
-    user && (
-      <>
-        <form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
-          <div className="flex flex-col max-w-full gap-2 mb-2">
-            {formFields.map((field) => {
-              return (
-                <label
-                  className="w-full mb-4"
-                  key={field.name as keyof typeof user}
-                >
-                  <h3 className="font-semibold tracking-tighter text-sm mb-2">
-                    {field.label}
-                  </h3>
-                  <input
-                    className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
-                    name={field.name}
-                    type={field.type}
-                    placeholder={user[field.name] || undefined}
-                    value={formData[field.name]}
-                    onChange={handleChangeInput}
-                  ></input>
-                </label>
-              );
-            })}
-          </div>
-          <Button type="submit" disabled={!formUpdated}>
-            Save changes
-          </Button>
-        </form>
-      </>
-    )
+  return user ? (
+    <>
+      <form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
+        <div className="flex flex-col max-w-full gap-2 mb-2">
+          {formFields.map((field) => {
+            return (
+              <label
+                className="w-full mb-4"
+                key={field.name as keyof typeof user}
+              >
+                <h3 className="font-semibold tracking-tighter text-sm mb-2">
+                  {field.label}
+                </h3>
+                <input
+                  className="w-full bg-b-low text-f-high text-sm p-2 border-2 border-border rounded-lg hover:border-f-low focus:border-f-low placeholder:text-f-low"
+                  name={field.name}
+                  type={field.type}
+                  placeholder={user[field.name] || undefined}
+                  value={formData[field.name]}
+                  onChange={handleChangeInput}
+                ></input>
+              </label>
+            );
+          })}
+        </div>
+        <Button type="submit" disabled={!formUpdated}>
+          Save changes
+        </Button>
+      </form>
+    </>
+  ) : (
+    router.push("/signin")
   );
 }

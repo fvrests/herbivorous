@@ -35,6 +35,7 @@ export default function Nav() {
           </div>
         </Link>
         <div className="flex flex-row items-center gap-4">
+          {/* fix: displays 'signed in' after account creation (delay to get display name) */}
           {!isLoading && (
             <Link href={user ? "/user" : "/signin"}>
               {user?.displayName

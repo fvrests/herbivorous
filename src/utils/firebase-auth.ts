@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import {
   getAuth,
   onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut as authSignOut,
   updateEmail,
   updateProfile,
 } from "firebase/auth";
@@ -29,43 +26,12 @@ export const useAuth = () => {
     // cleanup on unmount
     return () => {
       unsubscribe();
+      setIsLoading(false);
     };
   }, []);
 
   // does not run automatically on auth data change, just on auth state (login / logout). when updating user should set user in context too
   return { user, setUser, isLoading };
-};
-
-export const signUp = (email: string, password: string) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-    })
-    .catch((error) => {
-      console.error("error signing up - code:", error.code);
-      console.error("error signing up - message:", error.message);
-    });
-};
-
-export const signIn = (email: string, password: string) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-    })
-    .catch((error) => {
-      console.error("error signing in -- code:", error.code);
-      console.error("error signing in -- message:", error.message);
-    });
-};
-
-export const signOut = () => {
-  authSignOut(auth)
-    .then(() => {
-      // Signed out
-    })
-    .catch((error) => {
-      console.error("error signing out", error);
-    });
 };
 
 export const updateAuthProfile = (profile: UserProfile) => {
@@ -97,3 +63,29 @@ export const updateAuthEmail = (email: string) => {
     console.error("couldn't update user email (no user found)");
   }
 };
+
+export const AUTH_ERRORS = {
+  default: "Something went wrong. Please try again.",
+  "auth/code-expired": "The verification code has expired.",
+  "auth/credential-already-in-use": "Something went wrong. Please try again.",
+  "auth/requires-recent-login": "Credential too old, please log in again.",
+  "auth/email-change-needs-verification": "Email change needs verification.",
+  "auth/email-already-in-use": "Something went wrong. Please try again.",
+  "auth/invalid-email": "Invalid login credentials.",
+  "auth/invalid-credential": "Invalid login credentials.",
+  "auth/wrong-password": "Invalid login credentials.",
+  "auth/account-exists-with-different-credential": "Invalid login credentials.",
+  "auth/rejected-credential": "Credential was rejected.",
+  "auth/timeout": "Operation timed out.",
+  "auth/too-many-requests": "Too many requests. Please try again later.",
+  "auth/unverified-email": "Email is unverified.",
+  "auth/user-not-found": "Invalid login credentials.",
+  "auth/user-disabled": "Invalid login credentials.",
+  "auth/user-mismatch": "Invalid login credentials.",
+  "auth/user-signed-out": "User signed out.",
+  "auth/weak-password": "Password is too weak.",
+};
+
+export function getAuthErrorFromCode(code: string) {
+  return AUTH_ERRORS[code] ? AUTH_ERRORS[code] : AUTH_ERRORS["default"];
+}
