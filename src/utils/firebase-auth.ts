@@ -64,7 +64,7 @@ export const updateAuthEmail = (email: string) => {
 	}
 };
 
-export const AUTH_ERRORS = {
+export const AUTH_ERRORS: { [key: string]: string } = {
 	default: "Something went wrong. Please try again.",
 	"auth/code-expired": "The verification code has expired.",
 	"auth/credential-already-in-use": "Something went wrong. Please try again.",
@@ -86,6 +86,6 @@ export const AUTH_ERRORS = {
 	"auth/weak-password": "Password is too weak.",
 };
 
-export function getAuthErrorFromCode(code: string) {
+export function getAuthErrorFromCode(code: string): string {
 	return AUTH_ERRORS[code] ? AUTH_ERRORS[code] : AUTH_ERRORS["default"];
 }
