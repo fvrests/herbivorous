@@ -9,10 +9,6 @@ import { UserContext } from "@/components/UserProvider";
 import Button from "@/components/Button";
 import UpdateUserForm from "./UpdateUserForm";
 
-const imageLoader = ({ src }: { src: string }) => {
-	return src;
-};
-
 export default function User() {
 	const { user, isLoading } = useContext(UserContext);
 	const router = useRouter();
@@ -29,16 +25,20 @@ export default function User() {
 		return (
 			<>
 				<div className="mb-16 flex flex-col items-center">
-					{user.photoURL && (
-						<Image
-							loader={imageLoader}
-							src={user.photoURL}
-							width="20"
-							height="20"
-							alt={`profile image for ${user.displayName}`}
-							className="mb-4 h-20 w-20 rounded-full object-cover shadow-inner"
-						/>
-					)}
+					<div className="relative mb-4 h-20 w-20 overflow-hidden">
+						{user.photoURL && (
+							<Image
+								loader={({ src }: { src: string }) => {
+									return `${src}&w=auto`;
+								}}
+								src={user.photoURL}
+								fill={true}
+								sizes="80px"
+								alt={`profile image for ${user.displayName}`}
+								className="mb-4 h-20 w-20 rounded-full object-cover shadow-inner"
+							/>
+						)}
+					</div>
 					<h2 className="text-lg font-semibold tracking-tighter">
 						{user.displayName ? user.displayName : user.email}
 					</h2>

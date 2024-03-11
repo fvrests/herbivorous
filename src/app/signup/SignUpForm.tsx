@@ -8,21 +8,28 @@ import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import { updateAuthProfile } from "@/utils/firebase-auth";
 import profileDefaults from "@/app/profile-defaults.json";
 import { UserContext } from "@/components/UserProvider";
+import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 
 export default function SignUpForm() {
-	const { user, setUser } = useContext(UserContext);
+	const { setUser } = useContext(UserContext);
 	const formDefaults = {
 		email: "",
 		password: "",
 		confirmPassword: "",
 	};
-	const [formData, setFormData] = useState(formDefaults);
+	const localData = getLocalStorage("localOnly");
+	const [formData, setFormData] = useState({
+		...formDefaults,
+		email: localData.formEmail,
+	});
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === "email")
+			updateLocalOnlyData({ formEmail: e.target.value });
 	};
 
 	// wait to access document until render - prevents breaking error
@@ -67,6 +74,7 @@ export default function SignUpForm() {
 								email: userCredential.user.email,
 								...profileDefaults[profileDefaultIndex],
 							});
+							updateLocalOnlyData({ formEmail: "" });
 						})
 						.catch((error) => {
 							setStatusMessage(`Error: ${getAuthErrorFromCode(error.code)}`);

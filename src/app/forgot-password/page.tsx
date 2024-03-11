@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { UserContext } from "@/components/UserProvider";
 import ResetPasswordForm from "./ResetPasswordForm";
@@ -8,8 +8,15 @@ import ResetPasswordForm from "./ResetPasswordForm";
 export default function SignIn() {
 	const { user, isLoading } = useContext(UserContext);
 	const router = useRouter();
-	if (!isLoading) {
-		return !user ? (
+
+	useEffect(() => {
+		if (user) {
+			router.push("/user");
+		}
+	}, [user]);
+
+	if (!isLoading && !user) {
+		return (
 			<>
 				<h2 className="mb-4 text-lg font-semibold tracking-tighter">
 					Reset password
@@ -20,8 +27,6 @@ export default function SignIn() {
 				</p>
 				<ResetPasswordForm />
 			</>
-		) : (
-			router.push("/user")
 		);
 	}
 }

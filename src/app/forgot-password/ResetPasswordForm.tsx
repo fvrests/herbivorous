@@ -1,29 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
+import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 
-// todo: add forgot password flow
-// todo: persist email between sign up / sign in / forgot password
 export default function ResetPasswordForm() {
 	const formDefaults = {
 		email: "",
 	};
-	const [formData, setFormData] = useState(formDefaults);
+	const localData = getLocalStorage("localOnly");
+	const [formData, setFormData] = useState({
+		...formDefaults,
+		email: localData.formEmail,
+	});
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === "email")
+			updateLocalOnlyData({ formEmail: e.target.value });
 	};
 
 	const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
 	return (
 		<>
-			{/* todo: transition? */}
 			{statusMessage && (
 				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
 					{statusMessage}

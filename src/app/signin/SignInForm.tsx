@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
-import { useRouter } from "next/navigation";
+import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 
 // todo: persist email between sign up / sign in / forgot password
 export default function SignInForm() {
@@ -11,14 +11,19 @@ export default function SignInForm() {
 		email: "",
 		password: "",
 	};
-	const [formData, setFormData] = useState(formDefaults);
-	const router = useRouter();
+	const localData = getLocalStorage("localOnly");
+	const [formData, setFormData] = useState({
+		...formDefaults,
+		email: localData.formEmail,
+	});
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === "email")
+			updateLocalOnlyData({ formEmail: e.target.value });
 	};
 
 	const [statusMessage, setStatusMessage] = useState<string | null>(null);
@@ -34,9 +39,9 @@ export default function SignInForm() {
 				className="mb-16 flex max-w-full flex-col gap-2"
 				onSubmit={(e) => {
 					e.preventDefault();
-					console.log("signing in...");
 					signInWithEmailAndPassword(auth, formData.email, formData.password)
 						.then(() => {
+							updateLocalOnlyData({ formEmail: "" });
 							// signed in
 							// router will push to "/user"
 						})
