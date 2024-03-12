@@ -9,6 +9,8 @@ import { updateAuthProfile } from "@/utils/firebase-auth";
 import profileDefaults from "@/app/profile-defaults.json";
 import { UserContext } from "@/components/UserProvider";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import form from "@/app/styles/form.module.css";
+import message from "@/app/styles/message.module.css";
 
 export default function SignUpForm() {
 	const { setUser } = useContext(UserContext);
@@ -50,13 +52,8 @@ export default function SignUpForm() {
 
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form
-				className="mb-16 flex max-w-full flex-col gap-2"
+				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
 					createUserWithEmailAndPassword(
@@ -81,15 +78,13 @@ export default function SignUpForm() {
 						});
 				}}
 			>
-				<div className="mb-4 w-full">
-					<label
-						htmlFor="email"
-						className="mb-2 text-sm font-semibold tracking-tighter"
-					>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
+				<div className={form.itemWrapper}>
+					<label htmlFor="email" className={form.label}>
 						Email
 					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="email"
 						name="email"
 						type="email"
@@ -98,18 +93,13 @@ export default function SignUpForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className="mb-4 w-full">
-					<label
-						htmlFor="password"
-						className="mb-1 text-sm font-semibold tracking-tighter"
-					>
+				<div className={form.itemWrapper}>
+					<label htmlFor="password" className={form.label}>
 						Password
 					</label>
-					<p className="mb-2 text-xs text-f-med">
-						Must be at least 6 characters.
-					</p>
+					<p className={form.sublabel}>Must be at least 6 characters.</p>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="password"
 						name="password"
 						type="password"
@@ -119,15 +109,12 @@ export default function SignUpForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className="mb-6 w-full">
-					<label
-						htmlFor="confirmPassword"
-						className="mb-2 text-sm font-semibold tracking-tighter"
-					>
+				<div className={form.itemWrapper}>
+					<label htmlFor="confirmPassword" className={form.label}>
 						Confirm password
 					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="confirmPassword"
 						name="confirmPassword"
 						type="password"

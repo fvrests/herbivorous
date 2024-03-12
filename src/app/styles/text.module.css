@@ -1,0 +1,6 @@
+.heading {
+	@apply mb-4 text-lg font-semibold tracking-tighter;
+}
+.subheading {
+	@apply mb-8;
+}

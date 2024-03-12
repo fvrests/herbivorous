@@ -4,10 +4,10 @@ import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
-import { useRouter } from "next/navigation";
+import form from "@/app/styles/form.module.css";
+import message from "@/app/styles/message.module.css";
 
 export default function SignInForm() {
-	const router = useRouter();
 	const formDefaults = {
 		email: "",
 		password: "",
@@ -31,13 +31,8 @@ export default function SignInForm() {
 
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form
-				className="mb-16 flex max-w-full flex-col gap-2"
+				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
 					signInWithEmailAndPassword(auth, formData.email, formData.password)
@@ -51,15 +46,13 @@ export default function SignInForm() {
 						});
 				}}
 			>
-				<div className="mb-4 w-full">
-					<label
-						htmlFor="email"
-						className="mb-2 text-sm font-semibold tracking-tighter"
-					>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
+				<div className={form.itemWrapper}>
+					<label htmlFor="email" className={form.label}>
 						Email
 					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="email"
 						name="email"
 						type="email"
@@ -68,15 +61,12 @@ export default function SignInForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className="mb-6 w-full">
-					<label
-						htmlFor="password"
-						className="mb-2 text-sm font-semibold tracking-tighter"
-					>
+				<div className={form.itemWrapper}>
+					<label htmlFor="password" className={form.label}>
 						Password
 					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="password"
 						name="password"
 						type="password"

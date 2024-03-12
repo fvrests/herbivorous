@@ -1,0 +1,3 @@
+.base {
+	@apply rounded-md bg-b-high px-4 py-2 text-sm;
+}

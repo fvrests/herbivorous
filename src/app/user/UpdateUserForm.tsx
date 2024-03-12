@@ -10,6 +10,7 @@ import {
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import message from "@/app/styles/message.module.css";
 
 export default function UpdateUserForm() {
 	const { user, setUser } = useContext(UserContext);
@@ -97,12 +98,8 @@ export default function UpdateUserForm() {
 	if (!user) return;
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form className="max-w-full" onSubmit={(e) => handleUpdateUser(e)}>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
 				<div className="mb-2 flex max-w-full flex-col gap-2">
 					{formFields.map((field) => {
 						return (

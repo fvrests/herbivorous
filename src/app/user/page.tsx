@@ -8,6 +8,8 @@ import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import { UserContext } from "@/components/UserProvider";
 import Button from "@/components/Button";
 import UpdateUserForm from "./UpdateUserForm";
+import text from "@/app/styles/text.module.css";
+import message from "@/app/styles/message.module.css";
 
 export default function User() {
 	const { user, isLoading } = useContext(UserContext);
@@ -44,20 +46,12 @@ export default function User() {
 						{user.displayName ? user.displayName : user.email}
 					</h2>
 				</div>
-				<h3 className="mb-8 text-lg font-semibold tracking-tighter">
-					Update profile
-				</h3>
+				<h3 className={text.heading}>Update profile</h3>
 				<div className="mb-8">
 					<UpdateUserForm />
 				</div>
-				<h3 className="mb-4 text-lg font-semibold tracking-tighter">
-					Sign out
-				</h3>
-				{statusMessage && (
-					<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-						{statusMessage}
-					</p>
-				)}
+				<h3 className={text.heading}>Sign out</h3>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
 				<Button
 					onClick={() => {
 						signOut(auth)

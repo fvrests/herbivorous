@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import form from "@/app/styles/form.module.css";
+import message from "@/app/styles/message.module.css";
 
 export default function ResetPasswordForm() {
 	const formDefaults = {
@@ -28,13 +30,8 @@ export default function ResetPasswordForm() {
 
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form
-				className="mb-16 flex max-w-full flex-col gap-2"
+				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
 					sendPasswordResetEmail(auth, formData.email)
@@ -48,15 +45,13 @@ export default function ResetPasswordForm() {
 						});
 				}}
 			>
-				<div className="mb-4 w-full">
-					<label
-						htmlFor="email"
-						className="mb-2 text-sm font-semibold tracking-tighter"
-					>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
+				<div>
+					<label htmlFor="email" className={form.label}>
 						Email
 					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
 						id="email"
 						name="email"
 						type="email"
@@ -67,14 +62,14 @@ export default function ResetPasswordForm() {
 				</div>
 				<Button type="submit">Send email</Button>
 			</form>
-			<div className="mb-2 text-sm">
+			<p className="mb-2 text-sm">
 				Know your login details? &nbsp;
 				<Link href="/signin">Sign in</Link>
-			</div>
-			<div className="mb-2 text-sm">
+			</p>
+			<p className="mb-2 text-sm">
 				New here? &nbsp;
 				<Link href="/signup">Sign up</Link>
-			</div>
+			</p>
 		</>
 	);
 }
