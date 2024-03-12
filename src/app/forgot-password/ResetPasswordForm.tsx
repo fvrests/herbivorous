@@ -48,17 +48,23 @@ export default function ResetPasswordForm() {
 						});
 				}}
 			>
-				<label className="mb-4 w-full">
-					<h3 className="mb-2 text-sm font-semibold tracking-tighter">Email</h3>
+				<div className="mb-4 w-full">
+					<label
+						htmlFor="email"
+						className="mb-2 text-sm font-semibold tracking-tighter"
+					>
+						Email
+					</label>
 					<input
 						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						id="email"
 						name="email"
 						type="email"
 						required
 						value={formData.email}
 						onChange={handleChangeInput}
 					></input>
-				</label>
+				</div>
 				<Button type="submit">Send email</Button>
 			</form>
 			<div className="mb-2 text-sm">

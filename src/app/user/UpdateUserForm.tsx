@@ -110,7 +110,6 @@ export default function UpdateUserForm() {
 								className="mb-4 w-full"
 								key={field.name as keyof typeof user}
 							>
-								{/* todo: revise markup for other forms to remove heading in label */}
 								<label
 									htmlFor={field.name}
 									className="mb-2 text-sm font-semibold tracking-tighter"
