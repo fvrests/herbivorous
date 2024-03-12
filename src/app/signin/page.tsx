@@ -11,7 +11,7 @@ export default function SignIn() {
 
 	useEffect(() => {
 		if (user) {
-			router.push("/user");
+			router.push("/");
 		}
 	}, [user]);
 

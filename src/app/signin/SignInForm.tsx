@@ -4,8 +4,10 @@ import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
+	const router = useRouter();
 	const formDefaults = {
 		email: "",
 		password: "",
@@ -42,7 +44,7 @@ export default function SignInForm() {
 						.then(() => {
 							updateLocalOnlyData({ formEmail: "" });
 							// signed in
-							// router will push to "/user"
+							// router will push to "/"
 						})
 						.catch((error) => {
 							setStatusMessage(`Error: ${getAuthErrorFromCode(error.code)}`);
