@@ -25,6 +25,7 @@ export default function User() {
 		return (
 			<>
 				<div className="mb-16 flex flex-col items-center">
+					{/* todo: maybe find alternative to url param / remove next image implementation*/}
 					<div className="relative mb-4 h-20 w-20 overflow-hidden">
 						{user.photoURL && (
 							<Image

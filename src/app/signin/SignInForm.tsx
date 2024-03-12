@@ -5,7 +5,6 @@ import Button from "@/components/Button";
 import Link from "@/components/Link";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 
-// todo: persist email between sign up / sign in / forgot password
 export default function SignInForm() {
 	const formDefaults = {
 		email: "",

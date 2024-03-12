@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
-import { updateAuthEmail, updateAuthProfile } from "@/utils/firebase-auth";
+import {
+	updateAuthProfile,
+	updateAuthEmail,
+	auth,
+	getAuthErrorFromCode,
+} from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
 import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
@@ -59,24 +64,33 @@ export default function UpdateUserForm() {
 	// todo: add remove profile image button
 	const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!user)
+		if (!user || !auth.currentUser)
 			return setStatusMessage("couldn't update user data (no user found)");
 
+		// separate email (has own setter function) from auth profile data
 		const { email, ...profileForm } = formData;
-		const profileUpdates = Object.fromEntries(
-			Object.entries(profileForm).filter(([key, _]) => {
-				return isKeyUpdated(key as keyof typeof formData);
-			}),
-		);
 
 		if (isKeyUpdated("email")) {
 			updateAuthEmail(email);
 		}
-		if (Object.keys(profileUpdates).length > 0) {
-			setUser({ ...user, ...profileUpdates });
-			updateAuthProfile(profileUpdates);
+
+		const profileUpdates: UserProfile = {};
+		if (isKeyUpdated("displayName")) {
+			profileUpdates.displayName = profileForm.displayName;
 		}
+		if (isKeyUpdated("photoURL")) {
+			profileUpdates.photoURL = profileForm.photoURL;
+		}
+		if (Object.keys(profileUpdates).length > 0) {
+			// set local user data to update page immediately
+			setUser({ ...user, ...profileUpdates });
+			// update profile & handle error message
+			setStatusMessage(updateAuthProfile(profileUpdates) ?? null);
+		}
+
+		// reset email in localStorage
 		updateLocalOnlyData({ formEmail: "" });
+		// clear form
 		setFormData(formDefaults);
 	};
 
