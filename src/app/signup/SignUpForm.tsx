@@ -79,7 +79,7 @@ export default function SignUpForm() {
 				}}
 			>
 				{statusMessage && <p className={message.base}>{statusMessage}</p>}
-				<div className={form.itemWrapper}>
+				<div>
 					<label htmlFor="email" className={form.label}>
 						Email
 					</label>
@@ -93,7 +93,7 @@ export default function SignUpForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className={form.itemWrapper}>
+				<div>
 					<label htmlFor="password" className={form.label}>
 						Password
 					</label>
@@ -109,10 +109,14 @@ export default function SignUpForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className={form.itemWrapper}>
+				<div>
 					<label htmlFor="confirmPassword" className={form.label}>
 						Confirm password
 					</label>
+					<p className={form.sublabel}>
+						Forgot? &nbsp;
+						<Link href="/forgot-password">Reset password</Link>
+					</p>
 					<input
 						className={form.input}
 						id="confirmPassword"
@@ -127,14 +131,10 @@ export default function SignUpForm() {
 				</div>
 				<Button type="submit">Sign up</Button>
 			</form>
-			<div className="mb-2 text-sm">
+			<span className="text-sm">
 				Already have an account? &nbsp;
 				<Link href="/user">Sign in</Link>
-			</div>
-			<div className="text-sm">
-				Forgot password? &nbsp;
-				<Link href="/forgot-password">Reset password</Link>
-			</div>
+			</span>
 		</>
 	);
 }

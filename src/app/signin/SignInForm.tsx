@@ -47,7 +47,7 @@ export default function SignInForm() {
 				}}
 			>
 				{statusMessage && <p className={message.base}>{statusMessage}</p>}
-				<div className={form.itemWrapper}>
+				<div>
 					<label htmlFor="email" className={form.label}>
 						Email
 					</label>
@@ -61,10 +61,14 @@ export default function SignInForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div className={form.itemWrapper}>
+				<div>
 					<label htmlFor="password" className={form.label}>
 						Password
 					</label>
+					<p className={form.sublabel}>
+						Forgot? &nbsp;
+						<Link href="/forgot-password">Reset password</Link>
+					</p>
 					<input
 						className={form.input}
 						id="password"
@@ -81,10 +85,6 @@ export default function SignInForm() {
 			<div className="mb-2 text-sm">
 				New here? &nbsp;
 				<Link href="/signup">Sign up</Link>
-			</div>
-			<div className="text-sm">
-				Forgot password? &nbsp;
-				<Link href="/forgot-password">Reset password</Link>
 			</div>
 		</>
 	);

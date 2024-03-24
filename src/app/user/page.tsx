@@ -42,7 +42,7 @@ export default function User() {
 							/>
 						)}
 					</div>
-					<h2 className="text-lg font-semibold tracking-tighter">
+					<h2 className={text.heading}>
 						{user.displayName ? user.displayName : user.email}
 					</h2>
 				</div>
