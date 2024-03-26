@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
-import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
+import { Check, RotateCcw, X } from "react-feather";
+import { Dialog, RadioGroup } from "@headlessui/react";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 import ProgressBar from "@/components/ProgressBar";
@@ -158,43 +158,17 @@ export default function GoalDetails({
 								))}
 								<li></li>
 							</ul>
-							<div className="-mx-2 mb-8 w-full rounded-xl border-2 border-border-low p-2">
-								<Disclosure defaultOpen={true}>
-									{({ open }) => (
-										<>
-											<Disclosure.Button className="flex w-full flex-row items-center justify-between gap-2 rounded-lg p-2 text-sm font-semibold tracking-tighter hover:bg-b-med">
-												<span>Types</span>
-												{open ? (
-													<ChevronUp size={16} />
-												) : (
-													<ChevronDown size={16} />
-												)}
-											</Disclosure.Button>
-											<Transition
-												enter="transition duration-100 ease-out"
-												enterFrom="transform scale-95 opacity-0"
-												enterTo="transform scale-100 opacity-100"
-												leave="transition duration-75 ease-out"
-												leaveFrom="transform scale-100 opacity-100"
-												leaveTo="transform scale-95 opacity-0"
-											>
-												<Disclosure.Panel className="mt-2 w-full px-2 text-sm">
-													<ul>
-														{goal.types?.map((type: string) => (
-															<li
-																key={type}
-																className="mb-2 first-letter:capitalize"
-															>
-																{type}
-															</li>
-														))}
-													</ul>
-												</Disclosure.Panel>
-											</Transition>
-										</>
-									)}
-								</Disclosure>
-							</div>
+							<h3 className={text.label}>Types</h3>
+							<ul className="mb-8 flex w-full flex-wrap gap-2 text-sm">
+								{goal.types?.map((type: string) => (
+									<li
+										key={type}
+										className="rounded-md bg-capsule px-2 py-1 first-letter:capitalize"
+									>
+										{type}
+									</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				</Dialog.Panel>
