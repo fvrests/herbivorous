@@ -7,6 +7,7 @@ import ProgressBar from "@/components/ProgressBar";
 import RadioGroupOption from "@/components/RadioGroupOption";
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
+import text from "@/app/styles/text.module.css";
 
 interface Props {
 	toggleDetails: () => void;
@@ -108,9 +109,7 @@ export default function GoalDetails({
 									/>
 								</div>
 							</div>
-							<h3 className="mb-4 text-sm font-semibold tracking-tighter">
-								Log progress (servings)
-							</h3>
+							<h3 className={text.label}>Log progress (servings)</h3>
 							<div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-between">
 								<div className="flex flex-wrap gap-2">
 									{Array.from(fractionsMap.entries()).map((entry) => (
@@ -134,9 +133,7 @@ export default function GoalDetails({
 									<RotateCcw size={14} /> <span>Reset</span>
 								</Button>
 							</div>
-							<h3 className="mb-4 text-sm font-semibold tracking-tighter">
-								Units
-							</h3>
+							<h3 className={text.label}>Units</h3>
 							<RadioGroup
 								value={units}
 								onChange={(newValue) => handleChangeUnits(newValue)}
@@ -151,7 +148,7 @@ export default function GoalDetails({
 									</RadioGroupOption>
 								</div>
 							</RadioGroup>
-							<h3 className="mb-4 text-sm font-semibold">Suggestions</h3>
+							<h3 className={text.label}>Suggestions</h3>
 							<ul className="mb-8 text-sm">
 								{goal.suggestions.map((suggestion: Suggestion) => (
 									<li key={suggestion.name} className="mb-2">
