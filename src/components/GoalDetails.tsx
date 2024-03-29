@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
-import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
+import { Check, RotateCcw, X } from "react-feather";
+import { Dialog, RadioGroup } from "@headlessui/react";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 import ProgressBar from "@/components/ProgressBar";
 import RadioGroupOption from "@/components/RadioGroupOption";
 import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
+import text from "@/app/styles/text.module.css";
 
 interface Props {
 	toggleDetails: () => void;
@@ -108,9 +109,7 @@ export default function GoalDetails({
 									/>
 								</div>
 							</div>
-							<h3 className="mb-4 text-sm font-semibold tracking-tighter">
-								Log progress (servings)
-							</h3>
+							<h3 className={text.label}>Log progress (servings)</h3>
 							<div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-between">
 								<div className="flex flex-wrap gap-2">
 									{Array.from(fractionsMap.entries()).map((entry) => (
@@ -134,9 +133,7 @@ export default function GoalDetails({
 									<RotateCcw size={14} /> <span>Reset</span>
 								</Button>
 							</div>
-							<h3 className="mb-4 text-sm font-semibold tracking-tighter">
-								Units
-							</h3>
+							<h3 className={text.label}>Units</h3>
 							<RadioGroup
 								value={units}
 								onChange={(newValue) => handleChangeUnits(newValue)}
@@ -151,7 +148,7 @@ export default function GoalDetails({
 									</RadioGroupOption>
 								</div>
 							</RadioGroup>
-							<h3 className="mb-4 text-sm font-semibold">Suggestions</h3>
+							<h3 className={text.label}>Suggestions</h3>
 							<ul className="mb-8 text-sm">
 								{goal.suggestions.map((suggestion: Suggestion) => (
 									<li key={suggestion.name} className="mb-2">
@@ -161,43 +158,17 @@ export default function GoalDetails({
 								))}
 								<li></li>
 							</ul>
-							<div className="-mx-2 mb-8 w-full rounded-xl border-2 border-border-low p-2">
-								<Disclosure defaultOpen={true}>
-									{({ open }) => (
-										<>
-											<Disclosure.Button className="flex w-full flex-row items-center justify-between gap-2 rounded-lg p-2 text-sm font-semibold tracking-tighter hover:bg-b-med">
-												<span>Types</span>
-												{open ? (
-													<ChevronUp size={16} />
-												) : (
-													<ChevronDown size={16} />
-												)}
-											</Disclosure.Button>
-											<Transition
-												enter="transition duration-100 ease-out"
-												enterFrom="transform scale-95 opacity-0"
-												enterTo="transform scale-100 opacity-100"
-												leave="transition duration-75 ease-out"
-												leaveFrom="transform scale-100 opacity-100"
-												leaveTo="transform scale-95 opacity-0"
-											>
-												<Disclosure.Panel className="mt-2 w-full px-2 text-sm">
-													<ul>
-														{goal.types?.map((type: string) => (
-															<li
-																key={type}
-																className="mb-2 first-letter:capitalize"
-															>
-																{type}
-															</li>
-														))}
-													</ul>
-												</Disclosure.Panel>
-											</Transition>
-										</>
-									)}
-								</Disclosure>
-							</div>
+							<h3 className={text.label}>Types</h3>
+							<ul className="mb-8 flex w-full flex-wrap gap-2 text-sm">
+								{goal.types?.map((type: string) => (
+									<li
+										key={type}
+										className="rounded-md bg-capsule px-2 py-1 first-letter:capitalize"
+									>
+										{type}
+									</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				</Dialog.Panel>

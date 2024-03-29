@@ -1,0 +1,12 @@
+.heading {
+	@apply mb-4 text-lg font-semibold tracking-tighter;
+}
+.subheading {
+	@apply mb-8;
+}
+.label {
+	@apply mb-4 text-sm font-semibold tracking-tighter;
+}
+.sublabel {
+	@apply -mt-1 mb-4 text-xs text-f-med;
+}

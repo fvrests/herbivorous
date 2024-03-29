@@ -136,7 +136,7 @@ body {
 }
 
 * {
-	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring-f-high focus-visible:ring-offset-4 focus-visible:ring-offset-b-med;
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring-f-med focus-visible:ring-offset-4 focus-visible:ring-offset-b-med;
 }
 
 .gradient {

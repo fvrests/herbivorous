@@ -43,10 +43,10 @@ export const updateAuthProfile = (profile: UserProfile) => {
 				// profile updated
 			})
 			.catch((error) => {
-				console.error("error updating user profile", error);
+				return getAuthErrorFromCode(error.code);
 			});
 	} else {
-		console.error("couldn't update user profile (no user found)");
+		return "Couldn't update user profile (no user found)";
 	}
 };
 

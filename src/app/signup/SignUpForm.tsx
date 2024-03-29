@@ -8,21 +8,30 @@ import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import { updateAuthProfile } from "@/utils/firebase-auth";
 import profileDefaults from "@/app/profile-defaults.json";
 import { UserContext } from "@/components/UserProvider";
+import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import form from "@/app/styles/form.module.css";
+import message from "@/app/styles/message.module.css";
 
 export default function SignUpForm() {
-	const { user, setUser } = useContext(UserContext);
+	const { setUser } = useContext(UserContext);
 	const formDefaults = {
 		email: "",
 		password: "",
 		confirmPassword: "",
 	};
-	const [formData, setFormData] = useState(formDefaults);
+	const localData = getLocalStorage("localOnly");
+	const [formData, setFormData] = useState({
+		...formDefaults,
+		email: localData.formEmail,
+	});
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === "email")
+			updateLocalOnlyData({ formEmail: e.target.value });
 	};
 
 	// wait to access document until render - prevents breaking error
@@ -43,13 +52,8 @@ export default function SignUpForm() {
 
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form
-				className="mb-16 flex max-w-full flex-col gap-2"
+				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
 					createUserWithEmailAndPassword(
@@ -67,32 +71,36 @@ export default function SignUpForm() {
 								email: userCredential.user.email,
 								...profileDefaults[profileDefaultIndex],
 							});
+							updateLocalOnlyData({ formEmail: "" });
 						})
 						.catch((error) => {
 							setStatusMessage(`Error: ${getAuthErrorFromCode(error.code)}`);
 						});
 				}}
 			>
-				<label className="mb-4 w-full">
-					<h3 className="mb-2 text-sm font-semibold tracking-tighter">Email</h3>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
+				<div>
+					<label htmlFor="email" className={form.label}>
+						Email
+					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
+						id="email"
 						name="email"
 						type="email"
 						required
 						value={formData.email}
 						onChange={handleChangeInput}
 					></input>
-				</label>
-				<label className="mb-4 w-full">
-					<h3 className="mb-1 text-sm font-semibold tracking-tighter">
+				</div>
+				<div>
+					<label htmlFor="password" className={form.label}>
 						Password
-					</h3>
-					<p className="mb-2 text-xs text-f-med">
-						Must be at least 6 characters.
-					</p>
+					</label>
+					<p className={form.sublabel}>Must be at least 6 characters.</p>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
+						id="password"
 						name="password"
 						type="password"
 						required
@@ -100,33 +108,33 @@ export default function SignUpForm() {
 						value={formData.password}
 						onChange={handleChangeInput}
 					></input>
-				</label>
-				<label className="mb-6 w-full">
-					<h3 className="mb-2 text-sm font-semibold tracking-tighter">
+				</div>
+				<div>
+					<label htmlFor="confirmPassword" className={form.label}>
 						Confirm password
-					</h3>
+					</label>
+					<p className={form.sublabel}>
+						Forgot? &nbsp;
+						<Link href="/forgot-password">Reset password</Link>
+					</p>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
+						id="confirmPassword"
 						name="confirmPassword"
 						type="password"
-						id="confirmPassword"
 						required
 						minLength={6}
 						pattern={`^${formData.password}$`}
 						value={formData.confirmPassword}
 						onChange={handleChangeInput}
 					></input>
-				</label>
+				</div>
 				<Button type="submit">Sign up</Button>
 			</form>
-			<div className="mb-2 text-sm">
+			<span className="text-sm">
 				Already have an account? &nbsp;
 				<Link href="/user">Sign in</Link>
-			</div>
-			<div className="text-sm">
-				Forgot password? &nbsp;
-				<Link href="/forgot-password">Reset password</Link>
-			</div>
+			</span>
 		</>
 	);
 }

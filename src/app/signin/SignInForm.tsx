@@ -1,67 +1,77 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
-import { useRouter } from "next/navigation";
+import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
+import form from "@/app/styles/form.module.css";
+import message from "@/app/styles/message.module.css";
 
-// todo: persist email between sign up / sign in / forgot password
 export default function SignInForm() {
 	const formDefaults = {
 		email: "",
 		password: "",
 	};
-	const [formData, setFormData] = useState(formDefaults);
-	const router = useRouter();
+	const localData = getLocalStorage("localOnly");
+	const [formData, setFormData] = useState({
+		...formDefaults,
+		email: localData.formEmail,
+	});
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === "email")
+			updateLocalOnlyData({ formEmail: e.target.value });
 	};
 
 	const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
 	return (
 		<>
-			{statusMessage && (
-				<p className="mb-4 rounded-md bg-b-high px-4 py-2 text-sm">
-					{statusMessage}
-				</p>
-			)}
 			<form
-				className="mb-16 flex max-w-full flex-col gap-2"
+				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
-					console.log("signing in...");
 					signInWithEmailAndPassword(auth, formData.email, formData.password)
 						.then(() => {
+							updateLocalOnlyData({ formEmail: "" });
 							// signed in
-							// router will push to "/user"
+							// router will push to "/"
 						})
 						.catch((error) => {
 							setStatusMessage(`Error: ${getAuthErrorFromCode(error.code)}`);
 						});
 				}}
 			>
-				<label className="mb-4 w-full">
-					<h3 className="mb-2 text-sm font-semibold tracking-tighter">Email</h3>
+				{statusMessage && <p className={message.base}>{statusMessage}</p>}
+				<div>
+					<label htmlFor="email" className={form.label}>
+						Email
+					</label>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
+						id="email"
 						name="email"
 						type="email"
 						required
 						value={formData.email}
 						onChange={handleChangeInput}
 					></input>
-				</label>
-				<label className="mb-6 w-full">
-					<h3 className="mb-2 text-sm font-semibold tracking-tighter">
+				</div>
+				<div>
+					<label htmlFor="password" className={form.label}>
 						Password
-					</h3>
+					</label>
+					<p className={form.sublabel}>
+						Forgot? &nbsp;
+						<Link href="/forgot-password">Reset password</Link>
+					</p>
 					<input
-						className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+						className={form.input}
+						id="password"
 						name="password"
 						type="password"
 						required
@@ -69,16 +79,12 @@ export default function SignInForm() {
 						value={formData.password}
 						onChange={handleChangeInput}
 					></input>
-				</label>
+				</div>
 				<Button type="submit">Sign in</Button>
 			</form>
 			<div className="mb-2 text-sm">
 				New here? &nbsp;
 				<Link href="/signup">Sign up</Link>
-			</div>
-			<div className="text-sm">
-				Forgot password? &nbsp;
-				<Link href="/forgot-password">Reset password</Link>
 			</div>
 		</>
 	);

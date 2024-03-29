@@ -5,6 +5,7 @@ import { addDays, subDays, format, isToday } from "date-fns";
 import goals from "@/app/goals.json";
 import Goal from "@/components/Goal";
 import Link from "@/components/Link";
+// todo: add button to clear all progress for day. requires refactor to use a single progress object for all days
 
 export default function DayView({
 	params,
