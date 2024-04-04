@@ -16,7 +16,7 @@ interface Props {
 
 export default function Goal({ goal, date }: Props) {
 	const { user } = useContext(UserContext);
-	const { mode, theme } = useContext(ThemeContext);
+	const { mode } = useContext(ThemeContext);
 	const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
 	const { progress, increment, reset, overflow } = useProgress(
@@ -47,9 +47,7 @@ export default function Goal({ goal, date }: Props) {
 						alt=""
 						width={36}
 						height={36}
-						src={`/goals/${goal.icon ?? "beans"}${
-							theme === "earthy" ? "-earthy" : "-cosmic"
-						}.png`}
+						src={`/goals/${goal.icon ?? "beans"}-earthy.png`}
 					></Image>
 				</div>
 				<div className="flex w-full flex-col gap-x-8 gap-y-2 overflow-visible sm:flex-row sm:items-center">
