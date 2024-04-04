@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { Check, RotateCcw, X } from "react-feather";
+import { Check, RotateCcw, X, Plus } from "react-feather";
 import { Dialog, RadioGroup } from "@headlessui/react";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 import ProgressBar from "@/components/ProgressBar";
 import RadioGroupOption from "@/components/RadioGroupOption";
-import Button from "@/components/Button";
 import { UserContext } from "@/components/UserProvider";
 import text from "@/app/styles/text.module.css";
 
@@ -19,13 +18,6 @@ interface Props {
 	overflow: boolean;
 }
 
-const fractionsMap = new Map([
-	[0.25, "¼"],
-	[0.5, "½"],
-	[0.75, "¾"],
-	[1, "1"],
-]);
-
 const parseQuantity = (quantity: number | string) => {
 	if (typeof quantity === "number") {
 		let remainder = quantity % 1;
@@ -37,6 +29,14 @@ const parseQuantity = (quantity: number | string) => {
 	}
 	return quantity;
 };
+const unitTypes = ["metric", "imperial"];
+
+const fractionsMap = new Map([
+	[0.25, "¼"],
+	[0.5, "½"],
+	[0.75, "¾"],
+	[1, "1"],
+]);
 
 export default function GoalDetails({
 	toggleDetails,
@@ -54,6 +54,13 @@ export default function GoalDetails({
 	const [units, setUnits] = useState(
 		userData?.settings?.units || localData?.settings?.units || "metric",
 	);
+
+	const [incrementBy, setIncrementBy] = useState(1);
+
+	// const [remaining, setRemaining] = useState(goal.quantity - progress);
+	// useEffect(() => {
+	// 	setRemaining(goal.quantity - progress);
+	// }, [goal, progress]);
 
 	useEffect(() => {
 		setUnits(
@@ -74,15 +81,15 @@ export default function GoalDetails({
 		<>
 			<Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
 				<div
-					className="fixed inset-0 z-30 bg-b-low opacity-60"
+					className="fixed inset-0 z-30 cursor-pointer bg-b-low opacity-60"
 					aria-hidden="true"
 				/>
 				<Dialog.Panel>
-					<div className="fixed inset-[5%] z-40 overflow-y-auto rounded-xl border-2 border-border-low bg-b-med px-8 pt-8 shadow-lg shadow-b-low">
+					<div className="fixed inset-[5%] z-40 mx-auto max-w-2xl overflow-y-auto rounded-xl border-2 border-border-low bg-b-med px-8 pt-8 shadow-lg shadow-b-low sm:inset-[10%]">
 						{/* margin-bottom affects entire menu content */}
-						<div className="relative mb-8 w-full">
+						<div className="relative mb-12 w-full">
 							{/* header section */}
-							<div className="mb-8">
+							<div className="mb-12">
 								<div className="flex w-full items-center justify-between">
 									<Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
 										{goal.name}
@@ -109,47 +116,59 @@ export default function GoalDetails({
 									/>
 								</div>
 							</div>
-							<h3 className={text.label}>Log progress (servings)</h3>
-							<div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-between">
-								<div className="flex flex-wrap gap-2">
-									{Array.from(fractionsMap.entries()).map((entry) => (
-										<Button key={entry[0]} onClick={() => increment(entry[0])}>
-											+ {entry[1]}
-										</Button>
-									))}
-									{progress < goal.quantity &&
-									!fractionsMap.has(goal.quantity - progress) ? (
-										<Button onClick={() => increment(goal.quantity - progress)}>
-											All (+ {parseQuantity(goal.quantity - progress)})
-										</Button>
-									) : (
-										""
-									)}
+							<div className="mb-12">
+								<h3 className={text.label}>Log progress</h3>
+								<div className="flex items-center justify-between gap-2 overflow-x-scroll">
+									<div className="flex gap-2">
+										{Array.from(fractionsMap.entries()).map(
+											([value, label], i) => {
+												const selected = incrementBy === value;
+												return (
+													<button
+														key={value}
+														onClick={() => {
+															if (incrementBy !== value) {
+																setIncrementBy(value);
+															} else {
+																increment(value);
+															}
+														}}
+														className={`hover:border-border-med flex cursor-pointer items-center gap-2 text-nowrap rounded-xl border-2 px-3 py-1 hover:text-f-high sm:px-4 ${selected ? "border-capsule bg-capsule text-f-high" : "border-border-low text-f-low"}`}
+													>
+														{selected && <Plus size={14} />}
+														{`${selected ? "Log" : ""} ${label}`}
+													</button>
+												);
+											},
+										)}
+									</div>
+									<button
+										onClick={() => reset()}
+										className={`hover:bg-b-warn hover:border-f-warn-low hover:text-f-warn flex w-min cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-border-low px-4 py-1 text-f-low`}
+									>
+										<RotateCcw size={14} /> <span>Reset</span>
+									</button>
 								</div>
-								<Button
-									onClick={() => reset()}
-									classes="flex flex-row gap-2 w-min"
-								>
-									<RotateCcw size={14} /> <span>Reset</span>
-								</Button>
 							</div>
-							<h3 className={text.label}>Units</h3>
-							<RadioGroup
-								value={units}
-								onChange={(newValue) => handleChangeUnits(newValue)}
-							>
-								<RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
-								<div className="mb-8 flex flex-row">
-									<RadioGroupOption value="metric">
-										<RadioGroup.Label>Metric</RadioGroup.Label>
-									</RadioGroupOption>
-									<RadioGroupOption value="imperial">
-										<RadioGroup.Label>Imperial</RadioGroup.Label>
-									</RadioGroupOption>
-								</div>
-							</RadioGroup>
-							<h3 className={text.label}>Suggestions</h3>
-							<ul className="mb-8 text-sm">
+							<div className="flex items-center justify-between">
+								<h3 className={text.label}>Suggestions</h3>
+								<RadioGroup
+									value={units}
+									onChange={(newValue) => handleChangeUnits(newValue)}
+									className="mb-4 flex gap-2 text-sm"
+								>
+									<RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
+									{unitTypes.map((unitType: string, i) => (
+										<>
+											<RadioGroupOption key={unitType} value={unitType} />
+											{i < unitTypes.length - 1 && (
+												<span className="text-f-low">•</span>
+											)}
+										</>
+									))}
+								</RadioGroup>
+							</div>
+							<ul className="mb-12 text-sm">
 								{goal.suggestions.map((suggestion: Suggestion) => (
 									<li key={suggestion.name} className="mb-2">
 										{parseQuantity(suggestion.portion[units].quantity)}{" "}
@@ -159,11 +178,11 @@ export default function GoalDetails({
 								<li></li>
 							</ul>
 							<h3 className={text.label}>Types</h3>
-							<ul className="mb-8 flex w-full flex-wrap gap-2 text-sm">
+							<ul className="mb-12 flex w-full flex-wrap gap-2 text-sm">
 								{goal.types?.map((type: string) => (
 									<li
 										key={type}
-										className="rounded-md bg-capsule px-2 py-1 first-letter:capitalize"
+										className="rounded-lg bg-capsule px-2 py-1 first-letter:capitalize"
 									>
 										{type}
 									</li>
