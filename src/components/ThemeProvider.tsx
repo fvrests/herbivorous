@@ -28,10 +28,9 @@ export default function ThemeProvider({ children }: Props) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	// todo: implement next-themes or similar to prevent flicker on reload
-	// todo: fix issue with not following prefers-color-scheme
 	useEffect(() => {
-		setMode(localData?.mode ?? null);
-		document.documentElement.dataset.mode = localData?.mode ?? "dark";
+		setMode(localData?.mode ?? "system");
+		document.documentElement.dataset.mode = localData?.mode ?? "system";
 
 		setIsLoading(false);
 	}, []);
@@ -45,7 +44,9 @@ export default function ThemeProvider({ children }: Props) {
 	}
 
 	function toggleMode() {
-		updateMode(mode === "dark" ? "light" : mode === null ? "light" : "dark");
+		updateMode(
+			mode === "dark" ? "light" : mode === "light" ? "system" : "dark",
+		);
 	}
 
 	return (

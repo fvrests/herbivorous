@@ -1,6 +1,6 @@
 "use client";
 import { useContext } from "react";
-import { Moon, Sun } from "react-feather";
+import { Moon, Sun, Monitor } from "react-feather";
 import Image from "next/image";
 import { UserContext } from "@/components/UserProvider";
 import { ThemeContext } from "@/components/ThemeProvider";
@@ -9,6 +9,8 @@ import Link from "./Link";
 
 export default function Nav() {
 	const { user, isLoading } = useContext(UserContext);
+
+	const modes = ["dark", "light", "system"];
 
 	const { mode, toggleMode } = useContext(ThemeContext);
 
@@ -45,11 +47,17 @@ export default function Nav() {
 						</Link>
 					)}
 					<button
-						aria-label={`set mode to ${mode === "light" ? "dark" : "light"}`}
+						aria-label={`set mode to ${mode === "dark" ? "light" : mode === "light" ? "system" : "dark"}`}
 						onClick={toggleMode}
-						className="rounded-sm hover:text-f-high"
+						className="-m-1 rounded-sm p-1 hover:text-f-high"
 					>
-						{mode === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+						{mode === "dark" ? (
+							<Moon size={20} />
+						) : mode === "light" ? (
+							<Sun size={20} />
+						) : (
+							<Monitor size={20} />
+						)}
 					</button>
 				</div>
 			</nav>
