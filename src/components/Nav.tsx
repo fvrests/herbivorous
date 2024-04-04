@@ -10,7 +10,7 @@ import Link from "./Link";
 export default function Nav() {
 	const { user, isLoading } = useContext(UserContext);
 
-	const { theme, mode, toggleMode } = useContext(ThemeContext);
+	const { mode, toggleMode } = useContext(ThemeContext);
 
 	return (
 		<>
@@ -23,7 +23,7 @@ export default function Nav() {
 							} -ml-2`}
 						>
 							<Image
-								src={`/icon-${theme ? theme : "earthy"}.png`}
+								src="/icon-earthy.png"
 								alt="app logo"
 								height="28"
 								width="28"

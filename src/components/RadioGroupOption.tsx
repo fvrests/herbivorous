@@ -2,21 +2,37 @@ import { RadioGroup } from "@headlessui/react";
 
 interface Props {
 	children?: any;
-	value?: any;
+	key: string | number;
+	value: any;
+	label?: any;
 }
-export default function RadioGroupOption({ children, value }: Props) {
+// todo: should inner label (in li) be a radiogroup.label?
+
+export default function RadioGroupOption({
+	children,
+	key,
+	value,
+	label,
+}: Props) {
 	return (
 		<RadioGroup.Option
-			className={({ checked }) =>
-				`${
-					checked
-						? "border-border bg-capsule text-f-med"
-						: "border-border-low text-f-low"
-				} flex h-8 cursor-pointer items-center justify-center border-2 px-2 text-xs font-semibold tracking-tighter shadow-sm first:rounded-l-xl last:rounded-r-xl hover:border-border hover:text-f-med [&_*]:cursor-pointer`
-			}
+			key={key}
 			value={value}
+			className="inline list-none rounded-sm"
 		>
-			<div>{children}</div>
+			{({ checked }) => (
+				<div className="relative cursor-pointer">
+					<li
+						className={`${
+							checked
+								? "text-f-high underline decoration-wavy"
+								: "text-f-low hover:text-f-med"
+						} rounded-md px-1 first-letter:uppercase`}
+					>
+						{label ?? value}
+					</li>
+				</div>
+			)}
 		</RadioGroup.Option>
 	);
 }

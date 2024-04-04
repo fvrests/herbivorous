@@ -14,9 +14,9 @@ export default function ProgressBar({
 	return (
 		<>
 			<div
-				className={`relative flex h-full w-full items-center overflow-hidden rounded-lg border-2 border-border transition-transform ${
+				className={`relative flex h-full w-full items-center overflow-hidden rounded-lg border-2 border-border bg-theme transition-transform ${
 					overflow ? "translate-x-1" : ""
-				} gradient`}
+				}`}
 			>
 				<div
 					className="absolute inset-y-0 right-0 border-border bg-b-med transition-[width]"

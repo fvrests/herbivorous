@@ -36,6 +36,16 @@ export const updateLocalProgress = (
 	window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
 };
 
+export const clearLocalProgressForDate = (
+	dateString: string = getDateString(),
+) => {
+	if (typeof window === "undefined") return;
+	let updatedData = getLocalStorage("herbivorous");
+	if (!updatedData.progress) updatedData.progress = {};
+	updatedData.progress[dateString] = {};
+	window.localStorage.setItem("herbivorous", JSON.stringify(updatedData));
+};
+
 export const resetLocalStorage = () => {
 	if (typeof window === "undefined") return;
 	window.localStorage.setItem("herbivorous", "");

@@ -19,7 +19,6 @@ declare global {
 	}
 
 	type Mode = "dark" | "light" | "system";
-	type Theme = "earthy" | "cosmic";
 
 	interface UserData {
 		settings?: {
