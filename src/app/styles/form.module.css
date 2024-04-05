@@ -1,0 +1,12 @@
+.root {
+	@apply mb-16 flex max-w-full flex-col space-y-8;
+}
+.label {
+	@apply mb-2 block text-sm font-semibold tracking-tighter;
+}
+.sublabel {
+	@apply -mt-1 mb-4 text-xs text-f-med;
+}
+.input {
+	@apply hover:border-border-high w-full rounded-xl border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low focus:border-f-med;
+}

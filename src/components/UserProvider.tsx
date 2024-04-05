@@ -1,31 +1,29 @@
 "use client";
 
 interface Props {
-  children?: any;
+	children?: any;
 }
 
 import { useAuth } from "@/utils/firebase-auth";
 import { createContext } from "react";
 
 interface UserContext {
-  user: User | null;
-  setUser: (userInfo: User) => void;
-  isLoading: boolean;
+	user: User | null;
+	setUser: (userInfo: User) => void;
+	isLoading: boolean;
 }
 export const UserContext = createContext<UserContext>({
-  user: null,
-  setUser: (userInfo: User) => {},
-  isLoading: true,
+	user: null,
+	setUser: (userInfo: User) => {},
+	isLoading: true,
 });
 
-// todo: use userProvider where possible vs. useAuth
-
 export default function UserProvider({ children }: Props) {
-  let { user, setUser, isLoading } = useAuth();
+	let { user, setUser, isLoading } = useAuth();
 
-  return (
-    <UserContext.Provider value={{ user, setUser, isLoading }}>
-      {children}
-    </UserContext.Provider>
-  );
+	return (
+		<UserContext.Provider value={{ user, setUser, isLoading }}>
+			{children}
+		</UserContext.Provider>
+	);
 }

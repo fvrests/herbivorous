@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DEFAULT: dark earthy theme */
+/* prefers dark: dark earthy theme */
+:root {
+	--cypress-0: #d3cdc6;
+	--cypress-1: #bdb9b2;
+	--cypress-2: #798078;
+	--cypress-3: #525951;
+	--cypress-4: #444c44;
+	--cypress-5: #2e332d;
+	--cypress-6: #212620;
+
+	--oat-0: #fcf4ef;
+	--oat-1: #f4ece7;
+	--oat-2: #eae0da;
+	--oat-3: #e5dad3;
+	--oat-4: #ccc2bc;
+	--oat-5: #b3a8a2;
+
+	--rust-0: #f5d2c8;
+	--rust-1: #dcc2b9;
+	--rust-2: #bc8a77;
+	--rust-3: #804a38;
+	--rust-4: #724f44;
+	--rust-5: #4b3d33;
+
+	--f-low: var(--oat-4);
+	--f-med: var(--oat-3);
+	--f-high: var(--oat-1);
+
+	--f-warn: var(--rust-0);
+	--f-warn-low: var(--rust-4);
+	--b-warn: var(--rust-5);
+
+	--b-low: var(--cypress-6);
+	--b-med: var(--cypress-5);
+	--b-high: var(--cypress-4);
+
+	--detail: var(--cypress-3);
+	--border-low: var(--cypress-2);
+	--border: var(--oat-5);
+	--border-high: var(--oat-3);
+
+	--capsule: var(--cypress-3);
+	--theme: var(--cypress-3);
+}
+
+/* prefers light: light theme */
+@media (prefers-color-scheme: light) {
+	:root {
+		--f-low: var(--cypress-2);
+		--f-med: var(--cypress-3);
+		--f-high: var(--cypress-5);
+
+		--f-warn: var(--rust-3);
+		--f-warn-low: var(--rust-2);
+		--b-warn: var(--rust-1);
+
+		--b-low: var(--oat-3);
+		--b-med: var(--oat-2);
+		--b-high: var(--oat-1);
+
+		--detail: var(--cypress-0);
+		--border-low: var(--cypress-1);
+		--border: var(--cypress-2);
+		--border-high: var(--cypress-3);
+
+		--capsule: var(--cypress-0);
+		--theme: var(--cypress-4);
+	}
+}
+
+/* light mode set explicitly */
+:root[data-mode="light"] {
+	--f-low: var(--cypress-2);
+	--f-med: var(--cypress-4);
+	--f-high: var(--cypress-5);
+
+	--f-warn: var(--rust-3);
+	--f-warn-low: var(--rust-2);
+	--b-warn: var(--rust-1);
+
+	--b-low: var(--oat-3);
+	--b-med: var(--oat-2);
+	--b-high: var(--oat-1);
+
+	--detail: var(--cypress-0);
+	--border-low: var(--cypress-1);
+	--border: var(--cypress-2);
+	--border-high: var(--cypress-3);
+
+	--capsule: var(--cypress-0);
+	--theme: var(--cypress-4);
+}
+
+html {
+	@apply underline-offset-4 antialiased;
+}
+
+body {
+	@apply bg-b-med font-medium tracking-tight text-f-med;
+}
+
+* {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring-f-med focus-visible:ring-offset-4 focus-visible:ring-offset-b-med;
+}

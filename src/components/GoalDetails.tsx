@@ -1,207 +1,211 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "@/utils/firebase-auth";
+import { useState, useEffect, useContext } from "react";
+import { Check, RotateCcw, X, Plus } from "react-feather";
+import { Dialog, RadioGroup } from "@headlessui/react";
+import Image from "next/image";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
-import { Dialog, RadioGroup, Disclosure, Transition } from "@headlessui/react";
-import { Check, ChevronDown, ChevronUp, RotateCcw, X } from "react-feather";
-import ProgressBar from "./ProgressBar";
-import RadioGroupOption from "./RadioGroupOption";
-import Button from "./Button";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
+import ProgressBar from "@/components/ProgressBar";
+import RadioGroupOption from "@/components/RadioGroupOption";
+import { UserContext } from "@/components/UserProvider";
+import text from "@/app/styles/text.module.css";
+import { ThemeContext } from "./ThemeProvider";
 
 interface Props {
-  toggleDetails: () => void;
-  isDetailsOpen: boolean;
-  goal: Goal;
-  progress: number;
-  increment: (amount?: number | undefined) => void;
-  reset: () => void;
-  overflow: boolean;
+	toggleDetails: () => void;
+	isDetailsOpen: boolean;
+	goal: Goal;
+	progress: number;
+	increment: (amount?: number | undefined) => void;
+	reset: () => void;
+	overflow: boolean;
 }
 
+const parseQuantity = (quantity: number | string) => {
+	if (typeof quantity === "number") {
+		let remainder = quantity % 1;
+		if (fractionsMap.has(quantity)) {
+			return fractionsMap.get(quantity);
+		} else if (remainder !== 1 && fractionsMap.has(remainder)) {
+			return `${Math.floor(quantity)} ${fractionsMap.get(remainder)}`;
+		}
+	}
+	return quantity;
+};
+const unitTypes = ["metric", "imperial"];
+
 const fractionsMap = new Map([
-  [0.25, "¼"],
-  [0.5, "½"],
-  [0.75, "¾"],
-  [1, "1"],
+	[0.25, "¼"],
+	[0.5, "½"],
+	[0.75, "¾"],
+	[1, "1"],
 ]);
 
-const parseQuantity = (quantity: number | string) => {
-  if (typeof quantity === "number") {
-    let remainder = quantity % 1;
-    if (fractionsMap.has(quantity)) {
-      return fractionsMap.get(quantity);
-    } else if (remainder !== 1 && fractionsMap.has(remainder)) {
-      return `${Math.floor(quantity)} ${fractionsMap.get(remainder)}`;
-    }
-  }
-  return quantity;
-};
-
 export default function GoalDetails({
-  toggleDetails,
-  isDetailsOpen,
-  goal,
-  progress,
-  increment,
-  reset,
-  overflow,
+	toggleDetails,
+	isDetailsOpen,
+	goal,
+	progress,
+	increment,
+	reset,
+	overflow,
 }: Props) {
-  let localData: UserData | null = getLocalStorage("herbivorous");
-  let { user } = useAuth();
-  let { userData } = useUserData();
+	let localData: UserData | null = getLocalStorage("herbivorous");
+	let { user } = useContext(UserContext);
+	let { userData } = useUserData();
+	const { mode } = useContext(ThemeContext);
 
-  const [units, setUnits] = useState(
-    userData?.settings?.units || localData?.settings?.units || "metric",
-  );
+	const [units, setUnits] = useState(
+		userData?.settings?.units || localData?.settings?.units || "metric",
+	);
 
-  useEffect(() => {
-    setUnits(
-      userData?.settings?.units || localData?.settings?.units || "metric",
-    );
-  }, [userData, localData]);
+	const [incrementBy, setIncrementBy] = useState(1);
 
-  const handleChangeUnits = (newValue: "metric" | "imperial") => {
-    if (user) {
-      updateUserData(user.uid, { settings: { units: newValue } });
-    } else {
-      updateLocalSettings({ units: newValue });
-    }
-    setUnits(newValue);
-  };
+	useEffect(() => {
+		setUnits(
+			userData?.settings?.units || localData?.settings?.units || "metric",
+		);
+	}, [userData, localData]);
 
-  return (
-    <>
-      <Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
-        <div
-          className="fixed inset-0 bg-b-low opacity-60 z-30"
-          aria-hidden="true"
-        />
-        <Dialog.Panel>
-          <div className="fixed z-40 border-border-low border-2 bg-b-med inset-[5%] rounded-xl pt-8 px-8 shadow-lg shadow-b-low overflow-y-auto">
-            {/* margin-bottom affects entire menu content */}
-            <div className="relative w-full mb-8">
-              {/* header section */}
-              <div className="mb-8">
-                <div className="w-full flex justify-between items-center">
-                  <Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
-                    {goal.name}
-                  </Dialog.Title>
-                  <button
-                    className="text-f-low hover:text-f-high p-2 -mr-2"
-                    aria-label="close details"
-                    onClick={toggleDetails}
-                  >
-                    <X />
-                  </button>
-                </div>
-                <div className="text-f-med mb-4 text-sm flex flex-row items-center ">
-                  Progress: {progress} / {goal.quantity}
-                  <span className="pl-2 text-f-high">
-                    {progress >= goal.quantity && <Check size={16} />}
-                  </span>
-                </div>
-                <div className="w-full h-3">
-                  <ProgressBar
-                    goal={goal}
-                    progress={progress}
-                    overflow={overflow}
-                  />
-                </div>
-              </div>
-              <h3 className="font-semibold tracking-tighter text-sm mb-4">
-                Log progress (servings)
-              </h3>
-              <div className="mb-8 flex flex-col sm:flex-row sm:justify-between gap-4">
-                <div className="flex flex-wrap gap-2">
-                  {Array.from(fractionsMap.entries()).map((entry) => (
-                    <Button key={entry[0]} onClick={() => increment(entry[0])}>
-                      + {entry[1]}
-                    </Button>
-                  ))}
-                  {progress < goal.quantity &&
-                  !fractionsMap.has(goal.quantity - progress) ? (
-                    <Button onClick={() => increment(goal.quantity - progress)}>
-                      All (+ {parseQuantity(goal.quantity - progress)})
-                    </Button>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <Button
-                  onClick={() => reset()}
-                  classes="flex flex-row gap-2 w-min"
-                >
-                  <RotateCcw size={14} /> <span>Reset</span>
-                </Button>
-              </div>
-              <h3 className="font-semibold tracking-tighter text-sm mb-4">
-                Units
-              </h3>
-              <RadioGroup
-                value={units}
-                onChange={(newValue) => handleChangeUnits(newValue)}
-              >
-                <RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
-                <div className="mb-8 flex flex-row">
-                  <RadioGroupOption value="metric">
-                    <RadioGroup.Label>Metric</RadioGroup.Label>
-                  </RadioGroupOption>
-                  <RadioGroupOption value="imperial">
-                    <RadioGroup.Label>Imperial</RadioGroup.Label>
-                  </RadioGroupOption>
-                </div>
-              </RadioGroup>
-              <h3 className="font-semibold text-sm mb-4">Suggestions</h3>
-              <ul className="text-sm mb-8">
-                {goal.suggestions.map((suggestion: Suggestion) => (
-                  <li key={suggestion.name} className="mb-2">
-                    {parseQuantity(suggestion.portion[units].quantity)}{" "}
-                    {suggestion.portion[units].unit} {suggestion.name}{" "}
-                  </li>
-                ))}
-                <li></li>
-              </ul>
-              <div className="mb-8 w-full rounded-xl -mx-2 p-2 border-2 border-border-low">
-                <Disclosure defaultOpen={true}>
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="font-semibold tracking-tighter text-sm flex flex-row items-center gap-2 w-full justify-between p-2 hover:bg-b-med rounded-lg">
-                        <span>Types</span>
-                        {open ? (
-                          <ChevronUp size={16} />
-                        ) : (
-                          <ChevronDown size={16} />
-                        )}
-                      </Disclosure.Button>
-                      <Transition
-                        enter="transition duration-100 ease-out"
-                        enterFrom="transform scale-95 opacity-0"
-                        enterTo="transform scale-100 opacity-100"
-                        leave="transition duration-75 ease-out"
-                        leaveFrom="transform scale-100 opacity-100"
-                        leaveTo="transform scale-95 opacity-0"
-                      >
-                        <Disclosure.Panel className="text-sm px-2 w-full mt-2">
-                          <ul>
-                            {goal.types?.map((type: string) => (
-                              <li
-                                key={type}
-                                className="first-letter:capitalize mb-2"
-                              >
-                                {type}
-                              </li>
-                            ))}
-                          </ul>
-                        </Disclosure.Panel>
-                      </Transition>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
-            </div>
-          </div>
-        </Dialog.Panel>
-      </Dialog>
-    </>
-  );
+	const handleChangeUnits = (newValue: "metric" | "imperial") => {
+		if (user) {
+			updateUserData(user.uid, { settings: { units: newValue } });
+		} else {
+			updateLocalSettings({ units: newValue });
+		}
+		setUnits(newValue);
+	};
+
+	return (
+		<>
+			<Dialog open={isDetailsOpen} onClose={() => toggleDetails()}>
+				<div
+					className="fixed inset-0 z-30 cursor-pointer bg-b-low opacity-60"
+					aria-hidden="true"
+				/>
+				<Dialog.Panel>
+					<div className="border-detail fixed inset-[5%] z-40 mx-auto max-w-2xl overflow-y-auto rounded-xl border-2 bg-b-med px-8 pt-8 shadow-lg shadow-b-low sm:inset-[10%]">
+						{/* margin-bottom affects entire menu content */}
+						<div className="relative mb-12 w-full">
+							{/* header section */}
+							<div className="mb-6">
+								<div className="mb-8 flex w-full items-start justify-between">
+									<div className="flex items-center gap-6">
+										<div className="rounded-2xl">
+											<div
+												className={`${mode === "light" ? "brightness-75" : "brightness-125"}`}
+											>
+												<Image
+													alt=""
+													width={36}
+													height={36}
+													src={`/goals/${goal.icon ?? "beans"}-earthy.png`}
+												></Image>
+											</div>
+										</div>
+										<div className="flex flex-col items-start">
+											<Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
+												{goal.name}
+											</Dialog.Title>
+											<div className="flex flex-row items-center text-sm text-f-med ">
+												Progress: {progress} / {goal.quantity}
+												<span className="pl-2 text-f-high">
+													{progress >= goal.quantity && <Check size={16} />}
+												</span>
+											</div>
+										</div>
+									</div>
+									<button
+										className="-mr-2 rounded-md p-2 text-f-low hover:text-f-high"
+										aria-label="close details"
+										onClick={toggleDetails}
+									>
+										<X />
+									</button>
+								</div>
+								<div className="h-6 w-full">
+									<ProgressBar
+										goal={goal}
+										progress={progress}
+										overflow={overflow}
+									/>
+								</div>
+							</div>
+							<div className="mb-12">
+								{/* <h3 className={text.label}>Log progress</h3> */}
+								<div className="flex items-center justify-between gap-2 overflow-x-scroll">
+									<div className="flex gap-2">
+										{Array.from(fractionsMap.entries()).map(
+											([value, label], i) => {
+												const selected = incrementBy === value;
+												return (
+													<button
+														key={value}
+														onClick={() => {
+															if (incrementBy !== value) {
+																setIncrementBy(value);
+															} else {
+																increment(value);
+															}
+														}}
+														className={`flex cursor-pointer items-center gap-2 text-nowrap rounded-xl border-2 px-3 py-1 hover:border-border-low hover:text-f-high sm:px-4 ${selected ? "border-capsule bg-capsule text-f-high" : "border-detail text-f-low"}`}
+													>
+														{selected && <Plus size={14} />}
+														{`${selected ? "Log" : ""} ${label}`}
+													</button>
+												);
+											},
+										)}
+									</div>
+									<button
+										onClick={() => reset()}
+										className={`hover:bg-b-warn hover:border-f-warn-low hover:text-f-warn border-detail flex w-min cursor-pointer flex-row items-center gap-2 rounded-xl border-2 px-4 py-1 text-f-low`}
+									>
+										<RotateCcw size={14} /> <span>Reset</span>
+									</button>
+								</div>
+							</div>
+							<div className="flex items-center justify-between">
+								<h3 className={text.label}>Suggestions</h3>
+								<RadioGroup
+									value={units}
+									onChange={(newValue) => handleChangeUnits(newValue)}
+									className="mb-4 flex gap-2 text-sm"
+								>
+									<RadioGroup.Label className="sr-only">Units</RadioGroup.Label>
+									{unitTypes.map((unitType: string, i) => (
+										<>
+											<RadioGroupOption key={unitType} value={unitType} />
+											{i < unitTypes.length - 1 && (
+												<span className="text-f-low">•</span>
+											)}
+										</>
+									))}
+								</RadioGroup>
+							</div>
+							<ul className="mb-12 text-sm">
+								{goal.suggestions.map((suggestion: Suggestion) => (
+									<li key={suggestion.name} className="mb-2">
+										{parseQuantity(suggestion.portion[units].quantity)}{" "}
+										{suggestion.portion[units].unit} {suggestion.name}{" "}
+									</li>
+								))}
+								<li></li>
+							</ul>
+							<h3 className={text.label}>Types</h3>
+							<ul className="mb-12 flex w-full flex-wrap gap-2 text-sm">
+								{goal.types?.map((type: string) => (
+									<li
+										key={type}
+										className="rounded-lg bg-capsule px-2 py-1 first-letter:capitalize"
+									>
+										{type}
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</Dialog.Panel>
+			</Dialog>
+		</>
+	);
 }

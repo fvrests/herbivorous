@@ -3,7 +3,7 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { UserContext } from "@/components/UserProvider";
-import SignInForm from "./SignInForm";
+import ResetPasswordForm from "./ResetPasswordForm";
 import text from "@/app/styles/text.module.css";
 
 export default function SignIn() {
@@ -12,18 +12,19 @@ export default function SignIn() {
 
 	useEffect(() => {
 		if (user) {
-			router.push("/");
+			router.push("/user");
 		}
 	}, [user]);
 
 	if (!isLoading && !user) {
 		return (
 			<>
-				<h2 className={text.heading}>You&apos;re not signed in.</h2>
+				<h2 className={text.heading}>Reset password</h2>
 				<p className={text.subheading}>
-					Sign in to save your daily progress and settings.
+					Enter your email below. If your account exists, we&apos;ll send you a
+					link to reset your password.
 				</p>
-				<SignInForm />
+				<ResetPasswordForm />
 			</>
 		);
 	}

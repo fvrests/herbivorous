@@ -1,604 +1,605 @@
 [
-  {
-    "name": "beans",
-    "quantity": 3,
-    "info": ["https://nutritionfacts.org/topics/beans/"],
-    "icon": "beans",
-    "suggestions": [
-      {
-        "name": "hummus or bean dip",
-        "portion": {
-          "metric": { "quantity": 60, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      },
-      {
-        "name": "cooked beans, split peas, or lentils",
-        "portion": {
-          "metric": { "quantity": 90, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "tofu or tempeh",
-        "portion": {
-          "metric": { "quantity": 100, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "fresh peas or snow peas",
-        "portion": {
-          "metric": { "quantity": 130, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      },
-      {
-        "name": "fresh sprouted beans (lentils, mung beans)",
-        "portion": {
-          "metric": { "quantity": 100, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "black beans",
-      "black-eyed peas",
-      "butter beans",
-      "cannellini beans",
-      "chickpeas (garbanzo beans)",
-      "edamame",
-      "english peas",
-      "great northern beans",
-      "kidney beans",
-      "lentils (beluga, french, and red varieties)",
-      "miso",
-      "navy beans",
-      "pinto beans",
-      "small red beans",
-      "split peas (yellow or green)",
-      "tempeh"
-    ]
-  },
-  {
-    "name": "berries",
-    "quantity": 1,
-    "info": ["https://nutritionfacts.org/topics/berries/"],
-    "icon": "berries",
-    "suggestions": [
-      {
-        "name": "fresh or frozen",
-        "portion": {
-          "metric": { "quantity": 60, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "dried",
-        "portion": {
-          "metric": { "quantity": 40, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "açai berries",
-      "barberries",
-      "blackberries",
-      "blueberries",
-      "cherries (sweet or tart)",
-      "concord grapes",
-      "cranberries",
-      "goji berries",
-      "kumquats",
-      "mulberries",
-      "raspberries (black or red)",
-      "strawberries"
-    ]
-  },
-  {
-    "name": "other fruits",
-    "quantity": 3,
-    "info": [
-      "https://nutritionfacts.org/topics/fruit/",
-      "https://nutritionfacts.org/topics/dried-fruit/"
-    ],
-    "icon": "other-fruits",
-    "suggestions": [
-      {
-        "name": "medium-sized fruit",
-        "portion": {
-          "metric": { "quantity": 1, "unit": "" },
-          "imperial": { "quantity": 1, "unit": "" }
-        }
-      },
-      {
-        "name": "cut-up fruit",
-        "portion": {
-          "metric": { "quantity": 120, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      },
-      {
-        "name": "dried fruit",
-        "portion": {
-          "metric": { "quantity": 40, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "apples",
-      "apricots",
-      "avocados",
-      "bananas",
-      "cantaloupe",
-      "clementines",
-      "dates",
-      "figs",
-      "grapefruit",
-      "honeydew",
-      "kiwifruit",
-      "lemons",
-      "limes",
-      "lychees",
-      "mangos",
-      "nectarines",
-      "oranges",
-      "papaya",
-      "passion fruit",
-      "peaches",
-      "pears",
-      "pineapple",
-      "plums (especially black plums)",
-      "pluots",
-      "pomegranates",
-      "prunes",
-      "tangerines",
-      "watermelon"
-    ]
-  },
-  {
-    "name": "cruciferous vegetables",
-    "quantity": 1,
-    "info": ["https://nutritionfacts.org/topics/cruciferous-vegetables/"],
-    "icon": "cruciferous",
-    "suggestions": [
-      {
-        "name": "chopped",
-        "portion": {
-          "metric": { "quantity": "30-80", "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "brussels sprouts",
-        "portion": {
-          "metric": { "quantity": 80, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "broccoli sprouts",
-        "portion": {
-          "metric": { "quantity": 15, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      },
-      {
-        "name": "horseradish",
-        "portion": {
-          "metric": { "quantity": 1, "unit": "tbsp" },
-          "imperial": { "quantity": 1, "unit": "tbsp" }
-        }
-      }
-    ],
+	{
+		"name": "beans",
+		"quantity": 3,
+		"info": ["https://nutritionfacts.org/topics/beans/"],
+		"icon": "beans",
+		"suggestions": [
+			{
+				"name": "hummus or bean dip",
+				"portion": {
+					"metric": { "quantity": 60, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			},
+			{
+				"name": "cooked beans, split peas, or lentils",
+				"portion": {
+					"metric": { "quantity": 90, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "tofu or tempeh",
+				"portion": {
+					"metric": { "quantity": 100, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "fresh peas or snow peas",
+				"portion": {
+					"metric": { "quantity": 130, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			},
+			{
+				"name": "fresh sprouted beans (lentils, mung beans)",
+				"portion": {
+					"metric": { "quantity": 100, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"black beans",
+			"black-eyed peas",
+			"butter beans",
+			"cannellini beans",
+			"chickpeas (garbanzo beans)",
+			"edamame",
+			"english peas",
+			"great northern beans",
+			"kidney beans",
+			"lentils (beluga, french, and red varieties)",
+			"miso",
+			"navy beans",
+			"pinto beans",
+			"small red beans",
+			"split peas (yellow or green)",
+			"tempeh"
+		]
+	},
+	{
+		"name": "berries",
+		"quantity": 1,
+		"info": ["https://nutritionfacts.org/topics/berries/"],
+		"icon": "berries",
+		"suggestions": [
+			{
+				"name": "fresh or frozen",
+				"portion": {
+					"metric": { "quantity": 60, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "dried",
+				"portion": {
+					"metric": { "quantity": 40, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"açai berries",
+			"barberries",
+			"blackberries",
+			"blueberries",
+			"cherries (sweet or tart)",
+			"concord grapes",
+			"cranberries",
+			"goji berries",
+			"kumquats",
+			"mulberries",
+			"raspberries (black or red)",
+			"strawberries"
+		]
+	},
+	{
+		"name": "other fruits",
+		"quantity": 3,
+		"info": [
+			"https://nutritionfacts.org/topics/fruit/",
+			"https://nutritionfacts.org/topics/dried-fruit/"
+		],
+		"icon": "other-fruits",
+		"suggestions": [
+			{
+				"name": "medium-sized fruit",
+				"portion": {
+					"metric": { "quantity": 1, "unit": "" },
+					"imperial": { "quantity": 1, "unit": "" }
+				}
+			},
+			{
+				"name": "cut-up fruit",
+				"portion": {
+					"metric": { "quantity": 120, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			},
+			{
+				"name": "dried fruit",
+				"portion": {
+					"metric": { "quantity": 40, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"apples",
+			"apricots",
+			"avocados",
+			"bananas",
+			"cantaloupe",
+			"clementines",
+			"dates",
+			"figs",
+			"grapefruit",
+			"honeydew",
+			"kiwifruit",
+			"lemons",
+			"limes",
+			"lychees",
+			"mangos",
+			"nectarines",
+			"oranges",
+			"papaya",
+			"passion fruit",
+			"peaches",
+			"pears",
+			"pineapple",
+			"plums (especially black plums)",
+			"pluots",
+			"pomegranates",
+			"prunes",
+			"tangerines",
+			"watermelon"
+		]
+	},
+	{
+		"name": "cruciferous vegetables",
+		"quantity": 1,
+		"info": ["https://nutritionfacts.org/topics/cruciferous-vegetables/"],
+		"icon": "cruciferous",
+		"suggestions": [
+			{
+				"name": "chopped",
+				"portion": {
+					"metric": { "quantity": "30-80", "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "brussels sprouts",
+				"portion": {
+					"metric": { "quantity": 80, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "broccoli sprouts",
+				"portion": {
+					"metric": { "quantity": 15, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			},
+			{
+				"name": "horseradish",
+				"portion": {
+					"metric": { "quantity": 1, "unit": "tbsp" },
+					"imperial": { "quantity": 1, "unit": "tbsp" }
+				}
+			}
+		],
 
-    "types": [
-      "arugula",
-      "bok choy",
-      "broccoli",
-      "brussels sprouts",
-      "cabbage",
-      "cauliflower",
-      "collard greens",
-      "horseradish",
-      "kale (black, green, and red)",
-      "mustard greens",
-      "radishes",
-      "turnip greens",
-      "watercress"
-    ]
-  },
-  {
-    "name": "greens",
-    "quantity": 2,
-    "info": ["https://nutritionfacts.org/topics/greens/"],
-    "icon": "greens",
-    "suggestions": [
-      {
-        "name": "raw",
-        "portion": {
-          "metric": { "quantity": 60, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      },
-      {
-        "name": "cooked",
-        "portion": {
-          "metric": { "quantity": 90, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "arugula",
-      "beet greens",
-      "collard greens",
-      "kale (black, green, and red)",
-      "mesclun mix (assorted young salad greens)",
-      "mustard greens",
-      "sorrel",
-      "spinach",
-      "swiss chard",
-      "turnip greens"
-    ]
-  },
-  {
-    "name": "other vegetables",
-    "quantity": 2,
-    "info": ["https://nutritionfacts.org/topics/vegetables/"],
-    "icon": "other-veg",
-    "suggestions": [
-      {
-        "name": "raw leafy vegetables",
-        "portion": {
-          "metric": { "quantity": 60, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      },
-      {
-        "name": "raw or cooked nonleafy vegetables",
-        "portion": {
-          "metric": { "quantity": 50, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "vegetable juice",
-        "portion": {
-          "metric": { "quantity": 125, "unit": "ml" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "dried mushrooms",
-        "portion": {
-          "metric": { "quantity": 7, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "artichokes",
-      "asparagus",
-      "beets",
-      "bell peppers",
-      "carrots",
-      "corn",
-      "garlic",
-      "mushrooms (button, oyster, portobello, and shiitake)",
-      "okra",
-      "onions",
-      "purple potatoes",
-      "pumpkin",
-      "sea vegetables (arame, dulse, and nori)",
-      "snap peas",
-      "squash (delicata, summer, and spaghetti squash varieties)",
-      "sweet potatoes / yams",
-      "tomatoes",
-      "zucchini"
-    ]
-  },
-  {
-    "name": "flaxseeds",
-    "quantity": 1,
-    "info": ["https://nutritionfacts.org/topics/flax-seeds/"],
-    "icon": "flax",
-    "suggestions": [
-      {
-        "name": "ground",
-        "portion": {
-          "metric": { "quantity": 1, "unit": "tbsp" },
-          "imperial": { "quantity": 1, "unit": "tbsp" }
-        }
-      }
-    ],
-    "types": ["brown flaxseeds", "golden flaxseeds"]
-  },
-  {
-    "name": "nuts & seeds",
-    "quantity": 1,
-    "info": [
-      "https://nutritionfacts.org/topics/nuts/",
-      "https://nutritionfacts.org/topics/seeds/"
-    ],
-    "icon": "nuts-seeds",
-    "suggestions": [
-      {
-        "name": "nuts or seeds",
-        "portion": {
-          "metric": { "quantity": 30, "unit": "g" },
-          "imperial": { "quantity": 0.25, "unit": "cup" }
-        }
-      },
-      {
-        "name": "nut or seed butter",
-        "portion": {
-          "metric": { "quantity": 2, "unit": "tbsp" },
-          "imperial": { "quantity": 2, "unit": "tbsp" }
-        }
-      }
-    ],
-    "types": [
-      "almonds",
-      "brazil nuts",
-      "cashews",
-      "chia seeds",
-      "hazelnuts / filberts",
-      "hemp seeds",
-      "macademia nuts",
-      "pecans",
-      "pistachios",
-      "pumpkin seeds",
-      "sesame seeds",
-      "sunflower seeds",
-      "walnuts"
-    ]
-  },
-  {
-    "name": "herbs & spices",
-    "quantity": 1,
-    "info": [
-      "https://nutritionfacts.org/topics/herbs/",
-      "https://nutritionfacts.org/topics/spices/"
-    ],
-    "icon": "herbs-spices",
-    "suggestions": [
-      {
-        "name": "turmeric (recommended daily)",
-        "portion": {
-          "metric": { "quantity": 0.25, "unit": "tsp" },
-          "imperial": { "quantity": 0.25, "unit": "tsp" }
-        }
-      },
-      {
-        "name": "any other (salt-free) herbs and spices you enjoy",
-        "portion": {
-          "metric": { "quantity": 0.25, "unit": "tsp" },
-          "imperial": { "quantity": 0.25, "unit": "tsp" }
-        }
-      }
-    ],
-    "types": [
-      "allspice",
-      "barberries",
-      "basil",
-      "bay leaves",
-      "cardamom",
-      "chili powder",
-      "cilantro",
-      "cinnamon",
-      "cloves",
-      "coriander",
-      "cumin",
-      "curry powder",
-      "dill",
-      "fenugreek",
-      "garlic",
-      "ginger",
-      "horseradish",
-      "lemongrass",
-      "marjoram",
-      "mustard powder",
-      "nutmeg",
-      "oregano",
-      "smoked paprika",
-      "parsley",
-      "pepper",
-      "peppermint",
-      "rosemary",
-      "saffron",
-      "sage",
-      "thyme",
-      "turmeric",
-      "vanilla"
-    ]
-  },
-  {
-    "name": "whole grains",
-    "quantity": 3,
-    "info": ["https://nutritionfacts.org/topics/grains/"],
-    "icon": "whole-grains",
-    "suggestions": [
-      {
-        "name": "hot cereal or cooked grains, pasta, or corn kernels",
-        "portion": {
-          "metric": { "quantity": 100, "unit": "g" },
-          "imperial": { "quantity": 0.5, "unit": "cup" }
-        }
-      },
-      {
-        "name": "cold cereal",
-        "portion": {
-          "metric": { "quantity": 50, "unit": "g" },
-          "imperial": { "quantity": 1, "unit": "cup" }
-        }
-      },
-      {
-        "name": "tortilla or slice of bread",
-        "portion": {
-          "metric": { "quantity": 1, "unit": "" },
-          "imperial": { "quantity": 1, "unit": "" }
-        }
-      },
-      {
-        "name": "bagel or english muffin",
-        "portion": {
-          "metric": { "quantity": 0.5, "unit": "" },
-          "imperial": { "quantity": 0.5, "unit": "" }
-        }
-      },
+		"types": [
+			"arugula",
+			"bok choy",
+			"broccoli",
+			"brussels sprouts",
+			"cabbage",
+			"cauliflower",
+			"collard greens",
+			"horseradish",
+			"kale (black, green, and red)",
+			"mustard greens",
+			"radishes",
+			"turnip greens",
+			"watercress"
+		]
+	},
+	{
+		"name": "greens",
+		"quantity": 2,
+		"info": ["https://nutritionfacts.org/topics/greens/"],
+		"icon": "greens",
+		"suggestions": [
+			{
+				"name": "raw",
+				"portion": {
+					"metric": { "quantity": 60, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			},
+			{
+				"name": "cooked",
+				"portion": {
+					"metric": { "quantity": 90, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"arugula",
+			"beet greens",
+			"collard greens",
+			"kale (black, green, and red)",
+			"mesclun mix (assorted young salad greens)",
+			"mustard greens",
+			"sorrel",
+			"spinach",
+			"swiss chard",
+			"turnip greens"
+		]
+	},
+	{
+		"name": "other vegetables",
+		"quantity": 2,
+		"info": ["https://nutritionfacts.org/topics/vegetables/"],
+		"icon": "other-veg",
+		"suggestions": [
+			{
+				"name": "raw leafy vegetables",
+				"portion": {
+					"metric": { "quantity": 60, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			},
+			{
+				"name": "raw or cooked nonleafy vegetables",
+				"portion": {
+					"metric": { "quantity": 50, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "vegetable juice",
+				"portion": {
+					"metric": { "quantity": 125, "unit": "ml" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "dried mushrooms",
+				"portion": {
+					"metric": { "quantity": 7, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"artichokes",
+			"asparagus",
+			"beets",
+			"bell peppers",
+			"carrots",
+			"corn",
+			"garlic",
+			"mushrooms (button, oyster, portobello, and shiitake)",
+			"okra",
+			"onions",
+			"purple potatoes",
+			"pumpkin",
+			"sea vegetables (arame, dulse, and nori)",
+			"snap peas",
+			"squash (delicata, summer, and spaghetti squash varieties)",
+			"sweet potatoes / yams",
+			"tomatoes",
+			"zucchini"
+		]
+	},
+	{
+		"name": "flaxseeds",
+		"quantity": 1,
+		"info": ["https://nutritionfacts.org/topics/flax-seeds/"],
+		"icon": "flax",
+		"suggestions": [
+			{
+				"name": "ground",
+				"portion": {
+					"metric": { "quantity": 1, "unit": "tbsp" },
+					"imperial": { "quantity": 1, "unit": "tbsp" }
+				}
+			}
+		],
+		"types": ["brown flaxseeds", "golden flaxseeds"]
+	},
+	{
+		"name": "nuts & seeds",
+		"quantity": 1,
+		"info": [
+			"https://nutritionfacts.org/topics/nuts/",
+			"https://nutritionfacts.org/topics/seeds/"
+		],
+		"icon": "nuts-seeds",
+		"suggestions": [
+			{
+				"name": "nuts or seeds",
+				"portion": {
+					"metric": { "quantity": 30, "unit": "g" },
+					"imperial": { "quantity": 0.25, "unit": "cup" }
+				}
+			},
+			{
+				"name": "nut or seed butter",
+				"portion": {
+					"metric": { "quantity": 2, "unit": "tbsp" },
+					"imperial": { "quantity": 2, "unit": "tbsp" }
+				}
+			}
+		],
+		"types": [
+			"almonds",
+			"brazil nuts",
+			"cashews",
+			"chia seeds",
+			"hazelnuts / filberts",
+			"hemp seeds",
+			"macademia nuts",
+			"pecans",
+			"pistachios",
+			"pumpkin seeds",
+			"sesame seeds",
+			"sunflower seeds",
+			"walnuts"
+		]
+	},
+	{
+		"name": "herbs & spices",
+		"quantity": 1,
+		"info": [
+			"https://nutritionfacts.org/topics/herbs/",
+			"https://nutritionfacts.org/topics/spices/"
+		],
+		"icon": "herbs-spices",
+		"suggestions": [
+			{
+				"name": "turmeric (recommended daily)",
+				"portion": {
+					"metric": { "quantity": 0.25, "unit": "tsp" },
+					"imperial": { "quantity": 0.25, "unit": "tsp" }
+				}
+			},
+			{
+				"name": "any other (salt-free) herbs and spices you enjoy",
+				"portion": {
+					"metric": { "quantity": 0.25, "unit": "tsp" },
+					"imperial": { "quantity": 0.25, "unit": "tsp" }
+				}
+			}
+		],
+		"types": [
+			"allspice",
+			"barberries",
+			"basil",
+			"bay leaves",
+			"cardamom",
+			"chili powder",
+			"cilantro",
+			"cinnamon",
+			"cloves",
+			"coriander",
+			"cumin",
+			"curry powder",
+			"dill",
+			"fenugreek",
+			"garlic",
+			"ginger",
+			"horseradish",
+			"lemongrass",
+			"marjoram",
+			"mustard powder",
+			"nutmeg",
+			"oregano",
+			"smoked paprika",
+			"parsley",
+			"pepper",
+			"peppermint",
+			"rosemary",
+			"saffron",
+			"sage",
+			"thyme",
+			"turmeric",
+			"vanilla"
+		]
+	},
+	{
+		"name": "whole grains",
+		"quantity": 3,
+		"info": ["https://nutritionfacts.org/topics/grains/"],
+		"icon": "whole-grains",
+		"suggestions": [
+			{
+				"name": "hot cereal or cooked grains, pasta, or corn kernels",
+				"portion": {
+					"metric": { "quantity": 100, "unit": "g" },
+					"imperial": { "quantity": 0.5, "unit": "cup" }
+				}
+			},
+			{
+				"name": "cold cereal",
+				"portion": {
+					"metric": { "quantity": 50, "unit": "g" },
+					"imperial": { "quantity": 1, "unit": "cup" }
+				}
+			},
+			{
+				"name": "tortilla or slice of bread",
+				"portion": {
+					"metric": { "quantity": 1, "unit": "" },
+					"imperial": { "quantity": 1, "unit": "" }
+				}
+			},
+			{
+				"name": "bagel or english muffin",
+				"portion": {
+					"metric": { "quantity": 0.5, "unit": "" },
+					"imperial": { "quantity": 0.5, "unit": "" }
+				}
+			},
 
-      {
-        "name": "popped popcorn",
-        "portion": {
-          "metric": { "quantity": 30, "unit": "g" },
-          "imperial": { "quantity": 3, "unit": "cup" }
-        }
-      }
-    ],
-    "types": [
-      "barley",
-      "brown rice",
-      "buckwheat",
-      "millet",
-      "oats",
-      "popcorn",
-      "quinoa",
-      "rye",
-      "teff",
-      "whole-wheat pasta",
-      "wild rice"
-    ]
-  },
-  {
-    "name": "beverages",
-    "quantity": 5,
-    "info": ["https://nutritionfacts.org/topics/beverages/"],
-    "icon": "beverages",
-    "suggestions": [
-      {
-        "name": "",
-        "portion": {
-          "metric": { "quantity": 350, "unit": "ml" },
-          "imperial": { "quantity": 12, "unit": "oz" }
-        }
-      }
-    ],
-    "types": [
-      "black tea",
-      "chai",
-      "vanilla chamomile tea",
-      "coffee",
-      "earl grey tea",
-      "green tea",
-      "hibiscus tea",
-      "hot chocolate",
-      "jasmine tea",
-      "lemon balm tea",
-      "matcha",
-      "almond blossom oolong tea",
-      "peppermint tea",
-      "rooibos tea",
-      "water",
-      "white tea"
-    ]
-  },
-  {
-    "name": "exercise",
-    "quantity": 1,
-    "info": ["https://nutritionfacts.org/topics/exercise/"],
-    "icon": "exercise",
-    "suggestions": [
-      {
-        "name": "moderate-intensity activity",
-        "portion": {
-          "metric": { "quantity": 90, "unit": "minutes" },
-          "imperial": { "quantity": 90, "unit": "minutes" }
-        }
-      },
-      {
-        "name": "vigorous-intensity activity",
-        "portion": {
-          "metric": { "quantity": 40, "unit": "minutes" },
-          "imperial": { "quantity": 40, "unit": "minutes" }
-        }
-      }
-    ],
-    "types": [
-      "bicycling",
-      "canoeing",
-      "dancing",
-      "dodgeball",
-      "downhill skiing",
-      "fencing",
-      "hiking",
-      "housework",
-      "ice skating",
-      "inline skating",
-      "juggling",
-      "jumping on a trampoline",
-      "paddle boating",
-      "playing frisbee",
-      "roller skating",
-      "shooting baskets",
-      "shoveling light snow",
-      "skateboarding",
-      "snorkeling",
-      "surfing",
-      "swimming (recreationally)",
-      "tennis (doubles)",
-      "treading water",
-      "walking briskly (4mph)",
-      "water aerobics",
-      "waterskiing",
-      "yard work",
-      "yoga",
-      "backpacking",
-      "basketball",
-      "bicycling uphill",
-      "circuit weight training",
-      "cross-country skiing",
-      "football",
-      "hockey",
-      "jogging",
-      "jumping jacks",
-      "jumping rope",
-      "lacrosse",
-      "push-ups",
-      "pull-ups",
-      "racquetball",
-      "rock climbing",
-      "rugby",
-      "running",
-      "scuba diving",
-      "soccer",
-      "speed skating",
-      "squash",
-      "step aerobics",
-      "swimming laps",
-      "walking briskly uphill",
-      "water jogging"
-    ]
-  },
-  {
-    "name": "vitamin B12",
-    "quantity": 1,
-    "info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
-    "icon": "b12",
-    "suggestions": [
-      {
-        "name": "per individual needs / doctor recommendation",
-        "portion": {
-          "metric": { "quantity": "50", "unit": "mcg" },
-          "imperial": { "quantity": "50", "unit": "mcg" }
-        }
-      }
-    ],
-    "types": [
-      "vitamin B12-containing supplements",
-      "vitamin B12-fortified foods"
-    ]
-  }
+			{
+				"name": "popped popcorn",
+				"portion": {
+					"metric": { "quantity": 30, "unit": "g" },
+					"imperial": { "quantity": 3, "unit": "cup" }
+				}
+			}
+		],
+		"types": [
+			"barley",
+			"brown rice",
+			"buckwheat",
+			"millet",
+			"oats",
+			"popcorn",
+			"quinoa",
+			"rye",
+			"teff",
+			"whole-wheat pasta",
+			"wild rice"
+		]
+	},
+	{
+		"name": "beverages",
+		"quantity": 5,
+		"info": ["https://nutritionfacts.org/topics/beverages/"],
+		"icon": "beverages",
+		"suggestions": [
+			{
+				"name": "",
+				"portion": {
+					"metric": { "quantity": 350, "unit": "ml" },
+					"imperial": { "quantity": 12, "unit": "oz" }
+				}
+			}
+		],
+		"types": [
+			"black tea",
+			"chai",
+			"vanilla chamomile tea",
+			"coffee",
+			"earl grey tea",
+			"green tea",
+			"hibiscus tea",
+			"hot chocolate",
+			"jasmine tea",
+			"lemon balm tea",
+			"matcha",
+			"almond blossom oolong tea",
+			"peppermint tea",
+			"rooibos tea",
+			"water",
+			"white tea"
+		]
+	},
+	{
+		"name": "exercise",
+		"quantity": 1,
+		"info": ["https://nutritionfacts.org/topics/exercise/"],
+		"icon": "exercise",
+		"suggestions": [
+			{
+				"name": "moderate-intensity activity",
+				"portion": {
+					"metric": { "quantity": 90, "unit": "minutes" },
+					"imperial": { "quantity": 90, "unit": "minutes" }
+				}
+			},
+			{
+				"name": "vigorous-intensity activity",
+				"portion": {
+					"metric": { "quantity": 40, "unit": "minutes" },
+					"imperial": { "quantity": 40, "unit": "minutes" }
+				}
+			}
+		],
+		"types": [
+			"bicycling",
+			"canoeing",
+			"dancing",
+			"dodgeball",
+			"downhill skiing",
+			"fencing",
+			"hiking",
+			"housework",
+			"ice skating",
+			"inline skating",
+			"juggling",
+			"jumping on a trampoline",
+			"paddle boating",
+			"playing frisbee",
+			"roller skating",
+			"shooting baskets",
+			"shoveling light snow",
+			"skateboarding",
+			"snorkeling",
+			"surfing",
+			"swimming (recreationally)",
+			"tennis (doubles)",
+			"treading water",
+			"walking briskly (4mph)",
+			"water aerobics",
+			"waterskiing",
+			"yard work",
+			"yoga",
+			"backpacking",
+			"basketball",
+			"bicycling uphill",
+			"circuit weight training",
+			"cross-country skiing",
+			"football",
+			"hockey",
+			"jogging",
+			"jumping jacks",
+			"jumping rope",
+			"lacrosse",
+			"push-ups",
+			"pull-ups",
+			"racquetball",
+			"rock climbing",
+			"rugby",
+			"running",
+			"scuba diving",
+			"tennis (singles)",
+			"soccer",
+			"speed skating",
+			"squash",
+			"step aerobics",
+			"swimming laps",
+			"walking briskly uphill",
+			"water jogging"
+		]
+	},
+	{
+		"name": "vitamin B12",
+		"quantity": 1,
+		"info": ["https://nutritionfacts.org/topics/vitamin-b12/"],
+		"icon": "b12",
+		"suggestions": [
+			{
+				"name": "per individual needs / doctor recommendation",
+				"portion": {
+					"metric": { "quantity": "50", "unit": "mcg" },
+					"imperial": { "quantity": "50", "unit": "mcg" }
+				}
+			}
+		],
+		"types": [
+			"vitamin B12-containing supplements",
+			"vitamin B12-fortified foods"
+		]
+	}
 ]

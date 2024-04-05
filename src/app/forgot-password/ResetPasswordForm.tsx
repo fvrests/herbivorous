@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { auth, getAuthErrorFromCode } from "@/utils/firebase-auth";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
@@ -7,10 +7,9 @@ import { getLocalStorage, updateLocalOnlyData } from "@/utils/localStorage";
 import form from "@/app/styles/form.module.css";
 import message from "@/app/styles/message.module.css";
 
-export default function SignInForm() {
+export default function ResetPasswordForm() {
 	const formDefaults = {
 		email: "",
-		password: "",
 	};
 	const localData = getLocalStorage("localOnly");
 	const [formData, setFormData] = useState({
@@ -35,11 +34,11 @@ export default function SignInForm() {
 				className={form.root}
 				onSubmit={(e) => {
 					e.preventDefault();
-					signInWithEmailAndPassword(auth, formData.email, formData.password)
+					sendPasswordResetEmail(auth, formData.email)
 						.then(() => {
-							updateLocalOnlyData({ formEmail: "" });
-							// signed in
-							// router will push to "/"
+							setStatusMessage(
+								"Request submitted. Check your inbox & spam folders for password reset instructions.",
+							);
 						})
 						.catch((error) => {
 							setStatusMessage(`Error: ${getAuthErrorFromCode(error.code)}`);
@@ -61,31 +60,16 @@ export default function SignInForm() {
 						onChange={handleChangeInput}
 					></input>
 				</div>
-				<div>
-					<label htmlFor="password" className={form.label}>
-						Password
-					</label>
-					<p className={form.sublabel}>
-						Forgot? &nbsp;
-						<Link href="/forgot-password">Reset password</Link>
-					</p>
-					<input
-						className={form.input}
-						id="password"
-						name="password"
-						type="password"
-						required
-						minLength={6}
-						value={formData.password}
-						onChange={handleChangeInput}
-					></input>
-				</div>
-				<Button type="submit">Sign in</Button>
+				<Button type="submit">Send email</Button>
 			</form>
-			<div className="mb-2 text-sm">
+			<p className="mb-2 text-sm">
+				Know your login details? &nbsp;
+				<Link href="/signin">Sign in</Link>
+			</p>
+			<p className="mb-2 text-sm">
 				New here? &nbsp;
 				<Link href="/signup">Sign up</Link>
-			</div>
+			</p>
 		</>
 	);
 }
