@@ -114,7 +114,7 @@ export default function UpdateUserForm() {
 									{field.label}
 								</label>
 								<input
-									className="w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-low focus:border-f-low"
+									className="hover:border-border-high w-full rounded-lg border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low focus:border-f-low"
 									name={field.name}
 									id={field.name}
 									type={field.type}

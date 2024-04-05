@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { Check, RotateCcw, X, Plus } from "react-feather";
 import { Dialog, RadioGroup } from "@headlessui/react";
+import Image from "next/image";
 import { useUserData, updateUserData } from "@/utils/firebase-firestore";
 import { getLocalStorage, updateLocalSettings } from "@/utils/localStorage";
 import ProgressBar from "@/components/ProgressBar";
 import RadioGroupOption from "@/components/RadioGroupOption";
 import { UserContext } from "@/components/UserProvider";
 import text from "@/app/styles/text.module.css";
+import { ThemeContext } from "./ThemeProvider";
 
 interface Props {
 	toggleDetails: () => void;
@@ -50,17 +52,13 @@ export default function GoalDetails({
 	let localData: UserData | null = getLocalStorage("herbivorous");
 	let { user } = useContext(UserContext);
 	let { userData } = useUserData();
+	const { mode } = useContext(ThemeContext);
 
 	const [units, setUnits] = useState(
 		userData?.settings?.units || localData?.settings?.units || "metric",
 	);
 
 	const [incrementBy, setIncrementBy] = useState(1);
-
-	// const [remaining, setRemaining] = useState(goal.quantity - progress);
-	// useEffect(() => {
-	// 	setRemaining(goal.quantity - progress);
-	// }, [goal, progress]);
 
 	useEffect(() => {
 		setUnits(
@@ -85,15 +83,37 @@ export default function GoalDetails({
 					aria-hidden="true"
 				/>
 				<Dialog.Panel>
-					<div className="fixed inset-[5%] z-40 mx-auto max-w-2xl overflow-y-auto rounded-xl border-2 border-border-low bg-b-med px-8 pt-8 shadow-lg shadow-b-low sm:inset-[10%]">
+					<div className="border-detail fixed inset-[5%] z-40 mx-auto max-w-2xl overflow-y-auto rounded-xl border-2 bg-b-med px-8 pt-8 shadow-lg shadow-b-low sm:inset-[10%]">
 						{/* margin-bottom affects entire menu content */}
 						<div className="relative mb-12 w-full">
 							{/* header section */}
-							<div className="mb-12">
-								<div className="flex w-full items-center justify-between">
-									<Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
-										{goal.name}
-									</Dialog.Title>
+							<div className="mb-6">
+								<div className="mb-8 flex w-full items-start justify-between">
+									<div className="flex items-center gap-6">
+										<div className="rounded-2xl">
+											<div
+												className={`${mode === "light" ? "brightness-75" : "brightness-125"}`}
+											>
+												<Image
+													alt=""
+													width={36}
+													height={36}
+													src={`/goals/${goal.icon ?? "beans"}-earthy.png`}
+												></Image>
+											</div>
+										</div>
+										<div className="flex flex-col items-start">
+											<Dialog.Title className="mb-1 text-xl font-semibold tracking-tighter first-letter:capitalize">
+												{goal.name}
+											</Dialog.Title>
+											<div className="flex flex-row items-center text-sm text-f-med ">
+												Progress: {progress} / {goal.quantity}
+												<span className="pl-2 text-f-high">
+													{progress >= goal.quantity && <Check size={16} />}
+												</span>
+											</div>
+										</div>
+									</div>
 									<button
 										className="-mr-2 rounded-md p-2 text-f-low hover:text-f-high"
 										aria-label="close details"
@@ -102,13 +122,7 @@ export default function GoalDetails({
 										<X />
 									</button>
 								</div>
-								<div className="mb-4 flex flex-row items-center text-sm text-f-med ">
-									Progress: {progress} / {goal.quantity}
-									<span className="pl-2 text-f-high">
-										{progress >= goal.quantity && <Check size={16} />}
-									</span>
-								</div>
-								<div className="h-3 w-full">
+								<div className="h-6 w-full">
 									<ProgressBar
 										goal={goal}
 										progress={progress}
@@ -117,7 +131,7 @@ export default function GoalDetails({
 								</div>
 							</div>
 							<div className="mb-12">
-								<h3 className={text.label}>Log progress</h3>
+								{/* <h3 className={text.label}>Log progress</h3> */}
 								<div className="flex items-center justify-between gap-2 overflow-x-scroll">
 									<div className="flex gap-2">
 										{Array.from(fractionsMap.entries()).map(
@@ -133,7 +147,7 @@ export default function GoalDetails({
 																increment(value);
 															}
 														}}
-														className={`hover:border-border-med flex cursor-pointer items-center gap-2 text-nowrap rounded-xl border-2 px-3 py-1 hover:text-f-high sm:px-4 ${selected ? "border-capsule bg-capsule text-f-high" : "border-border-low text-f-low"}`}
+														className={`flex cursor-pointer items-center gap-2 text-nowrap rounded-xl border-2 px-3 py-1 hover:border-border-low hover:text-f-high sm:px-4 ${selected ? "border-capsule bg-capsule text-f-high" : "border-detail text-f-low"}`}
 													>
 														{selected && <Plus size={14} />}
 														{`${selected ? "Log" : ""} ${label}`}
@@ -144,7 +158,7 @@ export default function GoalDetails({
 									</div>
 									<button
 										onClick={() => reset()}
-										className={`hover:bg-b-warn hover:border-f-warn-low hover:text-f-warn flex w-min cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-border-low px-4 py-1 text-f-low`}
+										className={`hover:bg-b-warn hover:border-f-warn-low hover:text-f-warn border-detail flex w-min cursor-pointer flex-row items-center gap-2 rounded-xl border-2 px-4 py-1 text-f-low`}
 									>
 										<RotateCcw size={14} /> <span>Reset</span>
 									</button>

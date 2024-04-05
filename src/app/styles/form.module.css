@@ -8,5 +8,5 @@
 	@apply -mt-1 mb-4 text-xs text-f-med;
 }
 .input {
-	@apply w-full rounded-xl border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low hover:border-f-med focus:border-f-med;
+	@apply hover:border-border-high w-full rounded-xl border-2 border-border bg-b-low p-2 text-sm text-f-high placeholder:text-f-low focus:border-f-med;
 }

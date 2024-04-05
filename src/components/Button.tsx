@@ -20,7 +20,7 @@ export default function Button({
 			className={`flex h-10 items-center justify-center rounded-xl border-2 px-4 text-sm text-f-med shadow-sm hover:text-f-high disabled:opacity-50 ${classes} ${
 				secondary
 					? "border-transparent hover:underline"
-					: "border-border hover:border-f-med"
+					: "hover:border-border-high border-border"
 			} `}
 			onClick={() => onClick && onClick()}
 			type={type}

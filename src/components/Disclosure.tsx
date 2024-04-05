@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp } from "react-feather";
 
 export default function Disclosure() {
 	return (
-		<div className="mb-8 w-full rounded-xl border-2 border-border-low p-2">
+		<div className="border-detail mb-8 w-full rounded-xl border-2 p-2">
 			<UIDisclosure defaultOpen={true}>
 				{({ open }) => (
 					<>

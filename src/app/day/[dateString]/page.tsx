@@ -42,7 +42,7 @@ export default function DayView({
 				{goals.map((goal) => (
 					<div
 						key={goal.name}
-						className="border-b-[1px] border-t-[1px] border-border-low first:border-t-0 last:border-b-0"
+						className="border-detail border-b-[1px] border-t-[1px] first:border-t-0 last:border-b-0"
 					>
 						<Goal goal={goal} date={params.dateString ?? getDateString()} />
 					</div>
